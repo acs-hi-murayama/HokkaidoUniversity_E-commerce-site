@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>北大公式グッズ 期間限定フェア | 北海道大学オンラインショップ（テスト）</title>
+    <meta name="description" content="北海道大学の公式グッズを多数取り揃えた期間限定フェア開催中。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Kaisei+Tokumin:wght@500;700&display=swap" rel="stylesheet">
+    <link href="./css/landing-page.css" rel="stylesheet" type="text/css">
+    <style>
+        /* LP専用スタイル補足 */
+        body.body-lp #container { padding-top: 80px; padding-bottom: 60px; }
+        .lp-hero {
+            width: 100%;
+            background: linear-gradient(135deg, #0f4c5c 0%, #1a7a57 60%, #e9bc00 100%);
+            color: #fff;
+            text-align: center;
+            padding: 80px 5% 60px;
+        }
+        .lp-hero .kv-label {
+            display: inline-block;
+            background: #e9bc00;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2px;
+            padding: 4px 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .lp-hero h1 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: clamp(28px, 5vw, 52px);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        .lp-hero h1 span { color: #e9bc00; }
+        .lp-hero p {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+        .lp-hero .btn-cta {
+            display: inline-block;
+            background: #e9bc00;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 16px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(233,188,0,0.4);
+        }
+        .lp-hero .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(233,188,0,0.6); text-decoration: none; }
+        .lp-section {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 60px 5%;
+        }
+        .lp-section h2 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: 28px;
+            text-align: center;
+            margin-bottom: 8px;
+            color: #0f4c5c;
+        }
+        .lp-section .section-sub {
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        .lp-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .lp-card {
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            overflow: hidden;
+            width: calc(33.3% - 20px);
+            min-width: 220px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .lp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
+        .lp-card img { width: 100%; height: 180px; object-fit: cover; display: block; border: none; }
+        .lp-card .card-body { padding: 16px; }
+        .lp-card .card-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: #333; }
+        .lp-card .card-price { color: #0f4c5c; font-size: 16px; font-weight: 700; }
+        .lp-card .card-price span { font-size: 12px; font-weight: 400; color: #888; }
+        .lp-cta-band {
+            background: #0f4c5c;
+            color: #fff;
+            text-align: center;
+            padding: 60px 5%;
+        }
+        .lp-cta-band h2 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: 26px;
+            margin-bottom: 14px;
+            color: #e9bc00;
+        }
+        .lp-cta-band p { font-size: 14px; opacity: 0.85; margin-bottom: 32px; line-height: 1.8; }
+        .lp-cta-band .btn-cta {
+            display: inline-block;
+            background: #e9bc00;
+            color: #1a1a1a;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 16px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .lp-cta-band .btn-cta:hover { transform: translateY(-2px); text-decoration: none; }
+        .lp-point {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+        }
+        .lp-point-item {
+            text-align: center;
+            width: calc(33.3% - 20px);
+            min-width: 200px;
+        }
+        .lp-point-item .icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #0f4c5c, #1a7a57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+        }
+        .lp-point-item h3 { font-size: 16px; font-weight: 700; color: #0f4c5c; margin-bottom: 8px; }
+        .lp-point-item p { font-size: 13px; color: #666; line-height: 1.7; }
+        .lp-divider { border: none; border-top: 1px solid #e8e8e8; margin: 0; }
+    </style>
+</head>
+
+<body class="body-lp">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    <h1 class="site-name-txt"><a href="./index.html">北海道大学オンラインショップ</a></h1>
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+
+        <div id="container">
+            <div class="no_inner">
+                <div class="one-column">
+                    <div id="main" role="main">
+                        <div class="wysiwyg-data">
+
+                            <!-- ヒーローセクション -->
+                            <section class="lp-hero">
+                                <p class="kv-label">PERIOD LIMITED FAIR</p>
+                                <h1>北大公式グッズ<br><span>期間限定フェア</span>開催中</h1>
+                                <p>北海道大学の歴史と伝統を身に纏う。<br>ポプラ並木から生まれた、こだわりのオリジナルグッズを特別価格でご提供。</p>
+                                <a href="./product-list.html" class="btn-cta">商品一覧を見る</a>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- 特徴セクション -->
+                            <section class="lp-section" style="background: #f9f9f9; max-width: 100%; padding: 60px 5%;">
+                                <div style="max-width: 960px; margin: 0 auto;">
+                                    <h2>このフェアの3つのポイント</h2>
+                                    <p class="section-sub">Point</p>
+                                    <div class="lp-point">
+                                        <div class="lp-point-item">
+                                            <div class="icon">🎓</div>
+                                            <h3>北大公式ライセンス品</h3>
+                                            <p>すべての商品は北海道大学公認のオリジナルグッズです。品質と正規性を保証します。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🛍️</div>
+                                            <h3>期間限定特別価格</h3>
+                                            <p>フェア期間中は対象商品が最大15%OFF。この機会をお見逃しなく。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🚚</div>
+                                            <h3>5,500円以上で送料無料</h3>
+                                            <p>まとめ買いで送料がお得に。北海道内はもちろん、全国どこへでもお届けします。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- おすすめ商品セクション -->
+                            <section class="lp-section">
+                                <h2>フェア対象 おすすめ商品</h2>
+                                <p class="section-sub">Recommended Items</p>
+                                <div class="lp-grid">
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/lp1/400/300" alt="北大ロゴ入りマグカップ">
+                                        <div class="card-body">
+                                            <p class="card-name">北大ロゴ入りマグカップ</p>
+                                            <p class="card-price">¥1,650 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/lp2/400/300" alt="北大オリジナルトートバッグ">
+                                        <div class="card-body">
+                                            <p class="card-name">北大オリジナルトートバッグ</p>
+                                            <p class="card-price">¥2,200 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/lp3/400/300" alt="北大クリアファイル（3枚セット）">
+                                        <div class="card-body">
+                                            <p class="card-name">北大クリアファイル（3枚セット）</p>
+                                            <p class="card-price">¥550 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="text-align:center; margin-top: 36px;">
+                                    <a href="./product-list.html" class="btn-cta" style="display:inline-block; background:#0f4c5c; color:#fff; font-weight:700; font-size:16px; padding:14px 44px; border-radius:50px; text-decoration:none;">すべての商品を見る</a>
+                                </p>
+                            </section>
+
+                            <!-- CTAバンド -->
+                            <section class="lp-cta-band">
+                                <h2>今すぐショッピングを始めましょう</h2>
+                                <p>会員登録で最新情報やお得なキャンペーン情報をいち早くお届けします。<br>登録は無料で、すぐにお買い物を楽しめます。</p>
+                                <a href="./members-only-login.html" class="btn-cta">会員登録・ログイン</a>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--//container-->
+
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="./index.html">北海道大学オンラインショップ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北海道大学オンラインショップ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+        });
+    });
+    </script>
+</body>
+
+</html>
