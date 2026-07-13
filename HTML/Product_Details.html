@@ -1,0 +1,354 @@
+<article id="main" role="main">
+    <form action="{{ shpCartUrl }}/incart" method="post" id="cms0002d02Form">
+        <div class="item-head">
+            <h1 class="title1">{% if itemData.shpRsvFlag == 1 %}<span class="ttl-reservation">予約商品</span>{% endif %}{{
+                itemData.itemName }}</h1>
+        </div><!--//item-head-->
+        <!--商品説明2▼-->
+        {% if itemData.itemInfo2 is not empty %}
+        <div class="item-detail-txt2 wysiwyg-data">
+            <div>
+                {{ itemData.itemInfo2 }}
+            </div>
+        </div><!--//item-detail-txt2-->
+        {% endif %}
+        <!--商品説明2▲-->
+        <div id="item-detail">
+            <div class="cl">
+                <div class="item-detail-left">
+                    <!--メイン画像▼-->
+                    <div class="item-detail-photo-main raku-item-photo-main">
+                        <div class="item-detail-photo{% if itemData.badgeId != empty %} icon-badge{{ itemData.badgeId }}{% endif %}"
+                            id="jq_item_photo_list">
+                            <ul class="cl">
+                                <li class="active"><img src="{{ variationList[0].mediaUrlLarge }}" alt=""></li>
+                                {% for otherMediaUrlLarge in itemData.otherMediaUrlsLarge %}
+                                <li><img src="{{ otherMediaUrlLarge }}" alt=""></li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--//jq_item_photo_list-->
+                        <div id="jqitem-backbtn" class="item-detail-photo-backbtn"><a href="#"></a></div>
+                        <div id="jqitem-nextbtn" class="item-detail-photo-nextbtn"><a href="#"></a></div>
+                    </div><!--//item-detail-photo-main-->
+                    <!--メイン画像▲-->
+                    {% if itemData.otherMediaUrlsSmall|length != 0 %}
+                    <!--サムネイル画像-->
+                    <div class="item-detail-thumb">
+                        <div class="item-detail-thumb-photo raku-item-thumb-photo active"><a href="#"><img
+                                    src="{{ variationList[0].mediaUrlSmall }}" alt=""></a></div>
+                        {% for otherMediaUrlSmall in itemData.otherMediaUrlsSmall %}
+                        <div class="item-detail-thumb-photo raku-item-thumb-photo"><a href="#"><img
+                                    src="{{ otherMediaUrlSmall }}" alt=""></a></div>
+                        {% endfor %}
+                    </div><!--//item-detail-thumb-->
+                    {% endif %}
+                </div><!--//item-detail-left-->
+                <div class="item-detail-right">
+                    <div class="item-detail-block">
+                        <div class="item-detail-price">
+                            <dl>
+                                <dt>販売価格</dt>
+                                <dd><b class="price raku-item-vari-price-num">{{ variationList[0].displaySalePrice
+                                        }}</b><span class="tax raku-item-vari-tax">{{ variationList[0].displaySaleTax
+                                        }}</span></dd>
+                            </dl>
+                        </div><!--//item-detail-price-->
+                        <div class="item-detail-block-in">
+                            <div class="item-detail-memberprice" {% if variationList[0].mmbrPrice is empty %}
+                                style="display:none" {% endif %}>
+                                <dl>
+                                    <dt>会員価格</dt>
+                                    <dd><span class="item-detail-vari-memberprice-num raku-item-vari-memberprice-num">{{
+                                            variationList[0].displayMmbrPrice }}</span><span
+                                            class="tax item-detail-vari-memberprice-tax raku-item-vari-membertax">{{
+                                            variationList[0].displayMmbrTax }}</span></dd>
+                                </dl>
+                            </div>
+                            <div class="item-detail-normalprice" {% if variationList[0].normalPrice is empty %}
+                                style="display:none" {% endif %}>
+                                <dl>
+                                    <dt>通常価格</dt>
+                                    <dd><span class="item-detail-vari-normalprice-num raku-item-vari-normalprice-num">{{
+                                            variationList[0].displayNormalPrice }}</span><span
+                                            class="tax item-detail-vari-normalprice-tax raku-item-vari-normaltax">{{
+                                            variationList[0].displayNormalTax }}</span></dd>
+                                </dl>
+                            </div>
+                            <div class="item-detail-stock" {% if variationList[0].stock is empty or
+                                variationList[0].itmAttrDispTypeId> 2 %} style="display:none" {% endif %}>
+                                <dl>
+                                    <dt>在庫</dt>
+                                    <dd class="raku-item-vari-stock">{{ variationList[0].displayStock }}</dd>
+                                </dl>
+                            </div>
+                            <div class="item-detail-itemcode" {% if variationList[0].itemCd is empty %}
+                                style="display:none" {% endif %}>
+                                <dl>
+                                    <dt>商品コード</dt>
+                                    <dd class="raku-item-vari-itemcode">{{ variationList[0].itemCd }}</dd>
+                                </dl>
+                            </div>
+                            <div class="item-detail-jancode" {% if variationList[0].jancode is empty %}
+                                style="display:none" {% endif %}>
+                                <dl>
+                                    <dt>JANコード</dt>
+                                    <dd class="raku-item-vari-jancode">{{ variationList[0].jancode }}</dd>
+                                </dl>
+                            </div>
+                        </div><!--//item-detail-block-in-->
+                    </div><!--//item-detail-block-->
+                    <!--CART▼-->
+                    <div class="item-detail-cart">
+                        {% if variationList|length > 1 %}
+                        {% if itemData.variationDispFlag == 2 %}
+                        <div class="item-detail-select">
+                            <label for="variationId">
+                                <select name="variationId">
+                                    {% for variation in variationList %}
+                                    {% if variationId == variation.variationId %}
+                                    <option value="{{ variation.variationId }}" selected="selected">{{
+                                        variation.variationName }}</option>
+                                    {% else %}
+                                    <option value="{{ variation.variationId }}">{{ variation.variationName }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        </div>
+                        {% else %}
+                        <div class="item-detail-radio">
+                            {% for variation in variationList %}
+                            <div>
+                                {% if variationId == variation.variationId %}
+                                <input type="radio" name="variationId" value="{{ variation.variationId }}"
+                                    id="{{ variation.variationId }}" checked="checked">
+                                <label for="{{ variation.variationId }}">{{ variation.variationName }}</label>
+                                {% else %}
+                                <input type="radio" name="variationId" value="{{ variation.variationId }}"
+                                    id="{{ variation.variationId }}">
+                                <label for="{{ variation.variationId }}">{{ variation.variationName }}</label>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div><!--//item-detail-cart-vari-radio-->
+                        {% endif %}<!--//itemData-->
+                        {% else %}
+                        {% for variation in variationList %}
+                        <input type="hidden" name="variationId" value="{{ variation.variationId }}">
+                        {% endfor %}
+                        {% endif %}<!--//variationList|length-->
+                        {% if itemData.itemAttrPtrn == 2 %}
+                        {% for attr in itemAttrList %}
+                        {% if attr.formType == 1 %}
+                        <p>{{ attr.attrName }}</p>
+                        <div class="item-detail-select">
+                            <label for="attrValues">
+                                <select name="attrValues">
+                                    {% for attrValue in attr.attrValues %}
+                                    <option value="{{ attrValue }}" {% if loop.index==0 %} selected="selected" {% endif
+                                        %}>{{ attrValue }}</option>
+                                    {% endfor %}
+                                </select>
+                            </label>
+                        </div>
+                        {% else %}
+                        <p>{{ attr.attrName }}</p>
+                        <div class="item-detail-inputtext">
+                            <input type="text" name="attrValues" maxlength="100">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}<!--//itemData.itemAttrPtrn == 2-->
+
+                        <!--数量1▼-->
+                        {% if itemData.numericFormType == 1 %}
+                        <div class="js-counter-wrap">
+                            <p>数量</p>
+                            <div class="item-detail-num-count">
+                                <div class="item-detail-num-minus"><a href="#">-</a></div>
+                                <div class="item-detail-num"><input type="number" name="itemQuantity"
+                                        class="jq-num-count" value="{{ itemQuantity }}" maxlength="3" max="999" min="1">
+                                </div>
+                                <div class="item-detail-num-plus"><a href="#">+</a></div>
+                            </div><!--//item-detail-num-count-->
+                        </div><!--//js-counter-wrap-->
+                        {% endif %}
+                        <!--数量1▲-->
+                        <!--数量2▼-->
+                        {% if itemData.numericFormType == 2 %}
+                        <div class="js-counter-wrap">
+                            <p>数量</p>
+                            <div class="item-detail-num-select">
+                                <label for="cart-item-select1">
+                                    <select name="itemQuantity" id="cart-item-select1" class="js-counter-display">
+                                        {% for item in quantityField %}
+                                        {% if itemQuantity == item.value %}
+                                        <option value="{{ item.key }}" selected="selected">{{ item.value }}</option>
+                                        {% else %}
+                                        <option value="{{ item.key }}">{{ item.value }}</option>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </label>
+                            </div>
+                        </div><!--//js-counter-wrap-->
+                        {% endif %}
+                        <!--数量2▲-->
+                        {% if itemData.numericFormType == 3 %}
+                        <div class="js-counter-wrap">
+                            <input type="hidden" name="itemQuantity" value="1">
+                        </div><!--//js-counter-wrap-->
+                        {% endif %}
+                        {% if itemData.onSale != 0 %}
+                        {% if itemData.stockExist != 0 %}
+                        <div class="item-detail-cart-action raku-item-cart-action">
+                            <div class="item-detail-cart-btn">
+                                <a href="#" class="raku-add-cart"><span>カートに入れる</span></a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="item-detail-cart-action">
+                            <div class="item-dtail-nostock">在庫切れのため注文いただけません。</div>
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        <div class="item-detail-cart-action">
+                            <div class="item-dtail-outofoperiod">販売期間外のため注文いただけません。</div>
+                        </div>
+                        {% endif %}
+                    </div><!--//item-detail-cart-->
+                    <!--CART▲-->
+                    <div class="item-detail-block">
+                        <div class="item-detail-spec">
+                            {% if itemData.categoryName is not empty %}
+                            <dl>
+                                <dt>カテゴリー</dt>
+                                <dd>{{ itemData.categoryName }}</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.makerName is not empty %}
+                            <dl>
+                                <dt>メーカー</dt>
+                                <dd>{{ itemData.makerName }}</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.brandName is not empty %}
+                            <dl>
+                                <dt>ブランド</dt>
+                                <dd>{{ itemData.brandName }}</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.campaignList is not empty %}
+                            <dl>
+                                <dt>キャンペーン</dt>
+                                <dd>{% for campaign in itemData.campaignList %}
+                                    <a href="/item-list?campaignId={{ campaign.campaignId }}">{{ campaign.campaignName
+                                        }}</a>{% if loop.index < loop.length - 1 %}｜ {% endif %} {% endfor %}</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.carriage is not empty %}
+                            <dl>
+                                <dt>個別送料</dt>
+                                <dd>{{ itemData.carriage | numberformat("#,##0") }}円</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.providePoint is not empty %}
+                            <dl>
+                                <dt>個別付与ポイント</dt>
+                                <dd>{{ itemData.providePoint }}ポイント</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.ageLowLimit is not empty or itemData.ageUpLimit is not empty %}
+                            <dl>
+                                <dt>注文年齢制限</dt>
+                                <dd>
+                                    <div>
+                                        {% if itemData.ageLowLimit is not empty %}{{ itemData.ageLowLimit }}歳{% endif %}
+                                        &#65374; {% if itemData.ageUpLimit is not empty %}{{ itemData.ageUpLimit }}歳{%
+                                        endif %}
+                                    </div>
+                                    <div>注文手続き画面にて、生年月日を入力いただきます。</div>
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.quantityLowLimit is not empty or itemData.quantityUpLimit is not empty %}
+                            <dl>
+                                <dt>注文数制限</dt>
+                                <dd>
+                                    {% if itemData.quantityLowLimit is not empty %}{{ itemData.quantityLowLimit }}{%
+                                    endif %} &#65374; {% if itemData.quantityUpLimit is not empty %}{{
+                                    itemData.quantityUpLimit }}{% endif %}
+                                </dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.saleTermLowLimit is not empty or itemData.saleTermUpLimit is not empty %}
+                            <dl>
+                                <dt>販売期間</dt>
+                                <dd>{{ itemData.saleTermLowLimit }}&#65374;{{ itemData.saleTermUpLimit }}</dd>
+                            </dl>
+                            {% endif %}
+                            {% if itemData.itemInfo3 is not empty %}
+                            <div class="item-detail-txt3 wysiwyg-data">
+                                {{ itemData.itemInfo3 }}
+                            </div>
+                            {% endif %}
+                        </div><!--//item-detail-spec-->
+                        <div class="item-detail-share">
+                            <ul>
+                                <li class="twitter"><a
+                                        href="http://twitter.com/share?url={{ shpUrl }}/item-detail/{{ itemData.itemId }}&text={{ itemData.itemName }}"
+                                        target="_blank"><i class="icon-x"></i></a></li>
+                                <li class="facebook"><a
+                                        href="http://www.facebook.com/share.php?u={{ shpUrl }}/item-detail/{{ itemData.itemId }}"
+                                        onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+                                            class="icon-facebook"></i></a></li>
+                            </ul>
+                        </div><!--//item-detail-share-->
+                    </div><!--//item-detail-block-->
+                </div><!--//item-detail-right-->
+            </div><!--//cl-->
+            {% if itemData.itemInfo1 is not empty %}
+            <div class="item-footer">
+                <div class="item-detail-txt1 wysiwyg-data">
+                    {{ itemData.itemInfo1 }}
+                </div>
+            </div><!--//item-footer-->
+            {% endif %}
+            {% if itemRecommendList|length > 0 %}
+            <div class="item-detail-block">
+                <div class="item-head">
+                    <h2 class="title1">RECOMMENDED<span class="sub-title">おすすめアイテム</span></h2>
+                </div><!--//item-head-->
+                <ul class="list-product col-4">
+                    {% for item in itemRecommendList %}
+                    <!--商品リスト▼-->
+                    <li>
+                        <div
+                            class="item-photo product-list-photo{% if item.badgeId != null %} icon-badge{{ item.badgeId }}{% endif %}">
+                            <a href="/item-detail/{{ item.itemId }}">
+                                {% if item.dispMediaUrl is not empty %}
+                                <img src="{{ item.dispMediaUrlSmall }}" alt="{{ item.itemName }}">
+                                {% else %}
+                                <img src="{{ item.mediaUrlSmall }}" alt="{{ item.itemName }}">
+                                {% endif %}
+                            </a>
+                        </div><!--//item-photo-->
+                        <div class="item-info">
+                            <p class="item-name{% if item.shpRsvFlag == 1 %} icn-reservation{% endif %}">
+                                <a href="/item-detail/{{ item.itemId }}">{{ item.itemName }}</a>
+                            </p>
+                            <p class="item-price">{{ item.displayPrice }}<span class="tax">{{ item.displayTax }}</span>
+                            </p>
+                            {% if item.stockOutMessage is not empty %}<p class="item-nonstock">{{ item.stockOutMessage
+                                }}</p>{% endif %}
+                        </div>
+                    </li>
+                    <!--商品リスト▲-->
+                    {% endfor %}
+                </ul><!--//list-product-->
+            </div><!--//item-detail-block-->
+            {% endif %}
+            <input type="hidden" name="itemId" value="{{ itemData.itemId }}">
+            <input type="hidden" name="shpHash" value="{{ shpHash }}">
+    </form>
+</article><!--//main-->

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p lp/assets/images)",
+      "Bash(cp local/materials/'クリアファイル（クラーク像＆ハローキティ）.jpg' lp/assets/images/kitty-front.jpg)",
+      "Bash(cp local/materials/'クリアファイル（クラーク像＆ハローキティ）2.jpg' lp/assets/images/kitty-back.jpg)",
+      "Bash(cp local/materials/'クリアファイル（クラーク像＆ハローキティ）2_切り抜き.png' lp/assets/images/kitty-cutout.png)",
+      "Bash(cp local/materials/'クリアファイル（ポプラ並木＆マイメロディ・クロミ）.jpg' lp/assets/images/melody-front.jpg)",
+      "Bash(start \"\" \"lp/index.html\")",
+      "Bash(ls -R 'C:\\\\Users\\\\User18\\\\.claude\\\\skills\\\\design-tokens\\\\references' 2>/dev/null)",
+      "Read(//c/Users/User18/.claude/skills/design-tokens/references/**)",
+      "Bash(grep -nE '\\(color|background|border|fill|stroke\\)[^;{]*#[0-9A-Fa-f]{3,6}' assets/style.css)",
+      "Bash(grep -nE '#[0-9A-Fa-f]{3,6}' assets/style.css)"
+    ]
+  }
+}

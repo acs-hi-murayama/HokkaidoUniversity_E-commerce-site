@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>{% if loginTitle is not empty %}{{ loginTitle }}{% else %}{{ shopName }}{% endif %}</title>
+    <meta property="og:site_name" content="{{ shopName }}">
+    {% if loginMetadescription is not empty %}
+    <meta name="description" content="{{ loginMetadescription }}">
+    {% endif %}
+    {% if topFaviconUrl is not empty %}
+    <link rel="shortcut icon" href="{{ topFaviconUrl }}">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ topFaviconUrl }}">
+    {% endif %}
+    <link href="{{ cssAddr }}" rel="stylesheet" type="text/css">
+    <!--[if lt IE 10]>
+      <style type="text/css">label:after {display:none;}</style>
+    <![endif]-->
+    <[-- HEADER_CUSTOM_CONTENTS --]>
+        {% if robots is not empty %}
+        <meta name="robots" content="{{ robots }}">{% endif %}
+        {% if canonicalUrl is not empty %}
+        <link rel="canonical" href="{{ canonicalUrl }}">{% endif %}
+        {% if prevUrl is not empty %}
+        <link rel="prev" href="{{ prevUrl }}">{% endif %}
+        {% if nextUrl is not empty %}
+        <link rel="next" href="{{ nextUrl }}">{% endif %}
+</head>
+
+<body class="body-login">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    {% if hdrLogoDispFlag == 1 and hdrLogoImageUrl is not empty %}
+                    <h1 class="site-name"><a href="/"><img src="{{ hdrLogoImageUrl }}" alt="{{ shopName }}"></a></h1>
+                    {% else %}
+                    <h1 class="site-name-txt"><a href="/">{{ shopName }}</a></h1>
+                    {% endif %}
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+        <div id="container">
+            <div class="contents contents-login clearfix">
+                <div class="main clearfix">
+                    {% if dsnTopVisualDispFlag == 1 and loginTopVisualDispFlag == 1 %}
+                    {{ dsnTopHtmlTag }}
+                    {% endif %}
+                    {% if dsnTopDispFlag1Shop == 1 and loginTopShpDescDispFlag1 == 1 %}
+                    <div id="top-shop-message1">
+                        <div>{{ dsnTopDesc1Shop }}</div>
+                    </div>
+                    {% endif %}
+                    <!--お知らせ▼-->
+                    {% if dsnTopDispFlagInfo == 1 and loginTopNotifyDispFlag == 1 and freepageList is not empty %}
+                    <div class="section-head">
+                        <h2 class="title1">{% if dsnTopTitle1Info is not empty %}{{ dsnTopTitle1Info }}{% endif %}
+                            {% if dsnTopTitle2Info is not empty %}<span class="sub-title">{{ dsnTopTitle2Info
+                                }}</span>{% endif %}</h2>
+                    </div>
+                    <dl class="list-info cl">
+                        {% for item in freepageList %}
+                        <dt>{{ item.updateTime }}</dt>
+                        <dd><a href="/fr/{{ item.freepageSerialNo }}">{{ item.title }}</a></dd>
+                        {% endfor %}
+                    </dl><!--//list-info-->
+                    {% endif %}
+                    <!--お知らせ▲-->
+                    {% if loginError is not empty %}
+                    <div id="login-error-message">
+                        <div>{{ loginError }}</div>
+                    </div>
+                    {% endif %}
+                    <form action="#" method="post">
+                        <div class="login-tbl-wrapper">
+                            {% if loginDesc is not empty %}
+                            <div id="login-message">
+                                <div>{{ loginDesc }}</div>
+                            </div>
+                            {% endif %}
+                            <table class="login-tbl">
+                                <tbody>
+                                    <tr class="login-tbl-id">
+                                        <th>会員ID</th>
+                                        <td>
+                                            <input type="text" maxlength="128" style="ime-mode:disabled" id="loginId"
+                                                name="loginId" value="">
+                                        </td>
+                                    </tr>
+                                    <tr class="login-tbl-pw">
+                                        <th>会員パスワード</th>
+                                        <td>
+                                            <input type="password" maxlength="20" style="ime-mode:disabled"
+                                                id="loginPassword" name="loginPassword" value="">
+                                            <div class="login-tbl-pw-chk">
+                                                <input type="checkbox" name="forgetpw" id="forgetpw">
+                                                <label for="forgetpw">パスワードを表示する</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="login-btn">
+                                <a href="#" class="#"><span>ログイン</span></a>
+                                <input type="submit" style="display:none;">
+                            </div>
+                            <div class="login-link">
+                                <ul>
+                                    <li><a href="{{ shpCartUrl }}/mypage/password/{{ shpHash }}">パスワードを忘れた場合</a></li>
+                                    {% if newMemRegistFlag == 1 %}<li><a
+                                            href="{{ shpCartUrl }}/member/regist/input/{{ shpHash }}">{{
+                                            loginMemRegLinkStr }}</a></li>{% endif %}
+                                    {% if backUrl is not empty %}<li><a href="{{ backUrl }}">戻る</a></li>{% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    {% if dsnTopDispFlag2Shop == 1 and loginTopShpDescDispFlag2 == 1 %}
+                    <div id="top-shop-message2">
+                        <div>{{ dsnTopDesc2Shop }}</div>
+                    </div>
+                    {% endif %}
+                </div>
+                <!-- main -->
+            </div>
+            <!-- contents -->
+        </div><!--//container-->
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <div class="footer-logo">
+                            {% if ftrLogoDispFlag == 1 and ftrLogoImageUrl is not empty %}
+                            <p class="site-name"><a href="/"><img src="{{ ftrLogoImageUrl }}" alt="{{ shopName }}"></a>
+                            </p>
+                            {% else %}
+                            <p class="logo-text"><a href="/">{{ shopName }}</a></p>
+                            {% endif %}
+                        </div>
+                    </div><!--//footer-block-->
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="http://twitter.com/share?url={{ shpUrl }}&text={{ shopName }}"
+                                    target="_blank"><i class="icon-tw"></i></a></li>
+                            <li><a href="http://www.facebook.com/share.php?u={{ shpUrl }}"
+                                    onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
+                                        class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div><!--//footer-block-->
+                </div><!--//inner-->
+            </div><!--//footer-top-->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; {{ shopName }} All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+    <script src="{{shpImgUrl}}/cms/yt00037/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+    <script src="{{shpImgUrl}}/cms/yt00037/js/jquery-ui-1.11.4.min.js" type="text/javascript"></script>
+    <script src="{{shpImgUrl}}/cms/yt00037/js/jquery.flicksimple.js" type="text/javascript"></script>
+    <script src="{{shpImgUrl}}/cms/yt00037/js/common-script.js" type="text/javascript"></script>
+    <script src="{{shpImgUrl}}/cms/yt00037/js/shop-script.js" type="text/javascript"></script>
+    <[-- BODY_CUSTOM_CONTENTS --]>
+</body>
+
+</html>
