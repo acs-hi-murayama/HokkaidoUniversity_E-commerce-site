@@ -72,9 +72,9 @@
                     <!-- MAIN CONTENTS -->
                     <article id="main" role="main">
                         <div class="cat-head">
-                            <h1 class="title1">雑貨・グッズ<span class="sub-title">Goods</span></h1>
+                            <h1 class="title1">商品一覧<span class="sub-title">All Items</span></h1>
                             <div class="lead-txt">
-                                <p>北海道大学オリジナルの雑貨・グッズをご紹介します。</p>
+                                <p>北海道大学オンラインショップの取扱商品一覧です。</p>
                             </div>
                         </div><!--//cat-head-->
                         <div class="sort">
@@ -85,64 +85,8 @@
                                 <li><a href="./product-list.html?sortKind=3">更新日順</a></li>
                             </ul>
                         </div>
-                        <ul class="list-product col-3">
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item1/300/300" alt="北大ロゴ入りマグカップ"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大ロゴ入りマグカップ</a></p>
-                                    <p class="item-price">¥1,650<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item2/300/300" alt="北大クリアファイル（3枚セット）"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大クリアファイル（3枚セット）</a></p>
-                                    <p class="item-price">¥550<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item3/300/300" alt="北大オリジナルトートバッグ"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大オリジナルトートバッグ</a></p>
-                                    <p class="item-price">¥2,200<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item4/300/300" alt="北大ポプラ並木フレームセット"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大ポプラ並木フレームセット</a></p>
-                                    <p class="item-price">¥3,300<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item5/300/300" alt="北大ボールペン（2本セット）"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大ボールペン（2本セット）</a></p>
-                                    <p class="item-price">¥880<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item6/300/300" alt="北大エコバッグ"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大エコバッグ</a></p>
-                                    <p class="item-price">¥1,100<span class="tax">（税込）</span></p>
-                                    <p class="item-nonstock">在庫わずか</p>
-                                </div>
-                            </li>
-                        </ul><!--//list-product-->
-                        <div class="item-list-itemcount">表示件数：1&#65374;6 / 6</div>
+                        <ul id="js-list" class="list-product col-3"></ul><!--//list-product-->
+                        <div class="item-list-itemcount" id="js-count"></div>
                     </article><!--//main-->
 
                     <div id="secondary">
@@ -209,6 +153,21 @@
     <div class="overlay"></div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- 商品一覧描画（products.json） -->
+    <script src="./js/shop.js"></script>
+    <script>
+    Shop.load().then(function (all) {
+        var list = Shop.published(all);
+        var cat = Shop.param("categoryId");
+        if (cat) list = list.filter(function (p) { return p.categoryId === cat; });
+        var sort = Shop.param("sortKind");
+        if (sort === "1") list.sort(function (a, b) { return a.price - b.price; });
+        else if (sort === "2") list.sort(function (a, b) { return b.price - a.price; });
+        Shop.fill("#js-list", list.map(Shop.card).join(""));
+        var cnt = document.querySelector("#js-count");
+        if (cnt) cnt.textContent = "表示件数：" + (list.length ? 1 : 0) + "〜" + list.length + " / " + list.length;
+    }).catch(function (e) { console.error(e); });
+    </script>
     <script>
     $(document).ready(function () {
         $("#jq-btn-menu").on("click", function (e) {

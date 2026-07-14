@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>北大オリジナル ぬいぐるみコレクション | 北海道大学オンラインショップ</title>
+    <meta name="description" content="北海道大学オリジナルのテディベアぬいぐるみコレクション。ふわふわの手触りとやさしい表情で、贈り物にも自分用にもぴったり。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Kaisei+Tokumin:wght@500;700&display=swap" rel="stylesheet">
+    <link href="../../css/landing-page.css" rel="stylesheet" type="text/css">
+    <style>
+        /* LP専用スタイル（テディベア） */
+        body.body-lp #container { padding-top: 80px; padding-bottom: 60px; }
+        .lp-hero {
+            width: 100%;
+            background: linear-gradient(135deg, #e8952b 0%, #f5b942 55%, #ffcf6b 100%);
+            color: #4a2f10;
+            text-align: center;
+            padding: 70px 5% 60px;
+        }
+        .lp-hero .kv-label {
+            display: inline-block;
+            background: #fff;
+            color: #d17d1a;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2px;
+            padding: 4px 18px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+        }
+        .lp-hero h1 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: clamp(28px, 5vw, 50px);
+            line-height: 1.4;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .lp-hero h1 span { color: #4a2f10; }
+        .lp-hero .hero-img {
+            max-width: 360px;
+            width: 70%;
+            border-radius: 16px;
+            margin: 8px auto 28px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(74,47,16,0.25);
+        }
+        .lp-hero p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 34px;
+            color: #4a2f10;
+        }
+        .lp-hero .btn-cta {
+            display: inline-block;
+            background: #fff;
+            color: #d17d1a;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 16px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(74,47,16,0.25);
+        }
+        .lp-hero .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(74,47,16,0.35); text-decoration: none; }
+        .lp-section { max-width: 960px; margin: 0 auto; padding: 60px 5%; }
+        .lp-section h2 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: 28px; text-align: center; margin-bottom: 8px; color: #d17d1a;
+        }
+        .lp-section .section-sub { text-align: center; font-size: 14px; color: #b08b5a; margin-bottom: 40px; }
+        .lp-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-card {
+            background: #fff; border: 1px solid #f0e6d6; border-radius: 12px; overflow: hidden;
+            width: calc(33.3% - 20px); min-width: 220px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .lp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
+        .lp-card img { width: 100%; height: 180px; object-fit: cover; display: block; border: none; }
+        .lp-card .card-body { padding: 16px; }
+        .lp-card .card-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: #333; }
+        .lp-card .card-price { color: #d17d1a; font-size: 16px; font-weight: 700; }
+        .lp-card .card-price span { font-size: 12px; font-weight: 400; color: #888; }
+        .lp-point { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-point-item { text-align: center; width: calc(33.3% - 20px); min-width: 200px; }
+        .lp-point-item .icon {
+            width: 64px; height: 64px; background: linear-gradient(135deg, #e8952b, #ffcf6b);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; font-size: 28px;
+        }
+        .lp-point-item h3 { font-size: 16px; font-weight: 700; color: #d17d1a; margin-bottom: 8px; }
+        .lp-point-item p { font-size: 13px; color: #666; line-height: 1.7; }
+        .lp-cta-band { background: #4a2f10; color: #fff; text-align: center; padding: 60px 5%; }
+        .lp-cta-band h2 { font-family: "Kaisei Tokumin", serif; font-size: 26px; margin-bottom: 14px; color: #ffcf6b; }
+        .lp-cta-band p { font-size: 14px; opacity: 0.85; margin-bottom: 32px; line-height: 1.8; }
+        .lp-cta-band .btn-cta {
+            display: inline-block; background: #ffcf6b; color: #4a2f10; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none; transition: transform 0.2s;
+        }
+        .lp-cta-band .btn-cta:hover { transform: translateY(-2px); text-decoration: none; }
+        .lp-divider { border: none; border-top: 1px solid #f0e6d6; margin: 0; }
+    </style>
+</head>
+
+<body class="body-lp">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    <h1 class="site-name-txt"><a href="../../index.html">北海道大学オンラインショップ</a></h1>
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+
+        <div id="container">
+            <div class="no_inner">
+                <div class="one-column">
+                    <div id="main" role="main">
+                        <div class="wysiwyg-data">
+
+                            <!-- ヒーローセクション -->
+                            <section class="lp-hero">
+                                <p class="kv-label">HOKUDAI ORIGINAL</p>
+                                <h1>北大オリジナル<br><span>ぬいぐるみ</span>コレクション</h1>
+                                <img class="hero-img" src="./lp_sample1.png" alt="北大オリジナル テディベア">
+                                <p>ふわふわの手触りと、やさしい表情。<br>北海道大学のキャンパスに寄り添う、あなただけの相棒を。</p>
+                                <a href="../../product-list.html" class="btn-cta">商品一覧を見る</a>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- 特徴セクション -->
+                            <section class="lp-section" style="background: #fdf6ea; max-width: 100%; padding: 60px 5%;">
+                                <div style="max-width: 960px; margin: 0 auto;">
+                                    <h2>選ばれる3つの理由</h2>
+                                    <p class="section-sub">Point</p>
+                                    <div class="lp-point">
+                                        <div class="lp-point-item">
+                                            <div class="icon">🧸</div>
+                                            <h3>安心のふわふわ素材</h3>
+                                            <p>肌ざわりのよい上質な生地を使用。お子様へのプレゼントにも安心してお選びいただけます。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🎓</div>
+                                            <h3>北大公式ライセンス品</h3>
+                                            <p>北海道大学公認のオリジナルデザイン。ここでしか手に入らない限定アイテムです。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🎁</div>
+                                            <h3>ギフトラッピング対応</h3>
+                                            <p>贈り物にぴったりのラッピングをご用意。大切な方への一品にどうぞ。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- おすすめ商品セクション -->
+                            <section class="lp-section">
+                                <h2>ラインナップ</h2>
+                                <p class="section-sub">Lineup</p>
+                                <div class="lp-grid">
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/bear1/400/300" alt="北大テディベア（スタンダード）">
+                                        <div class="card-body">
+                                            <p class="card-name">北大テディベア（スタンダード）</p>
+                                            <p class="card-price">¥2,750 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/bear2/400/300" alt="北大テディベア（ミニ）">
+                                        <div class="card-body">
+                                            <p class="card-name">北大テディベア（ミニ）</p>
+                                            <p class="card-price">¥1,650 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/bear3/400/300" alt="北大テディベア（マフラー付き）">
+                                        <div class="card-body">
+                                            <p class="card-name">北大テディベア（マフラー付き）</p>
+                                            <p class="card-price">¥3,300 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="text-align:center; margin-top: 36px;">
+                                    <a href="../../product-list.html" class="btn-cta" style="display:inline-block; background:#d17d1a; color:#fff; font-weight:700; font-size:16px; padding:14px 44px; border-radius:50px; text-decoration:none;">すべての商品を見る</a>
+                                </p>
+                            </section>
+
+                            <!-- CTAバンド -->
+                            <section class="lp-cta-band">
+                                <h2>お気に入りの相棒を見つけよう</h2>
+                                <p>会員登録で最新情報やお得なキャンペーン情報をいち早くお届けします。<br>登録は無料で、すぐにお買い物を楽しめます。</p>
+                                <a href="../../members-only-login.html" class="btn-cta">会員登録・ログイン</a>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--//container-->
+
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="../../index.html">北海道大学オンラインショップ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北海道大学オンラインショップ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+        });
+    });
+    </script>
+</body>
+
+</html>

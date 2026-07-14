@@ -29,7 +29,7 @@
                 </div><!--//h_right-->
                 <div class="search-area cl">
                     <form action="./search.html" method="get" id="cmsCommonForm" class="searchform1">
-                        <input type="text" name="searchWord" maxlength="50" value="北大グッズ" placeholder="何をお探しですか？" class="sbox1">
+                        <input type="text" name="searchWord" id="js-searchbox" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
                         <button class="sbtn1" type="submit" title="検索する"></button>
                     </form>
                 </div><!--//search-area-->
@@ -56,7 +56,7 @@
                 <div class="inner">
                     <ol>
                         <li><a href="./index.html">ホーム</a></li>
-                        <li><strong>「北大グッズ」の検索結果</strong></li>
+                        <li><strong id="js-crumb">検索結果</strong></li>
                     </ol>
                 </div>
             </div>
@@ -64,7 +64,7 @@
                 <div class="two-column">
                     <article id="main" role="main">
                         <div class="cat-head">
-                            <h1 class="title1">「北大グッズ」に関する検索結果一覧</h1>
+                            <h1 class="title1" id="js-search-title">検索結果一覧</h1>
                         </div><!--//cat-head-->
                         <div class="sort">
                             <ul>
@@ -74,36 +74,9 @@
                                 <li><span>更新日順</span></li>
                             </ul>
                         </div>
-                        <ul class="list-product col-3">
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item3/300/300" alt="北大オリジナルトートバッグ"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大オリジナルトートバッグ</a></p>
-                                    <p class="item-price">¥2,200<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item7/300/300" alt="北大クッキー缶（12枚入り）"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大クッキー缶（12枚入り）</a></p>
-                                    <p class="item-price">¥1,980<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="item-photo product-list-photo">
-                                    <a href="./product-details.html"><img src="https://picsum.photos/seed/item1/300/300" alt="北大ロゴ入りマグカップ"></a>
-                                </div>
-                                <div class="item-info">
-                                    <p class="item-name"><a href="./product-details.html">北大ロゴ入りマグカップ</a></p>
-                                    <p class="item-price">¥1,650<span class="tax">（税込）</span></p>
-                                </div>
-                            </li>
-                        </ul><!--//list-product-->
-                        <div class="item-list-itemcount">表示件数：1&#65374;3 / 3</div>
+                        <ul id="js-results" class="list-product col-3"></ul><!--//list-product-->
+                        <div class="item-list-itemcount" id="js-count"></div>
+                        <div id="js-noresult" class="product-list" style="display:none;">検索した結果0件でした。</div>
                     </article><!--//main-->
 
                     <div id="secondary">
@@ -156,6 +129,29 @@
     <div class="overlay"></div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- 検索結果描画（products.json） -->
+    <script src="./js/shop.js"></script>
+    <script>
+    Shop.load().then(function (all) {
+        var word = (Shop.param("searchWord") || "").trim();
+        var box = document.getElementById("js-searchbox");
+        if (box) box.value = word;
+        var title = document.getElementById("js-search-title");
+        var crumb = document.getElementById("js-crumb");
+        if (word) {
+            if (title) title.textContent = "「" + word + "」に関する検索結果一覧";
+            if (crumb) crumb.textContent = "「" + word + "」の検索結果";
+            document.title = "「" + word + "」の検索結果 | 北海道大学オンラインショップ（テスト）";
+        }
+        var list = Shop.published(all);
+        if (word) list = list.filter(function (p) { return p.name && p.name.indexOf(word) !== -1; });
+        Shop.fill("#js-results", list.map(Shop.card).join(""));
+        var cnt = document.querySelector("#js-count");
+        if (cnt) cnt.textContent = "表示件数：" + (list.length ? 1 : 0) + "〜" + list.length + " / " + list.length;
+        var none = document.getElementById("js-noresult");
+        if (none) none.style.display = list.length ? "none" : "block";
+    }).catch(function (e) { console.error(e); });
+    </script>
     <script>
     $(document).ready(function () {
         $("#jq-btn-menu").on("click", function (e) {

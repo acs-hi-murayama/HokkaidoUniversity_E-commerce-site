@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <meta name="format-detection" content="telephone=no">
-    <title>北海道大学オンラインショップ（テスト）</title>
-    <meta name="description" content="北海道大学オンラインショップのテスト用ローカルプレビューです。">
+    <title>北大オリジナルグッズOnlineShop</title>
+    <meta name="description" content="北大生協公式オンラインショップ。北海道大学オリジナルグッズを取り扱っています。ご入学祝いの記念品や北海道土産にふさわしいアイテムグッズから、日常使いできるグッズまで幅広くラインナップ。北大の魅力を感じられる特別な一品を、ぜひお選びください。">
+    <link rel="shortcut icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link href="./css/common.css" rel="stylesheet" type="text/css">
 </head>
@@ -67,20 +69,15 @@
                 <div class="two-column">
                     <!-- MAIN CONTENTS -->
                     <div id="main" class="main">
-                        <!-- キービジュアル（スライドショーダミー） -->
-                        <div class="sliderArea">
-                            <div class="full-screen slider">
-                                <div>
-                                    <img src="https://picsum.photos/seed/hku1/1200/450" alt="キービジュアル1" style="width:100%;object-fit:cover;">
-                                </div>
-                                <div>
-                                    <img src="https://picsum.photos/seed/hku2/1200/450" alt="キービジュアル2" style="width:100%;object-fit:cover;">
-                                </div>
-                                <div>
-                                    <img src="https://picsum.photos/seed/hku3/1200/450" alt="キービジュアル3" style="width:100%;object-fit:cover;">
-                                </div>
+                        <!-- メインビジュアル（本番: dsnTopHtmlTag 相当 / data/main-visual.html を注入。LPバナーとは別物） -->
+                        <div id="js-main-visual"></div>
+
+                        <!-- ショップ説明1（本番: dsnTopDesc1Shop 相当 / data/top-message1.html を注入） -->
+                        <section class="section-block">
+                            <div id="top-shop-message1">
+                                <div id="js-top-message1"></div>
                             </div>
-                        </div>
+                        </section><!--//section-block-->
 
                         <!-- お知らせ -->
                         <section class="section-block">
@@ -89,11 +86,11 @@
                             </div>
                             <dl class="list-info cl">
                                 <dt>2026.06.20</dt>
-                                <dd><a href="#">夏季休業のお知らせ（8月13日〜8月16日）</a></dd>
+                                <dd><a href="./fr/1.html">堀内、パチンコ辞める。</a></dd>
                                 <dt>2026.06.10</dt>
-                                <dd><a href="#">北大グッズ新商品入荷のお知らせ</a></dd>
+                                <dd><a href="./fr/2.html">堀内、タバコ辞める。</a></dd>
                                 <dt>2026.05.25</dt>
-                                <dd><a href="#">ゴールデンウィーク期間中の配送について</a></dd>
+                                <dd><a href="./fr/3.html">堀内、寝不足。</a></dd>
                             </dl><!--//list-info-->
                         </section><!--//section-block-->
 
@@ -102,35 +99,7 @@
                             <div class="section-head">
                                 <h2 class="title1">NEW ARRIVALS<span class="sub-title">新着商品</span></h2>
                             </div>
-                            <ul class="list-product col-3">
-                                <li>
-                                    <div class="item-photo product-list-photo">
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item1/300/300" alt="北大ロゴ入りマグカップ"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大ロゴ入りマグカップ</a></p>
-                                        <p class="item-price">¥1,650<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo product-list-photo">
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item2/300/300" alt="北大クリアファイル（3枚セット）"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大クリアファイル（3枚セット）</a></p>
-                                        <p class="item-price">¥550<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo product-list-photo">
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item3/300/300" alt="北大オリジナルトートバッグ"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大オリジナルトートバッグ</a></p>
-                                        <p class="item-price">¥2,200<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                            </ul><!--//list-product-->
+                            <ul id="js-new" class="list-product col-3"></ul><!--//list-product-->
                         </section><!--//section-block-->
 
                         <!-- おすすめ商品 -->
@@ -138,38 +107,7 @@
                             <div class="section-head">
                                 <h2 class="title1">RECOMMENDED<span class="sub-title">おすすめ商品</span></h2>
                             </div>
-                            <ul class="list-product col-3">
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank1"><span>1</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item4/300/300" alt="北大ポプラ並木フレームセット"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大ポプラ並木フレームセット</a></p>
-                                        <p class="item-price">¥3,300<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank2"><span>2</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item5/300/300" alt="北大ボールペン（2本セット）"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大ボールペン（2本セット）</a></p>
-                                        <p class="item-price">¥880<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank3"><span>3</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item6/300/300" alt="北大ロゴ入りパーカー（Mサイズ）"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大ロゴ入りパーカー（Mサイズ）</a></p>
-                                        <p class="item-price">¥5,500<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                            </ul><!--//list-product-->
+                            <ul id="js-recommend" class="list-product col-3"></ul><!--//list-product-->
                         </section><!--//section-block-->
 
                         <!-- 販売ランキング -->
@@ -177,38 +115,14 @@
                             <div class="section-head">
                                 <h2 class="title1">RANKING<span class="sub-title">販売ランキング</span></h2>
                             </div>
-                            <ul class="list-product col-3">
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank1"><span>1</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item7/300/300" alt="北大クッキー缶（12枚入り）"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大クッキー缶（12枚入り）</a></p>
-                                        <p class="item-price">¥1,980<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank2"><span>2</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item8/300/300" alt="北大エコバッグ"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大エコバッグ</a></p>
-                                        <p class="item-price">¥1,100<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="item-photo">
-                                        <div class="icon-rank rank3"><span>3</span></div>
-                                        <a href="./product-details.html"><img src="https://picsum.photos/seed/item9/300/300" alt="北大ノート（A5・3冊セット）"></a>
-                                    </div><!--//item-photo-->
-                                    <div class="item-info">
-                                        <p class="item-name"><a href="./product-details.html">北大ノート（A5・3冊セット）</a></p>
-                                        <p class="item-price">¥660<span class="tax">（税込）</span></p>
-                                    </div>
-                                </li>
-                            </ul><!--//list-product-->
+                            <ul id="js-ranking" class="list-product col-3"></ul><!--//list-product-->
+                        </section><!--//section-block-->
+
+                        <!-- ショップ説明2（本番: dsnTopDesc2Shop 相当 / data/top-message2.html を注入） -->
+                        <section class="section-block">
+                            <div id="top-shop-message2">
+                                <div id="js-top-message2"></div>
+                            </div>
                         </section><!--//section-block-->
                     </div><!--//main-->
 
@@ -286,21 +200,44 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+    <!-- 商品データ描画 & ショップ説明の注入 -->
+    <script src="./js/shop.js"></script>
+    <script>
+    /* 商品セクション（表示件数: 新着3 / おすすめ6 / 販売ランキング12） */
+    Shop.load().then(function (all) {
+        var pub = Shop.published(all);
+        var news = pub.filter(function (p) { return p.isNew === "1"; });
+        if (news.length < 3) news = pub;                 // 新着フラグが少なければ公開商品で補完
+        Shop.fill("#js-new", news.slice(0, 3).map(Shop.card).join(""));
+        Shop.fill("#js-recommend", pub.slice(0, 6).map(Shop.rankCard).join(""));
+        Shop.fill("#js-ranking", pub.slice(0, 12).map(Shop.rankCard).join(""));
+    }).catch(function (e) { console.error(e); });
+
+    /* メインビジュアル（別ファイルを注入 / 本番: dsnTopHtmlTag。LPバナーとは別物） */
+    Shop.include("#js-main-visual", "./data/main-visual.html");
+
+    /* ショップ説明2（別ファイルを注入 / 本番: dsnTopDesc2Shop） */
+    Shop.include("#js-top-message2", "./data/top-message2.html");
+
+    /* ショップ説明1（別ファイルを注入 / 本番: dsnTopDesc1Shop）→ 注入後にスライダー初期化 */
+    Shop.include("#js-top-message1", "./data/top-message1.html").then(function () {
+        if (window.jQuery && $.fn.slick) {
+            $(".full-screen").slick({
+                centerMode: true,
+                centerPadding: "0%",
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                speed: 1000,
+                infinite: true,
+                pauseOnFocus: false,
+                pauseOnHover: false
+            });
+        }
+    });
+    </script>
     <script>
     $(document).ready(function () {
-        /* スライダー初期化 */
-        $(".full-screen").slick({
-            centerMode: true,
-            centerPadding: "0%",
-            dots: true,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            speed: 1000,
-            infinite: true,
-            pauseOnFocus: false,
-            pauseOnHover: false,
-        });
-
         /* ハンバーガーメニュー開閉 */
         $("#jq-btn-menu").on("click", function (e) {
             e.preventDefault();

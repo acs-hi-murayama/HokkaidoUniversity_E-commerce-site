@@ -57,7 +57,7 @@
                     <ol>
                         <li><a href="./index.html">ホーム</a></li>
                         <li><a href="./product-list.html">雑貨・グッズ</a></li>
-                        <li><strong>北大ロゴ入りマグカップ</strong></li>
+                        <li><strong id="js-crumb">商品詳細</strong></li>
                     </ol>
                 </div>
             </div>
@@ -67,72 +67,41 @@
                     <article id="main" role="main">
                         <form action="#" method="post" id="cms0002d02Form">
                             <div class="item-head">
-                                <h1 class="title1">北大ロゴ入りマグカップ</h1>
+                                <h1 class="title1" id="js-name">商品詳細</h1>
                             </div><!--//item-head-->
-                            <!-- 商品説明2 -->
-                            <div class="item-detail-txt2 wysiwyg-data">
-                                <div>
-                                    <p>北海道大学の公式ロゴが入ったオリジナルマグカップです。食洗機対応・電子レンジ対応。毎日の生活にさりげなく北大を感じさせてくれる一品です。</p>
-                                </div>
-                            </div><!--//item-detail-txt2-->
                             <div id="item-detail">
                                 <div class="cl">
                                     <div class="item-detail-left">
                                         <!--メイン画像-->
                                         <div class="item-detail-photo-main raku-item-photo-main">
                                             <div class="item-detail-photo" id="jq_item_photo_list">
-                                                <ul class="cl">
-                                                    <li class="active"><img src="https://picsum.photos/seed/item1/600/600" alt="北大ロゴ入りマグカップ メイン画像"></li>
-                                                    <li><img src="https://picsum.photos/seed/item1b/600/600" alt="北大ロゴ入りマグカップ サブ画像1"></li>
-                                                    <li><img src="https://picsum.photos/seed/item1c/600/600" alt="北大ロゴ入りマグカップ サブ画像2"></li>
-                                                </ul>
+                                                <ul class="cl" id="js-photos"></ul>
                                             </div><!--//jq_item_photo_list-->
                                             <div id="jqitem-backbtn" class="item-detail-photo-backbtn"><a href="#"></a></div>
                                             <div id="jqitem-nextbtn" class="item-detail-photo-nextbtn"><a href="#"></a></div>
                                         </div><!--//item-detail-photo-main-->
                                         <!--サムネイル画像-->
-                                        <div class="item-detail-thumb">
-                                            <div class="item-detail-thumb-photo raku-item-thumb-photo active"><a href="#"><img src="https://picsum.photos/seed/item1/80/80" alt=""></a></div>
-                                            <div class="item-detail-thumb-photo raku-item-thumb-photo"><a href="#"><img src="https://picsum.photos/seed/item1b/80/80" alt=""></a></div>
-                                            <div class="item-detail-thumb-photo raku-item-thumb-photo"><a href="#"><img src="https://picsum.photos/seed/item1c/80/80" alt=""></a></div>
-                                        </div><!--//item-detail-thumb-->
+                                        <div class="item-detail-thumb" id="js-thumbs"></div><!--//item-detail-thumb-->
                                     </div><!--//item-detail-left-->
                                     <div class="item-detail-right">
                                         <div class="item-detail-block">
                                             <div class="item-detail-price">
                                                 <dl>
                                                     <dt>販売価格</dt>
-                                                    <dd><b class="price raku-item-vari-price-num">¥1,650</b><span class="tax raku-item-vari-tax">（税込）</span></dd>
+                                                    <dd><b class="price raku-item-vari-price-num" id="js-price">¥0</b><span class="tax raku-item-vari-tax">（税込）</span></dd>
                                                 </dl>
                                             </div><!--//item-detail-price-->
                                             <div class="item-detail-block-in">
-                                                <div class="item-detail-stock">
-                                                    <dl>
-                                                        <dt>在庫</dt>
-                                                        <dd class="raku-item-vari-stock">残り12点</dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="item-detail-itemcode">
+                                                <div class="item-detail-itemcode" id="js-code-block" style="display:none;">
                                                     <dl>
                                                         <dt>商品コード</dt>
-                                                        <dd class="raku-item-vari-itemcode">HKU-MUG-001</dd>
+                                                        <dd class="raku-item-vari-itemcode" id="js-code"></dd>
                                                     </dl>
                                                 </div>
                                             </div><!--//item-detail-block-in-->
                                         </div><!--//item-detail-block-->
                                         <!--CART-->
                                         <div class="item-detail-cart">
-                                            <!-- バリエーション選択（ラジオボタン） -->
-                                            <div class="item-detail-radio">
-                                                <div>
-                                                    <input type="radio" name="variationId" value="1001" id="var-1001" checked="checked">
-                                                    <label for="var-1001">ホワイト</label>
-                                                </div>
-                                                <div>
-                                                    <input type="radio" name="variationId" value="1002" id="var-1002">
-                                                    <label for="var-1002">ネイビー</label>
-                                                </div>
-                                            </div><!--//item-detail-cart-vari-radio-->
                                             <!-- 数量 -->
                                             <div class="js-counter-wrap">
                                                 <p>数量</p>
@@ -153,13 +122,9 @@
                                         </div><!--//item-detail-cart-->
                                         <div class="item-detail-block">
                                             <div class="item-detail-spec">
-                                                <dl>
+                                                <dl id="js-cat-block" style="display:none;">
                                                     <dt>カテゴリー</dt>
-                                                    <dd>雑貨・グッズ</dd>
-                                                </dl>
-                                                <dl>
-                                                    <dt>メーカー</dt>
-                                                    <dd>北大オフィシャル</dd>
+                                                    <dd id="js-cat"></dd>
                                                 </dl>
                                             </div><!--//item-detail-spec-->
                                             <div class="item-detail-share">
@@ -173,14 +138,7 @@
                                 </div><!--//cl-->
                                 <!-- 商品詳細テキスト -->
                                 <div class="item-footer">
-                                    <div class="item-detail-txt1 wysiwyg-data">
-                                        <h2>商品詳細</h2>
-                                        <p>容量：350ml<br>
-                                        素材：陶器<br>
-                                        サイズ：直径8cm × 高さ10cm<br>
-                                        食洗機・電子レンジ対応</p>
-                                        <p>北海道大学の公式ライセンス商品です。</p>
-                                    </div>
+                                    <div class="item-detail-txt1 wysiwyg-data" id="js-info1"></div>
                                 </div><!--//item-footer-->
                             </div><!--//item-detail-->
 
@@ -189,46 +147,9 @@
                                 <div class="item-head">
                                     <h2 class="title1">RECOMMENDED<span class="sub-title">おすすめアイテム</span></h2>
                                 </div><!--//item-head-->
-                                <ul class="list-product col-4">
-                                    <li>
-                                        <div class="item-photo product-list-photo">
-                                            <a href="./product-details.html"><img src="https://picsum.photos/seed/item2/300/300" alt="北大クリアファイル（3枚セット）"></a>
-                                        </div>
-                                        <div class="item-info">
-                                            <p class="item-name"><a href="./product-details.html">北大クリアファイル（3枚セット）</a></p>
-                                            <p class="item-price">¥550<span class="tax">（税込）</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-photo product-list-photo">
-                                            <a href="./product-details.html"><img src="https://picsum.photos/seed/item5/300/300" alt="北大ボールペン（2本セット）"></a>
-                                        </div>
-                                        <div class="item-info">
-                                            <p class="item-name"><a href="./product-details.html">北大ボールペン（2本セット）</a></p>
-                                            <p class="item-price">¥880<span class="tax">（税込）</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-photo product-list-photo">
-                                            <a href="./product-details.html"><img src="https://picsum.photos/seed/item6/300/300" alt="北大エコバッグ"></a>
-                                        </div>
-                                        <div class="item-info">
-                                            <p class="item-name"><a href="./product-details.html">北大エコバッグ</a></p>
-                                            <p class="item-price">¥1,100<span class="tax">（税込）</span></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="item-photo product-list-photo">
-                                            <a href="./product-details.html"><img src="https://picsum.photos/seed/item8/300/300" alt="北大ノート（A5・3冊セット）"></a>
-                                        </div>
-                                        <div class="item-info">
-                                            <p class="item-name"><a href="./product-details.html">北大ノート（A5・3冊セット）</a></p>
-                                            <p class="item-price">¥660<span class="tax">（税込）</span></p>
-                                        </div>
-                                    </li>
-                                </ul><!--//list-product-->
+                                <ul id="js-recommend" class="list-product col-4"></ul><!--//list-product-->
                             </div><!--//item-detail-block-->
-                            <input type="hidden" name="itemId" value="10001">
+                            <input type="hidden" name="itemId" id="js-itemid" value="">
                             <input type="hidden" name="shpHash" value="dummy_hash">
                         </form>
                     </article><!--//main-->
@@ -283,6 +204,55 @@
     <div class="overlay"></div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- 商品詳細描画（products.json / ?id=システム商品番号） -->
+    <script src="./js/shop.js"></script>
+    <script>
+    Shop.load().then(function (all) {
+        var pub = Shop.published(all);
+        var id = Shop.param("id");
+        var p = id ? Shop.byId(all, id) : null;
+        if (!p) p = pub[0] || all[0];
+        if (!p) { document.getElementById("js-name").textContent = "商品が見つかりませんでした"; return; }
+
+        document.getElementById("js-name").textContent = p.name;
+        var crumb = document.getElementById("js-crumb"); if (crumb) crumb.textContent = p.name;
+        document.title = p.name + " | 北海道大学オンラインショップ（テスト）";
+
+        /* 画像（メイン + 他画像） */
+        var imgs = [p.imageUrl].concat(p.otherImages || []).filter(Boolean);
+        Shop.fill("#js-photos", imgs.map(function (u, i) {
+            return '<li class="' + (i === 0 ? "active" : "") + '"><img src="' + Shop.esc(u) + '" alt="' + Shop.esc(p.name) + '"></li>';
+        }).join(""));
+        Shop.fill("#js-thumbs", imgs.map(function (u, i) {
+            return '<div class="item-detail-thumb-photo raku-item-thumb-photo' + (i === 0 ? " active" : "") + '"><a href="#"><img src="' + Shop.esc(u) + '" alt=""></a></div>';
+        }).join(""));
+
+        document.getElementById("js-price").textContent = Shop.yen(p.price);
+
+        if (p.itemCode) {
+            document.getElementById("js-code").textContent = p.itemCode;
+            document.getElementById("js-code-block").style.display = "";
+        }
+        if (p.categoryId) {
+            document.getElementById("js-cat").textContent = p.categoryId;
+            document.getElementById("js-cat-block").style.display = "";
+        }
+
+        var info = document.getElementById("js-info1");
+        if (info) info.innerHTML = p.info1 || "";
+
+        document.getElementById("js-itemid").value = p.itemId;
+
+        /* おすすめ（同カテゴリ優先で最大4件、自分を除く） */
+        var rec = pub.filter(function (x) { return x.itemId !== p.itemId && x.categoryId === p.categoryId; });
+        if (rec.length < 4) {
+            pub.forEach(function (x) {
+                if (rec.length < 4 && x.itemId !== p.itemId && rec.indexOf(x) === -1) rec.push(x);
+            });
+        }
+        Shop.fill("#js-recommend", rec.slice(0, 4).map(Shop.card).join(""));
+    }).catch(function (e) { console.error(e); });
+    </script>
     <script>
     $(document).ready(function () {
         /* ハンバーガーメニュー */
@@ -298,11 +268,12 @@
             $(this).siblings("ul").slideToggle(200);
         });
 
-        /* 商品画像サムネイル切替 */
-        $(".raku-item-thumb-photo").on("click", function (e) {
+        /* 商品画像サムネイル切替（動的生成のため委譲） */
+        $(document).on("click", ".raku-item-thumb-photo", function (e) {
             e.preventDefault();
-            var idx = $(".raku-item-thumb-photo").index(this);
-            $(".raku-item-thumb-photo").removeClass("active");
+            var $thumbs = $("#js-thumbs .raku-item-thumb-photo");
+            var idx = $thumbs.index(this);
+            $thumbs.removeClass("active");
             $(this).addClass("active");
             var $mainImgs = $("#jq_item_photo_list li");
             $mainImgs.removeClass("active");
@@ -310,13 +281,13 @@
         });
 
         /* 数量カウンター */
-        $(".item-detail-num-plus a").on("click", function (e) {
+        $(document).on("click", ".item-detail-num-plus a", function (e) {
             e.preventDefault();
             var $input = $(this).closest(".item-detail-num-count").find(".jq-num-count");
             var val = parseInt($input.val()) || 1;
             if (val < 999) $input.val(val + 1);
         });
-        $(".item-detail-num-minus a").on("click", function (e) {
+        $(document).on("click", ".item-detail-num-minus a", function (e) {
             e.preventDefault();
             var $input = $(this).closest(".item-detail-num-count").find(".jq-num-count");
             var val = parseInt($input.val()) || 1;
@@ -324,7 +295,7 @@
         });
 
         /* カートボタン（デモ用アラート） */
-        $(".raku-add-cart").on("click", function (e) {
+        $(document).on("click", ".raku-add-cart", function (e) {
             e.preventDefault();
             alert("【テスト用】カートに追加しました！\n（ローカルプレビューのため実際の処理は行われません）");
         });
@@ -332,17 +303,17 @@
         /* 前後ナビボタン */
         $("#jqitem-nextbtn a").on("click", function (e) {
             e.preventDefault();
-            var $thumbs = $(".raku-item-thumb-photo");
-            var activeIdx = $thumbs.index($(".raku-item-thumb-photo.active"));
-            var nextIdx = (activeIdx + 1) % $thumbs.length;
-            $thumbs.eq(nextIdx).trigger("click");
+            var $thumbs = $("#js-thumbs .raku-item-thumb-photo");
+            if (!$thumbs.length) return;
+            var activeIdx = $thumbs.index($thumbs.filter(".active"));
+            $thumbs.eq((activeIdx + 1) % $thumbs.length).trigger("click");
         });
         $("#jqitem-backbtn a").on("click", function (e) {
             e.preventDefault();
-            var $thumbs = $(".raku-item-thumb-photo");
-            var activeIdx = $thumbs.index($(".raku-item-thumb-photo.active"));
-            var prevIdx = (activeIdx - 1 + $thumbs.length) % $thumbs.length;
-            $thumbs.eq(prevIdx).trigger("click");
+            var $thumbs = $("#js-thumbs .raku-item-thumb-photo");
+            if (!$thumbs.length) return;
+            var activeIdx = $thumbs.index($thumbs.filter(".active"));
+            $thumbs.eq((activeIdx - 1 + $thumbs.length) % $thumbs.length).trigger("click");
         });
     });
     </script>

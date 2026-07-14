@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>__PAGE_TITLE__ | 北海道大学オンラインショップ</title>
+    <meta name="description" content="__PAGE_TITLE__">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Kaisei+Tokumin:wght@500;700&display=swap" rel="stylesheet">
+    <link href="../../css/landing-page.css" rel="stylesheet" type="text/css">
+    <style>
+        /* LP専用スタイルはこの中に記述（本番では「HEADER_CUSTOM_CONTENTS」相当） */
+    </style>
+</head>
+
+<body class="body-lp">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    <h1 class="site-name-txt"><a href="../../index.html">北海道大学オンラインショップ</a></h1>
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+
+        <div id="container">
+            <div class="no_inner">
+                <div class="one-column">
+                    <div id="main" role="main">
+                        <div class="wysiwyg-data">
+                            <!-- ▼▼▼ ここにLP本文を記述（本番の MAIN_CONTENTS / 自由記述に対応） ▼▼▼ -->
+
+                            __PAGE_BODY__
+
+                            <!-- ▲▲▲ ここまでLP本文 ▲▲▲ -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--//container-->
+
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="../../index.html">北海道大学オンラインショップ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北海道大学オンラインショップ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+        });
+    });
+    </script>
+</body>
+
+</html>
