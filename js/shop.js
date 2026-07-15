@@ -12,6 +12,28 @@
   var DATA_URL = "./data/products.json";
   var _cache = null;
 
+  /* カテゴリーマスター（categoryId → 表示名）。
+   * 本番（らくうるカート）ではカテゴリーもサーバー側から供給されるが、
+   * ローカルでは products.json の categoryId とナビの表示名を突き合わせる。 */
+  var CATEGORIES = {
+    "CG-00004": "ウェア",
+    "CG-00001": "食品",
+    "CG-00002": "酒類",
+    "CG-00003": "文具",
+    "CG-00019": "小物",
+    "CG-00017": "生活雑貨",
+    "CG-00016": "革製品グッズ",
+    "CG-00018": "ガラスジュエリー",
+    "CG-00015": "寮歌CD",
+    "CG-00008": "その他",
+    "CG-00007": "おしょろ丸グッズ",
+    "CG-00014": "ミズナラグッズ"
+  };
+
+  function categoryName(id) {
+    return CATEGORIES[id] || null;
+  }
+
   function load() {
     if (_cache) return Promise.resolve(_cache);
     return fetch(DATA_URL)
@@ -30,7 +52,7 @@
       .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
 
-  function detailUrl(p) { return "./product-details.html?id=" + encodeURIComponent(p.itemId); }
+  function detailUrl(p) { return "./product-details?id=" + encodeURIComponent(p.itemId); }
 
   function isPublished(p) { return p.published === "1" && p.active === "1"; }
   function published(list) { return list.filter(isPublished); }
@@ -106,6 +128,8 @@
     card: card,
     rankCard: rankCard,
     fill: fill,
-    include: include
+    include: include,
+    categories: CATEGORIES,
+    categoryName: categoryName
   };
 })();

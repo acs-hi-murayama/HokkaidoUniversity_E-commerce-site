@@ -17,18 +17,18 @@
         <header id="header">
             <div class="header-in cl">
                 <div class="h_left">
-                    <h1 class="site-name-txt"><a href="./index.html">北海道大学オンラインショップ</a></h1>
+                    <h1 class="site-name-txt"><a href="./index.html">北大オリジナルグッズ</a></h1>
                 </div>
                 <div class="h_right">
                     <ul class="header-menu">
-                        <li class="entry"><a href="#" class="entry">会員登録</a></li>
-                        <li class="mypage"><a href="#" class="mypage">マイページ</a></li>
+                        <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                        <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
                         <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
-                        <li class="cart"><a href="#" class="cart"><b>カート</b></a></li>
+                        <li class="cart"><a href="/cart/cart/" class="cart"><b>カート</b></a></li>
                     </ul>
                 </div><!--//h_right-->
                 <div class="search-area cl">
-                    <form action="./search.html" method="get" id="cmsCommonForm" class="searchform1">
+                    <form action="./search" method="get" id="cmsCommonForm" class="searchform1">
                         <input type="text" name="searchWord" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
                         <button class="sbtn1" type="submit" title="検索する"></button>
                     </form>
@@ -37,16 +37,27 @@
         </header><!--//header-->
         <nav id="global-nav">
             <ul class="header-menu-sp">
-                <li class="entry"><a href="#" class="entry">会員登録</a></li>
-                <li class="mypage"><a href="#" class="mypage">マイページ</a></li>
+                <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
             </ul>
             <ul class="cat-menu sp">
                 <li class="cat-dropdown"><b>CATEGORY</b>
                     <ul>
-                        <li><a href="./product-list.html">文房具・ステーショナリー</a></li>
-                        <li><a href="./product-list.html">衣類・アパレル</a></li>
-                        <li><a href="./product-list.html">食品・グルメ</a></li>
-                        <li><a href="./product-list.html">雑貨・グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00004">ウェア</a></li>
+                        <li><a href="./product-list?categoryId=CG-00001">食品</a></li>
+                        <li><a href="./product-list?categoryId=CG-00002">酒類</a></li>
+                        <li><a href="./product-list?categoryId=CG-00003">文具</a></li>
+                        <li><a href="./product-list?categoryId=CG-00019">小物</a></li>
+                        <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a>
+                            <ul>
+                                <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a></li>
                     </ul>
                 </li>
             </ul>
@@ -161,10 +172,21 @@
                                     <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
                                 </div>
                                 <ul class="nav-2 nav-2-slide">
-                                    <li><a href="./product-list.html">文房具・ステーショナリー</a><span></span></li>
-                                    <li><a href="./product-list.html">衣類・アパレル</a><span></span></li>
-                                    <li><a href="./product-list.html">食品・グルメ</a><span></span></li>
-                                    <li><a href="./product-list.html">雑貨・グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00004">ウェア</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00001">食品</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00002">酒類</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00003">文具</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00019">小物</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a><span></span>
+                                        <ul>
+                                            <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a><span></span></li>
                                 </ul>
                             </div>
                         </div>
@@ -177,7 +199,7 @@
             <div class="footer-top">
                 <div class="inner">
                     <div class="footer-block">
-                        <p class="logo-text"><a href="./index.html">北海道大学オンラインショップ</a></p>
+                        <p class="logo-text"><a href="./index.html">北大オリジナルグッズ</a></p>
                     </div>
                     <div class="footer-block">
                         <ul class="list-link">
@@ -197,7 +219,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">Copyright &copy; 北海道大学オンラインショップ All Rights Reserved.</p>
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
             </div>
         </footer><!--//footer-->
     </div><!--//wrapper-->
@@ -206,6 +228,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- 商品詳細描画（products.json / ?id=システム商品番号） -->
     <script src="./js/shop.js"></script>
+    <!-- カート挙動（localStorage） -->
+    <script src="/cart/assets/cart-app.js"></script>
     <script>
     Shop.load().then(function (all) {
         var pub = Shop.published(all);
@@ -242,6 +266,7 @@
         if (info) info.innerHTML = p.info1 || "";
 
         document.getElementById("js-itemid").value = p.itemId;
+        window.__product = p; // カート追加用に現在の商品を保持
 
         /* おすすめ（同カテゴリ優先で最大4件、自分を除く） */
         var rec = pub.filter(function (x) { return x.itemId !== p.itemId && x.categoryId === p.categoryId; });
@@ -294,10 +319,22 @@
             if (val > 1) $input.val(val - 1);
         });
 
-        /* カートボタン（デモ用アラート） */
+        /* カートボタン（localStorageへ追加） */
         $(document).on("click", ".raku-add-cart", function (e) {
             e.preventDefault();
-            alert("【テスト用】カートに追加しました！\n（ローカルプレビューのため実際の処理は行われません）");
+            var p = window.__product;
+            if (!p || typeof TX === "undefined") {
+                alert("商品情報の読み込み中です。少し待ってから再度お試しください。");
+                return;
+            }
+            var qty = parseInt($(".jq-num-count").first().val(), 10) || 1;
+            TX.addToCart({
+                itemId: p.itemId, name: p.name, price: p.price,
+                qty: qty, imageUrl: p.imageUrl, itemCode: p.itemCode
+            });
+            if (confirm("カートに追加しました。\nカートへ進みますか？（キャンセルで買い物を続ける）")) {
+                location.href = "/cart/cart/";
+            }
         });
 
         /* 前後ナビボタン */

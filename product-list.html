@@ -17,18 +17,18 @@
         <header id="header">
             <div class="header-in cl">
                 <div class="h_left">
-                    <h1 class="site-name-txt"><a href="./index.html">北海道大学オンラインショップ</a></h1>
+                    <h1 class="site-name-txt"><a href="./index.html">北大オリジナルグッズ</a></h1>
                 </div>
                 <div class="h_right">
                     <ul class="header-menu">
-                        <li class="entry"><a href="#" class="entry">会員登録</a></li>
-                        <li class="mypage"><a href="#" class="mypage">マイページ</a></li>
+                        <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                        <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
                         <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
-                        <li class="cart"><a href="#" class="cart"><b>カート</b></a></li>
+                        <li class="cart"><a href="/cart/cart/" class="cart"><b>カート</b></a></li>
                     </ul>
                 </div><!--//h_right-->
                 <div class="search-area cl">
-                    <form action="./search.html" method="get" id="cmsCommonForm" class="searchform1">
+                    <form action="./search" method="get" id="cmsCommonForm" class="searchform1">
                         <input type="text" name="searchWord" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
                         <button class="sbtn1" type="submit" title="検索する"></button>
                     </form>
@@ -37,16 +37,27 @@
         </header><!--//header-->
         <nav id="global-nav">
             <ul class="header-menu-sp">
-                <li class="entry"><a href="#" class="entry">会員登録</a></li>
-                <li class="mypage"><a href="#" class="mypage">マイページ</a></li>
+                <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
             </ul>
             <ul class="cat-menu sp">
                 <li class="cat-dropdown"><b>CATEGORY</b>
                     <ul>
-                        <li><a href="./product-list.html">文房具・ステーショナリー</a></li>
-                        <li><a href="./product-list.html">衣類・アパレル</a></li>
-                        <li><a href="./product-list.html">食品・グルメ</a></li>
-                        <li><a href="./product-list.html">雑貨・グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00004">ウェア</a></li>
+                        <li><a href="./product-list?categoryId=CG-00001">食品</a></li>
+                        <li><a href="./product-list?categoryId=CG-00002">酒類</a></li>
+                        <li><a href="./product-list?categoryId=CG-00003">文具</a></li>
+                        <li><a href="./product-list?categoryId=CG-00019">小物</a></li>
+                        <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a>
+                            <ul>
+                                <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a></li>
                     </ul>
                 </li>
                 <li class="cat-dropdown"><b>CAMPAIGN</b>
@@ -63,7 +74,7 @@
                 <div class="inner">
                     <ol>
                         <li><a href="./index.html">ホーム</a></li>
-                        <li><strong>商品一覧</strong></li>
+                        <li><strong id="js-crumb">商品一覧</strong></li>
                     </ol>
                 </div>
             </div>
@@ -72,17 +83,17 @@
                     <!-- MAIN CONTENTS -->
                     <article id="main" role="main">
                         <div class="cat-head">
-                            <h1 class="title1">商品一覧<span class="sub-title">All Items</span></h1>
+                            <h1 class="title1"><span id="js-cat-title">商品一覧</span><span class="sub-title">All Items</span></h1>
                             <div class="lead-txt">
-                                <p>北海道大学オンラインショップの取扱商品一覧です。</p>
+                                <p id="js-cat-lead">北海道大学オンラインショップの取扱商品一覧です。</p>
                             </div>
                         </div><!--//cat-head-->
                         <div class="sort">
                             <ul>
                                 <li>表示順　:</li>
-                                <li><a href="./product-list.html?sortKind=1">価格の低い順</a></li>
+                                <li><a href="./product-list?sortKind=1">価格の低い順</a></li>
                                 <li><span>価格の高い順</span></li>
-                                <li><a href="./product-list.html?sortKind=3">更新日順</a></li>
+                                <li><a href="./product-list?sortKind=3">更新日順</a></li>
                             </ul>
                         </div>
                         <ul id="js-list" class="list-product col-3"></ul><!--//list-product-->
@@ -105,15 +116,21 @@
                                     <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
                                 </div>
                                 <ul class="nav-2 nav-2-slide">
-                                    <li><a href="./product-list.html">文房具・ステーショナリー</a><span></span></li>
-                                    <li><a href="./product-list.html">衣類・アパレル</a><span></span>
+                                    <li><a href="./product-list?categoryId=CG-00004">ウェア</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00001">食品</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00002">酒類</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00003">文具</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00019">小物</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a><span></span>
                                         <ul>
-                                            <li><a href="./product-list.html">Tシャツ</a></li>
-                                            <li><a href="./product-list.html">パーカー</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="./product-list.html">食品・グルメ</a><span></span></li>
-                                    <li><a href="./product-list.html">雑貨・グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a><span></span></li>
                                 </ul><!--//nav-2-->
                             </div><!--//secondary-block-->
                         </div><!--//pc-->
@@ -126,7 +143,7 @@
             <div class="footer-top">
                 <div class="inner">
                     <div class="footer-block">
-                        <p class="logo-text"><a href="./index.html">北海道大学オンラインショップ</a></p>
+                        <p class="logo-text"><a href="./index.html">北大オリジナルグッズ</a></p>
                     </div>
                     <div class="footer-block">
                         <ul class="list-link">
@@ -146,7 +163,7 @@
                 </div><!--//inner-->
             </div><!--//footer-top-->
             <div class="footer-bottom">
-                <p class="copyright">Copyright &copy; 北海道大学オンラインショップ All Rights Reserved.</p>
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
             </div>
         </footer><!--//footer-->
     </div><!--//wrapper-->
@@ -159,7 +176,24 @@
     Shop.load().then(function (all) {
         var list = Shop.published(all);
         var cat = Shop.param("categoryId");
-        if (cat) list = list.filter(function (p) { return p.categoryId === cat; });
+        if (cat) {
+            list = list.filter(function (p) { return p.categoryId === cat; });
+            var catName = Shop.categoryName(cat);
+            if (catName) {
+                document.title = catName + " | 北海道大学オンラインショップ（テスト）";
+                var t = document.querySelector("#js-cat-title");
+                if (t) t.textContent = catName;
+                var c = document.querySelector("#js-crumb");
+                if (c) c.textContent = catName;
+                var l = document.querySelector("#js-cat-lead");
+                if (l) l.textContent = "「" + catName + "」の商品一覧です。";
+            }
+            // 並び替えリンクにカテゴリーを引き継ぐ
+            var sortLinks = document.querySelectorAll(".sort a[href*='sortKind']");
+            for (var i = 0; i < sortLinks.length; i++) {
+                sortLinks[i].href += "&categoryId=" + encodeURIComponent(cat);
+            }
+        }
         var sort = Shop.param("sortKind");
         if (sort === "1") list.sort(function (a, b) { return a.price - b.price; });
         else if (sort === "2") list.sort(function (a, b) { return b.price - a.price; });

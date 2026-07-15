@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- ============================================================
+     本番: https://cart.raku-uru.jp/cart/{shpHash}  (画面ID CBY0001D01)
+     本番の生HTMLを忠実に再現。空カート時の表記・構造は本番と同一。
+     商品がある場合は同一クラス構造でJS描画し、合計をローカル計算。
+     ============================================================ -->
+<head>
+<title>ショッピングカート | 北大オリジナルグッズ</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
+<link rel="icon" type="image/vnd.microsoft.icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
+<link href="/cart/assets/cart-common.css" rel="stylesheet">
+<link href="/cart/assets/theme.css" rel="stylesheet">
+<style>
+.btn-pagetop.is-show { z-index: 101; opacity: 1; }
+</style>
+</head>
+
+<body id="CBY0001D01">
+	<div class="overlay"></div>
+	<div id="wrapper">
+			<div class="header">
+				<div class="header-top-cart clearfix">
+					<div class="row">
+						<div class="logo">
+							<h1>
+								<a href="/">
+									<p class="logo-text">北大オリジナルグッズ</p>
+								</a>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<div class="contents">
+			<div class="main main-1col">
+				<div class="ttl">
+					<h2>SHOPPING CART</h2>
+					<h3>ショッピングカート</h3>
+				</div>
+
+				<form action="/step1" method="post" id="cby0001d01Form">
+					<div class="cart-input">
+						<div class="cart-item-list">
+							<h4>商品情報</h4>
+							<table id="js-cart-table">
+							</table>
+							<p class="no-pruduct-message" id="js-empty-msg">カート内に商品がありません</p>
+						</div>
+					</div>
+					<div class="cart-action">
+						<div class="cart-action-inner">
+							<div class="cart-action-sum">
+								<table>
+									<tr class="cart-action-sum-item">
+										<th>商品合計<span class="cart-action-sum-item-tax">（税含む）</span></th>
+										<td><span id="cart-itemtotal" class="js-itemTotal">¥0</span></td>
+									</tr>
+									<tr class="cart-action-sum-wrapping" style="display: none;">
+										<th>ラッピング</th>
+										<td><span id="cart-wrapping" class="js-otherPrice">¥null</span></td>
+									</tr>
+									<tr class="cart-action-sum-ship" style="display: none;">
+										<th>送料</th>
+										<td><span id="cart-carriage" class="js-otherPrice">未確定</span></td>
+									</tr>
+									<tr class="cart-action-sum-cool" style="display: none;">
+										<th>クール手数料</th>
+										<td><span id="cart-kool" class="js-otherPrice">未確定</span></td>
+									</tr>
+									<tr class="cart-action-sum-point" style="display: none;">
+										<th>ポイント利用</th>
+										<td><span id="cart-point" class="js-otherPrice">未確定</span></td>
+									</tr>
+									<tr class="cart-action-sum-fee" style="display: none;">
+										<th>決済手数料</th>
+										<td><span id="cart-payfee" class="js-otherPrice">未確定</span></td>
+									</tr>
+								</table>
+							</div>
+							<div class="cart-action-total">
+								<table>
+									<tr>
+										<th>合計<span class="cart-action-total-ship">（送料別）</span></th>
+										<td><span id="cart-costtotal" class="js-total">¥0</span></td>
+									</tr>
+								</table>
+							</div>
+							<div class="cart-action-btn" id="js-checkout-btn" style="display:none;"><a href="#" class="btn"><span>レジに進む</span></a></div>
+							<div class="cart-action-btn-back"><a href="/" class="btn"><span>ショップへ戻る</span></a></div>
+						</div>
+					</div>
+					<input type="hidden" id="forward" name="forward" value="-1" />
+					<input type="hidden" id="shpHash" name="shpHash" value="47409ca9deadd2be6543f3c2fc49d40f" />
+					<span id="memberMode" style="display:none">0</span>
+				</form>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="btn-pagetop"><a href="#wrapper"></a></div>
+			<div class="footer-top">
+				<div class="row clearfix">
+					<div class="footer-top-cart">
+						<div class="footer-logo">
+							<div class="logo-text logo-text-footer">北大オリジナルグッズ</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<div class="row clearfix">
+					<p class="copyright">Copyright © 北大オリジナルグッズ All Rights Reserved.</p>
+				</div>
+			</div>
+		</div>
+		<!-- footer -->
+
+	</div>
+	<div class="btn-pagetop">
+		<a href="#wrapper"></a>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+	<script src="/cart/assets/cart-app.js"></script>
+	<script>
+	(function () {
+		function render() {
+			var items = TX.getCart();
+			var $tbl = $("#js-cart-table");
+			var t = TX.cartTotals();
+
+			if (!items.length) {
+				$tbl.empty();
+				$("#js-empty-msg").show();
+				$("#js-checkout-btn").hide();
+				$(".cart-action-sum-ship").hide();
+				$(".cart-action-sum-point").hide();
+				$("#cart-itemtotal").text("¥0");
+				$("#cart-costtotal").text("¥0");
+				return;
+			}
+			$("#js-empty-msg").hide();
+			$("#js-checkout-btn").show();
+			$(".cart-action-sum-ship").show();
+
+			var rows = items.map(function (it) {
+				return '<tr class="product-number-row" data-id="' + TX.esc(it.itemId) + '">' +
+					'<th class="cart-item-list-photo"><img src="' + TX.esc(it.imageUrl) + '" alt="' + TX.esc(it.name) + '"></th>' +
+					'<td class="cart-item-list-info">' +
+						'<ul>' +
+							(it.itemCode ? '<li class="cart-item-list-cord">' + TX.esc(it.itemCode) + '</li>' : '') +
+							'<li class="cart-item-list-name">' + TX.esc(it.name) + '</li>' +
+							'<li class="cart-item-list-price">' + TX.yen(it.price) + '</li>' +
+							'<li class="cart-item-list-quantity">' +
+								'<span class="cart-item-list-cnt">' +
+									'<input type="button" value="-" data-act="dec">' +
+									'<input type="number" min="1" value="' + it.qty + '" data-act="qty">' +
+									'<input type="button" value="+" data-act="inc">' +
+								'</span>' +
+							'</li>' +
+							'<li class="cart-item-list-btn"><span class="cart-item-list-del"><input type="button" value="削除" data-act="del"></span></li>' +
+						'</ul>' +
+					'</td>' +
+				'</tr>';
+			}).join("");
+			$tbl.html(rows);
+
+			$("#cart-itemtotal").text(TX.yen(t.itemTotal));
+			$("#cart-carriage").text(t.ship === 0 ? (t.itemTotal >= t.freeThreshold ? "無料" : TX.yen(0)) : TX.yen(t.ship));
+			$("#cart-costtotal").text(TX.yen(t.total));
+		}
+
+		$("#js-cart-table").on("click", "input[data-act]", function () {
+			var act = $(this).data("act");
+			var id = $(this).closest("tr[data-id]").data("id") + "";
+			var cur = TX.getCart().filter(function (x) { return x.itemId === id; })[0];
+			if (!cur) return;
+			if (act === "inc") TX.updateQty(id, cur.qty + 1);
+			else if (act === "dec") TX.updateQty(id, cur.qty - 1);
+			else if (act === "del") TX.removeItem(id);
+			else return;
+			render();
+		});
+		$("#js-cart-table").on("change", "input[data-act='qty']", function () {
+			var id = $(this).closest("tr[data-id]").data("id") + "";
+			TX.updateQty(id, parseInt($(this).val(), 10));
+			render();
+		});
+		$("#js-checkout-btn").on("click", "a", function (e) {
+			e.preventDefault();
+			if (!TX.isLoggedIn()) {
+				if (confirm("ご注文にはログインが必要です。\nログイン画面へ進みますか？\n（キャンセルで会員登録へ）")) location.href = "/cart/mypage/login/?return=checkout";
+				else location.href = "/cart/member/regist/input/";
+				return;
+			}
+			var order = TX.createOrder();
+			if (order) { alert("ご注文を受け付けました。\n受注番号：" + order.no); location.href = "/cart/mypage/?view=history"; }
+		});
+
+		render();
+	})();
+	</script>
+</body>
+</html>

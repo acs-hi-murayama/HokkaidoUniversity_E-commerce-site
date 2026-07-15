@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- ============================================================
+     本番: https://cart.raku-uru.jp/mypage/{shpHash} （ログイン必須）
+     ※本番はログイン後のみ表示のため生HTML取得不可。同一 chrome/CSS
+       （cart-common.css + getCssテーマ / cart-mypage クラス）で構成。
+     ============================================================ -->
+<head>
+<title>マイページ | 北大オリジナルグッズ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
+<link href="/cart/assets/cart-common.css" rel="stylesheet">
+<link href="/cart/assets/theme.css" rel="stylesheet">
+<style>.btn-pagetop.is-show { z-index: 101; opacity: 1; }</style>
+</head>
+
+<body id="MYP0002D01">
+	<div class="overlay"></div>
+	<div id="wrapper">
+			<div class="header">
+				<div class="header-top-cart clearfix">
+					<div class="row">
+						<div class="logo"><h1><a href="/"><p class="logo-text">北大オリジナルグッズ</p></a></h1></div>
+					</div>
+				</div>
+			</div>
+
+		<div class="contents">
+			<div class="bread">
+				<ul>
+					<li><a href="/">HOME</a></li>
+					<li><span>マイページ</span></li>
+				</ul>
+			</div>
+			<div class="main main-1col">
+				<div class="ttl"><h2>MY PAGE</h2><h3>マイページ</h3></div>
+
+				<div class="cart-1col">
+					<div class="cart-1col-inner">
+						<h4>マイページ</h4>
+						<div class="cart-mypage-login-msg"><p id="mp-greet"></p></div>
+						<div class="cart-mypage-login-link">
+							<ul>
+								<li><a href="/cart/mypage/?view=history">ご注文履歴</a></li>
+								<li><a href="/cart/mypage/?view=info">会員情報</a></li>
+								<li><a href="/cart/mypage/?view=address">お届け先</a></li>
+								<li><a href="#" id="js-logout">ログアウト</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="cart-1col-inner" id="mp-body"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="btn-pagetop"><a href="#wrapper"></a></div>
+			<div class="footer-top"><div class="row clearfix"><div class="footer-top-cart"><div class="footer-logo"><div class="logo-text logo-text-footer">北大オリジナルグッズ</div></div></div></div></div>
+			<div class="footer-bottom"><div class="row clearfix"><p class="copyright">Copyright © 北大オリジナルグッズ All Rights Reserved.</p></div></div>
+		</div>
+		<!-- footer -->
+	</div>
+	<div class="btn-pagetop"><a href="#wrapper"></a></div>
+
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" type="text/javascript"></script>
+	<script src="/cart/assets/cart-app.js"></script>
+	<script>
+	(function () {
+		var m = TX.currentMember();
+		if (!m) { location.replace("/cart/mypage/login/"); return; }
+
+		function qs(n) { try { return new URLSearchParams(location.search).get(n); } catch (e) { return null; } }
+		$("#mp-greet").text(m.lastName + " " + m.firstName + " 様、いつもご利用ありがとうございます。");
+		$("#js-logout").on("click", function (e) { e.preventDefault(); TX.logout(); location.href = "/cart/mypage/login/"; });
+
+		function addr() { return [m.postNo ? "〒" + m.postNo : "", m.kenName, m.city, m.houseNo, m.building].filter(Boolean).join(" "); }
+		var view = qs("view") || "top";
+		var html = "";
+
+		if (view === "history") {
+			var orders = TX.getOrders();
+			html = '<h4>ご注文履歴</h4>';
+			if (!orders.length) { html += '<div class="cart-mypage-history-cnt">ご注文履歴はありません。</div>'; }
+			else {
+				html += '<div class="cart-mypage-history-list"><ul>';
+				html += '<li><span>注文日</span><span>受注番号</span><span>商品</span><span>合計</span><span>状態</span></li>';
+				orders.forEach(function (o) {
+					var names = o.items.map(function (it) { return it.name + "×" + it.qty; }).join("、");
+					html += '<li><span>' + TX.esc(o.date) + '</span><span>' + TX.esc(o.no) + '</span><span>' + TX.esc(names) + '</span><span>' + TX.yen(o.total) + '</span><span>' + TX.esc(o.status) + '</span></li>';
+				});
+				html += '</ul></div>';
+			}
+		} else if (view === "info") {
+			var rows = [
+				["会員ID", m.loginId], ["氏名", m.lastName + " " + m.firstName],
+				["氏名フリガナ", m.lastNameKana + " " + m.firstNameKana], ["ご住所", addr()],
+				["メールアドレス", m.mailadd], ["電話番号", m.tel || "―"], ["携帯電話番号", m.cellularphone || "―"],
+				["性別", m.genderName || "―"],
+				["生年月日", (m.birthYear ? m.birthYear + "年" + m.birthMonth + "月" + m.birthDay + "日" : "―")],
+				["年齢", m.free1Field || "―"],
+				["メルマガ配信希望", m.optinFlag === "1" ? "希望する" : "希望しない"], ["登録日", m.registeredAt || "―"]
+			];
+			html = '<h4>会員情報</h4><table>' + rows.map(function (r) { return '<tr><th>' + TX.esc(r[0]) + '</th><td>' + TX.esc(r[1]) + '</td></tr>'; }).join("") + '</table>';
+		} else if (view === "address") {
+			html = '<h4>お届け先</h4><table>' +
+				'<tr><th>お名前</th><td>' + TX.esc(m.lastName + " " + m.firstName) + ' 様</td></tr>' +
+				'<tr><th>ご住所</th><td>' + TX.esc(addr()) + '</td></tr>' +
+				'<tr><th>電話番号</th><td>' + TX.esc(m.tel || m.cellularphone || "―") + '</td></tr></table>';
+		} else {
+			var oc = TX.getOrders().length;
+			html = '<h4>ご利用状況</h4><table>' +
+				'<tr><th>ご注文履歴</th><td>' + oc + ' 件</td></tr>' +
+				'<tr><th>会員ID</th><td>' + TX.esc(m.loginId) + '</td></tr></table>';
+		}
+		document.getElementById("mp-body").innerHTML = html;
+	})();
+	</script>
+</body>
+</html>
