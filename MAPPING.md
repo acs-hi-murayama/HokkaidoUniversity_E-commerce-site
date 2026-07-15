@@ -13,7 +13,7 @@
 
 | ローカル（直下） | original（カート用） | 備考 |
 |---|---|---|
-| `index.html` | `original/HTML/index.html` + `Common_Part.html` | ローカルはヘッダ/フッタ込みの完全HTML。originalはMAIN_CONTENTS部分のみ |
+| `index.html` | `original/HTML/Toppage.html` + `Common_Part.html` | ローカルはヘッダ/フッタ込みの完全HTML。originalはMAIN_CONTENTS部分のみ |
 | `product-list.html` | `original/HTML/Product_List.html` + `Common_Part.html` | 商品一覧 |
 | `product-details.html` | `original/HTML/Product_Details.html` + `Common_Part.html` | 商品詳細 |
 | `search.html` | `original/HTML/Product_Search.html` + `Common_Part.html` | 検索結果 |
@@ -21,8 +21,7 @@
 | `members-only-login.html` | `original/HTML/Members-Only_Login.html` | 会員限定ログイン（独立HTML） |
 | `landing-page.html` | `original/HTML/Landing_Page.html` | LP（独立HTML、MAIN_CONTENTSに自由記述） |
 | `404.html` | `original/HTML/404_Not_Found.html` | 404 |
-| （なし） | `original/HTML/Sanrio_Clearfile.html` | LP/フリーページ素材。ローカル未展開 |
-| `CSS/common.css` ほか | `original/HTML/css/common.css` ほか | 中身同一。参照パスのみ差異 |
+| `CSS/common.css` ほか | `original/css/common.css` ほか | 中身同一。参照パスのみ差異 |
 
 ### 共通の仕組み（重要）
 - original版はカート側が **`Common_Part.html`（ヘッダ/フッタ/サイドバー）** の `<[-- MAIN_CONTENTS --]>` に各ページ本体を差し込んで1枚のHTMLを生成する。

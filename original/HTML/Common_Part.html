@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <meta name="format-detection" content="telephone=no">
-    <title>{% if dsnTopTitle is not empty %}{{ dsnTopTitle }}{% else %}{% if pageTitle is not empty %}{{pageTitle}} | {%
-        elseif campaignPageTtl is not empty %}{{campaignPageTtl}} | {% elseif categoryPageTtl is not empty
-        %}{{categoryPageTtl}} | {% elseif itemData.title is not empty %}{{itemData.title}} | {% elseif itemData.itemName
-        is not empty %}{{ itemData.itemName }} | {% elseif title2 is not empty %}{{ title2 }} | {% elseif title1 is not
-        empty %}{{ title1 }} | {% endif %}{{ shopName }}{% endif %}</title>
+    <title>{% if dsnTopTitle is not empty %}{{ dsnTopTitle }}{% else %}{% if pageTitle is not empty %}{{pageTitle}} | {% elseif campaignPageTtl is not empty %}{{campaignPageTtl}} | {% elseif categoryPageTtl is not empty %}{{categoryPageTtl}} | {% elseif itemData.title is not empty %}{{itemData.title}} | {% elseif itemData.itemName is not empty %}{{ itemData.itemName }} | {% elseif title2 is not empty %}{{ title2 }} | {% elseif title1 is not empty %}{{ title1 }} | {% endif %}{{ shopName }}{% endif %}</title>
     <meta property="og:site_name" content="{{ shopName }}">
     {% if itemData != null %}<!-- 商品詳細の場合 -->
     <meta name="description" content="{{ itemData.metadescription }}">
@@ -19,14 +14,10 @@
     <meta property="og:type" content="{{ itemData.ogType }}">
     <meta property="og:url" content="{{ thisUrl }}">
     <meta property="og:description" content="{{ itemData.metadescription }}">
-    {% endif %}{% if campaignDescription != null %}
-    <meta name="description" content="{{ campaignDescription }}">
-    {% endif %}{% if categoryDescription != null %}
-    <meta name="description" content="{{ categoryDescription }}">
-    {% endif %}{% if freeDescription != null %}
-    <meta name="description" content="{{ freeDescription }}">
-    {% endif %}{% if dsnTopMetadescription != null %}
-    <meta name="description" content="{{ dsnTopMetadescription }}">
+    {% endif %}{% if campaignDescription != null %}<meta name="description" content="{{ campaignDescription }}">
+    {% endif %}{% if categoryDescription != null %}<meta name="description" content="{{ categoryDescription }}">
+    {% endif %}{% if freeDescription != null %}<meta name="description" content="{{ freeDescription }}">
+    {% endif %}{% if dsnTopMetadescription != null %}<meta name="description" content="{{ dsnTopMetadescription }}">
     {% endif %}
     {% if topFaviconUrl is not empty %}
     <link rel="shortcut icon" href="{{ topFaviconUrl }}">
@@ -37,304 +28,278 @@
     <style type="text/css">label:after {display:none;}</style>
     <![endif]-->
     <[-- HEADER_CUSTOM_CONTENTS --]>
-        {% if robots is not empty %}
-        <meta name="robots" content="{{ robots }}">{% endif %}
-        {% if canonicalUrl is not empty %}
-        <link rel="canonical" href="{{ canonicalUrl }}">{% endif %}
-        {% if prevUrl is not empty %}
-        <link rel="prev" href="{{ prevUrl }}">{% endif %}
-        {% if nextUrl is not empty %}
-        <link rel="next" href="{{ nextUrl }}">{% endif %}
+    {% if robots is not empty %}<meta name="robots" content="{{ robots }}">{% endif %}
+    {% if canonicalUrl is not empty %}<link rel="canonical" href="{{ canonicalUrl }}">{% endif %}
+    {% if prevUrl is not empty %}<link rel="prev" href="{{ prevUrl }}">{% endif %}
+    {% if nextUrl is not empty %}<link rel="next" href="{{ nextUrl }}">{% endif %}
 
 
-        <!-- サーチコンソール用 2025/11/04作成-->
-        <meta name="google-site-verification" content="2jcZoL2TMkLz6_UdG99XjCTveUZR3snZ_dyw3yeqXiw" />
-        <!-- Googleフォント読み込み 2025/12/02追加-->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
+<!-- サーチコンソール用 2025/11/04作成-->
+<meta name="google-site-verification" content="2jcZoL2TMkLz6_UdG99XjCTveUZR3snZ_dyw3yeqXiw" />
+<!-- Googleフォント読み込み 2025/12/02追加-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-</head>
-<body{% if cartLoginStatus==1 %} class="login" {% endif %} ontouchstart="">
+  </head>
+  <body{% if cartLoginStatus == 1 %} class="login"{% endif %} ontouchstart="">
     <div id="wrapper">
-        <header id="header">
-            <div class="header-in cl">
-                <div class="h_left">
-                    {% if hdrLogoDispFlag == 1 and hdrLogoImageUrl is not empty %}
-                    <h1 class="site-name"><a href="/"><img src="{{ hdrLogoImageUrl }}" alt="{{ shopName }}"></a></h1>
-                    {% else %}
-                    <h1 class="site-name-txt"><a href="/">{{ shopName }}</a></h1>
-                    {% endif %}
-                </div>
-                <div class="h_right">
-                    <ul class="header-menu">
-                        {% if newMemRegistFlag == 1 and cartLoginStatus != 1 %}
-                        <li class="entry"><a href="{{ shpCartUrl }}/member/regist/input/{{ shpHash }}"
-                                class="entry">会員登録</a></li>
-                        {% endif %}
-                        {% if registValidFlag == 1 %}
-                        {% if cartLoginStatus == 1 %}
-                        <li class="logout"><a href="{{ shpCartUrl }}/logout/{{ shpHash }}" class="logout">ログアウト</a></li>
-                        {% endif %}
-                        <li class="mypage"><a href="{{ shpCartUrl }}/mypage/login/{{ shpHash }}"
-                                class="mypage">マイページ</a></li>
-                        {% endif %}
-                        <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
-                        <li class="cart"><a href="{{ shpCartUrl }}/cart/{{ shpHash }}" class="cart"><b>カート</b></a></li>
-                    </ul>
-                </div><!--//h_righ-->
-                <div class="search-area cl">
-                    <form action="/search" method="post" id="cmsCommonForm" class="searchform1">
-                        <input type="text" name="searchWord" maxlength="50" value="" placeholder="何をお探しですか？"
-                            class="sbox1">
-                        <button class="sbtn1" type="submit" title="検索する"></button>
-                    </form>
-                </div><!--//search-area-->
-            </div><!--//header-in-->
-        </header><!--//header-->
-        <nav id="global-nav">
-            <ul class="header-menu-sp">
-                {% if newMemRegistFlag == 1 and cartLoginStatus != 1 %}
-                <li class="entry"><a href="{{ shpCartUrl }}/member/regist/input/{{ shpHash }}" class="entry">会員登録</a>
-                </li>
-                {% endif %}
-                {% if registValidFlag == 1 %}
-                {% if cartLoginStatus == 1 %}
-                <li class="logout"><a href="{{ shpCartUrl }}/logout/{{ shpHash }}" class="logout">ログアウト</a></li>
-                {% endif %}
-                <li class="mypage"><a href="{{ shpCartUrl }}/mypage/login/{{ shpHash }}" class="mypage">マイページ</a></li>
-                {% endif %}
-            </ul><!--//header-menu-sp-->
-            <ul class="cat-menu sp">
-                <!--カテゴリ▼-->
-                {% set categoryItemCounter = 0 %}
-                {% for item in categoryList %} {% if item.itemCount > 0 %} {% set categoryItemCounter = 1 %} {% endif %}
-                {% endfor %}
-                {% if categoryList is not empty and categoryItemCounter > 0 %}
-                <li class="cat-dropdown"><b>CATEGORY</b>
-                    <ul>
-                        {% for item in categoryList %} {% if item.itemCount > 0 %}
-                        <li><a href="/item-list?categoryId={{ item.categoryId }}">{{ item.categoryName }}</a>
-                            {% if item.childList is not empty %}
-                            <ul>
-                                {% for child in item.childList %} {% if child.itemCount > 0 %}
-                                <li><a href="/item-list?categoryId={{ child.categoryId }}">{{ child.categoryName }}</a>
-                                </li>
-                                {% endif %} {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% endif %} {% endfor %}
-                    </ul>
-                </li><!--//cat-dropdown-->
-                {% endif %}
-                <!--カテゴリ▲-->
-                <!--キャンペーン▼-->
-                {% set campaignItemCounter = 0 %}
-                {% for item in campaignList %} {% if item.itemCount > 0 %} {% set campaignItemCounter = 1 %} {% endif %}
-                {% endfor %}
-                {% if campaignList is not empty and campaignItemCounter > 0 %}
-                <li class="cat-dropdown"><b>CAMPAIGN</b>
-                    <ul>
-                        {% for item in campaignList %} {% if item.itemCount > 0 %}
-                        <li><a href="/item-list?campaignId={{ item.campaignId }}">{{ item.campaignName }}</a></li>
-                        {% endif %} {% endfor %}
-                    </ul>
-                </li><!--//cat-dropdown-->
-                {% endif %}
-                <!--キャンペーン▲-->
-            </ul><!--//cat-menu-->
-        </nav><!--//g-nav-->
-        <div id="container">
-            {% if breadCrumbsList is not empty %}
-            <!--パンくず▼-->
-            <div class="breadcrumbs">
-                <div class="inner">
-                    <ol>
-                        {% for item in breadCrumbsList %} {% if loop.index < loop.length - 1 %} <li><a
-                                href="{{ item.url }}" itemprop="url">{{ item.displayValue }}</a></li>
-                            {% else %}
-                            <li><strong>{{ item.displayValue }}</strong></li>
-                            {% endif %} {% endfor %}
-                    </ol>
-                </div>
-            </div>
-            <!--パンくず▲-->
+      <header id="header">
+        <div class="header-in cl">
+          <div class="h_left">
+          {% if hdrLogoDispFlag == 1 and hdrLogoImageUrl is not empty %}
+            <h1 class="site-name"><a href="/"><img src="{{ hdrLogoImageUrl }}" alt="{{ shopName }}"></a></h1>
+          {% else %}
+            <h1 class="site-name-txt"><a href="/">{{ shopName }}</a></h1>
+          {% endif %}
+          </div>
+          <div class="h_right">
+            <ul class="header-menu">
+            {% if newMemRegistFlag == 1 and cartLoginStatus != 1 %}
+              <li class="entry"><a href="{{ shpCartUrl }}/member/regist/input/{{ shpHash }}" class="entry">会員登録</a></li>
             {% endif %}
-            <div class="no_inner">
-                <div class="two-column">
-                    <[-- MAIN_CONTENTS --]>
-                        <div id="secondary">
-                            <div class="pc">
-                                {% set campaignItemCounter = 0 %}
-                                {% for item in campaignList %} {% if item.itemCount > 0 %} {% set campaignItemCounter =
-                                1 %} {% endif %} {% endfor %}
-                                {% if campaignList is not empty and campaignItemCounter > 0 %}
-                                <!--キャンペーン▼-->
-                                <div class="secondary-block">
-                                    <div class="secondary-head">
-                                        <h3 class="title2">CAMPAIGN<span class="sub-title">キャンペーン</span></h3>
-                                    </div>
-                                    <ul class="nav-1">
-                                        {% for item in campaignList %} {% if item.itemCount > 0 %}
-                                        <li><a href="/item-list?campaignId={{ item.campaignId }}">{{ item.campaignName
-                                                }}</a></li>
-                                        {% endif %} {% endfor %}
-                                    </ul>
-                                </div><!--//secondary-block-->
-                                <!--キャンペーン▲-->
-                                {% endif %}
-                                {% set categoryItemCounter = 0 %}
-                                {% for item in categoryList %} {% if item.itemCount > 0 %} {% set categoryItemCounter =
-                                1 %} {% endif %} {% endfor %}
-                                {% if categoryList is not empty and categoryItemCounter > 0 %}
-                                <!--カテゴリ▼-->
-                                <div class="secondary-block">
-                                    <div class="secondary-head">
-                                        <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
-                                    </div>
-                                    <ul class="nav-2 nav-2-slide">
-                                        {% for item in categoryList %} {% if item.itemCount > 0 %}
-                                        <li><a href="/item-list?categoryId={{ item.categoryId }}">{{ item.categoryName
-                                                }}</a><span></span>
-                                            {% if item.childList is not empty %}
-                                            <ul>
-                                                {% for child in item.childList %} {% if child.itemCount > 0 %}
-                                                <li><a href="/item-list?categoryId={{ child.categoryId }}">{{
-                                                        child.categoryName }}</a></li>
-                                                {% endif %} {% endfor %}
-                                            </ul>
-                                            {% endif %}
-                                        </li>
-                                        {% endif %} {% endfor %}
-                                    </ul><!--//nav-2-->
-                                </div><!--//secondary-block-->
-                                <!--カテゴリ▲-->
-                                {% endif %}
-                            </div><!--//pc-->
-                            <!--カレンダー▼-->
-                            {% if calendarMonthList is not empty %}
-                            <div class="secondary-block">
-                                <div class="secondary-head">
-                                </div>
-                                {% for monthItem in calendarMonthList %}
-                                <div class="schedule-area">
-                                    <div class="months">{{ monthItem.targetYear }}年{{ monthItem.targetMonth |
-                                        numberformat("00") }}月</div>
-                                    <div class="calendar">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th class="sun">日</th>
-                                                    <th class="mon">月</th>
-                                                    <th class="tue">火</th>
-                                                    <th class="wed">水</th>
-                                                    <th class="thu">木</th>
-                                                    <th class="fri">金</th>
-                                                    <th class="sat">土</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for weekItem in monthItem.weekList %}
-                                                <tr>
-                                                    <td
-                                                        class="{% if weekItem.sundayEventIndex != null %} e{{ weekItem.sundayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.sunday != null %}
-                                                        <i>{{ weekItem.sunday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="{% if weekItem.mondayEventIndex != null %} e{{ weekItem.mondayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.monday != null %}
-                                                        <i>{{ weekItem.monday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="{% if weekItem.tuesdayEventIndex != null %} e{{ weekItem.tuesdayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.tuesday != null %}
-                                                        <i>{{ weekItem.tuesday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="{% if weekItem.wednesdayEventIndex != null %} e{{ weekItem.wednesdayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.wednesday != null %}
-                                                        <i>{{ weekItem.wednesday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="{% if weekItem.thursdayEventIndex != null %} e{{ weekItem.thursdayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.thursday != null %}
-                                                        <i>{{ weekItem.thursday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="{% if weekItem.fridayEventIndex != null %} e{{ weekItem.fridayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.friday != null %}
-                                                        <i>{{ weekItem.friday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                    <td
-                                                        class="sat {% if weekItem.saturdayEventIndex != null %} e{{ weekItem.saturdayEventIndex + 1 }} {% endif %}">
-                                                        {% if weekItem.saturday != null %}
-                                                        <i>{{ weekItem.saturday }}</i>
-                                                        {% endif %}
-                                                    </td>
-                                                </tr>
-                                                {% endfor %}
-                                            </tbody>
-                                        </table>
-                                    </div><!--//calendar-->
-                                </div><!--//schedule-area-->
-                                {% endfor %}
-                                <ul class="list-event">
-                                    {% for eventItem in eventList %}
-                                    <li class="event{{ loop.index + 1 }}">{{ eventItem.eventName }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </div><!--//secondary-block-->
-                            {% endif %}
-                            <!--カレンダー▲-->
-                        </div><!--//secondary-->
-                </div><!--//two-column-->
-            </div><!--//no_inner-->
-        </div><!--//container-->
-        <footer id="footer">
-            <div id="page-top"><a href="#header"></a></div>
-            <div class="footer-top">
-                <div class="inner">
-                    <div class="footer-block">
-                        <div class="footer-logo">
-                            {% if ftrLogoDispFlag == 1 and ftrLogoImageUrl is not empty %}
-                            <p class="site-name"><a href="/"><img src="{{ ftrLogoImageUrl }}" alt="{{ shopName }}"></a>
-                            </p>
-                            {% else %}
-                            <p class="logo-text"><a href="/">{{ shopName }}</a></p>
-                            {% endif %}
-                        </div>
-                    </div><!--//footer-block-->
-                    <div class="footer-block">
-                        <ul class="list-link">
-                            <li><a href="/law">特定商取引法に基づく表記</a></li>
-                            <li><a href="/privacy">個人情報保護方針</a></li>
-                            <li><a href="/fee">送料について</a></li>
-                            {% if registValidFlag == 1 %}<li><a href="/membership">会員規約</a></li>{% endif %}
-                            {% if askpageUseFlag == 1 %}<li><a href="{{ shpCartUrl }}/ask/start/{{ shpHash }}">お問合せ</a>
-                            </li>{% endif %}
-                        </ul>
-                    </div><!--//footer-block-->
-                    <div class="footer-block">
-                        <ul class="sns">
-                            <li><a href="http://twitter.com/share?url={{ shpUrl }}&text={{ shopName }}"
-                                    target="_blank"><i class="icon-x"></i></a></li>
-                            <li><a href="http://www.facebook.com/share.php?u={{ shpUrl }}"
-                                    onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
-                                        class="icon-facebook"></i></a></li>
-                        </ul>
-                    </div><!--//footer-block-->
-                </div><!--//inner-->
-            </div><!--//footer-top-->
-            <div class="footer-bottom">
-                <p class="copyright">Copyright &copy; {{ shopName }} All Rights Reserved.</p>
-            </div>
-        </footer><!--//footer-->
+            {% if registValidFlag == 1 %}
+            {% if cartLoginStatus == 1 %}
+              <li class="logout"><a href="{{ shpCartUrl }}/logout/{{ shpHash }}" class="logout">ログアウト</a></li>
+            {% endif %}
+              <li class="mypage"><a href="{{ shpCartUrl }}/mypage/login/{{ shpHash }}" class="mypage">マイページ</a></li>
+            {% endif %}
+              <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
+              <li class="cart"><a href="{{ shpCartUrl }}/cart/{{ shpHash }}" class="cart"><b>カート</b></a></li>
+            </ul>
+          </div><!--//h_righ-->
+          <div class="search-area cl">
+            <form action="/search" method="post" id="cmsCommonForm" class="searchform1">
+              <input type="text" name="searchWord" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
+              <button class="sbtn1" type="submit" title="検索する"></button>
+            </form>
+          </div><!--//search-area-->
+        </div><!--//header-in-->
+      </header><!--//header-->
+      <nav id="global-nav">
+        <ul class="header-menu-sp">
+          {% if newMemRegistFlag == 1 and cartLoginStatus != 1 %}
+          <li class="entry"><a href="{{ shpCartUrl }}/member/regist/input/{{ shpHash }}" class="entry">会員登録</a></li>
+          {% endif %}
+          {% if registValidFlag == 1 %}
+          {% if cartLoginStatus == 1 %}
+          <li class="logout"><a href="{{ shpCartUrl }}/logout/{{ shpHash }}" class="logout">ログアウト</a></li>
+          {% endif %}
+          <li class="mypage"><a href="{{ shpCartUrl }}/mypage/login/{{ shpHash }}" class="mypage">マイページ</a></li>
+          {% endif %}
+        </ul><!--//header-menu-sp-->
+        <ul class="cat-menu sp">
+        <!--カテゴリ▼-->
+        {% set categoryItemCounter = 0 %}
+        {% for item in categoryList %} {% if item.itemCount > 0 %} {% set categoryItemCounter = 1 %} {% endif %} {% endfor %}
+        {% if categoryList is not empty and categoryItemCounter > 0 %}
+          <li class="cat-dropdown"><b>CATEGORY</b>
+            <ul>
+            {% for item in categoryList %} {% if item.itemCount > 0 %}
+              <li><a href="/item-list?categoryId={{ item.categoryId }}">{{ item.categoryName }}</a>
+                {% if item.childList is not empty %}
+                <ul>
+                {% for child in item.childList %} {% if child.itemCount > 0 %}
+                  <li><a href="/item-list?categoryId={{ child.categoryId }}">{{ child.categoryName }}</a></li>
+                {% endif %} {% endfor %}
+                </ul>
+                {% endif %}
+              </li>
+            {% endif %} {% endfor %}
+            </ul>
+          </li><!--//cat-dropdown-->
+        {% endif %}
+        <!--カテゴリ▲-->
+        <!--キャンペーン▼-->
+        {% set campaignItemCounter = 0 %}
+        {% for item in campaignList %} {% if item.itemCount > 0 %} {% set campaignItemCounter = 1 %} {% endif %} {% endfor %}
+        {% if campaignList is not empty and campaignItemCounter > 0 %}
+          <li class="cat-dropdown"><b>CAMPAIGN</b>
+            <ul>
+            {% for item in campaignList %} {% if item.itemCount > 0 %}
+              <li><a href="/item-list?campaignId={{ item.campaignId }}">{{ item.campaignName }}</a></li>
+            {% endif %} {% endfor %}
+            </ul>
+          </li><!--//cat-dropdown-->
+        {% endif %}
+        <!--キャンペーン▲-->
+        </ul><!--//cat-menu-->
+      </nav><!--//g-nav-->
+      <div id="container">
+      {% if breadCrumbsList is not empty %}
+      <!--パンくず▼-->
+        <div class="breadcrumbs">
+          <div class="inner">
+            <ol>
+              {% for item in breadCrumbsList %} {% if loop.index < loop.length - 1 %}
+              <li><a href="{{ item.url }}" itemprop="url">{{ item.displayValue }}</a></li>
+              {% else %}
+              <li><strong>{{ item.displayValue }}</strong></li>
+              {% endif %} {% endfor %}
+            </ol>
+          </div>
+        </div>
+      <!--パンくず▲-->
+      {% endif %}
+        <div class="no_inner">
+          <div class="two-column">
+          <[-- MAIN_CONTENTS --]>
+            <div id="secondary">
+              <div class="pc">
+              {% set campaignItemCounter = 0 %}
+              {% for item in campaignList %} {% if item.itemCount > 0 %} {% set campaignItemCounter = 1 %} {% endif %} {% endfor %}
+              {% if campaignList is not empty and campaignItemCounter > 0 %}
+              <!--キャンペーン▼-->
+                <div class="secondary-block">
+                  <div class="secondary-head">
+                    <h3 class="title2">CAMPAIGN<span class="sub-title">キャンペーン</span></h3>
+                  </div>
+                  <ul class="nav-1">
+                  {% for item in campaignList %} {% if item.itemCount > 0 %}
+                    <li><a href="/item-list?campaignId={{ item.campaignId }}">{{ item.campaignName }}</a></li>
+                  {% endif %} {% endfor %}
+                  </ul>
+                </div><!--//secondary-block-->
+              <!--キャンペーン▲-->
+              {% endif %}
+              {% set categoryItemCounter = 0 %}
+              {% for item in categoryList %} {% if item.itemCount > 0 %} {% set categoryItemCounter = 1 %} {% endif %} {% endfor %}
+              {% if categoryList is not empty and categoryItemCounter > 0 %}
+              <!--カテゴリ▼-->
+                <div class="secondary-block">
+                  <div class="secondary-head">
+                  <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
+                  </div>
+                  <ul class="nav-2 nav-2-slide">
+                  {% for item in categoryList %} {% if item.itemCount > 0 %}
+                    <li><a href="/item-list?categoryId={{ item.categoryId }}">{{ item.categoryName }}</a><span></span>
+                      {% if item.childList is not empty %}
+                      <ul>
+                      {% for child in item.childList %} {% if child.itemCount > 0 %}
+                        <li><a href="/item-list?categoryId={{ child.categoryId }}">{{ child.categoryName }}</a></li>
+                      {% endif %} {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </li>
+                  {% endif %} {% endfor %}
+                  </ul><!--//nav-2-->
+                </div><!--//secondary-block-->
+              <!--カテゴリ▲-->
+              {% endif %}
+              </div><!--//pc-->
+            <!--カレンダー▼-->
+            {% if calendarMonthList is not empty %}
+              <div class="secondary-block">
+                <div class="secondary-head">
+                </div>
+                {% for monthItem in calendarMonthList %}
+                <div class="schedule-area">
+                  <div class="months">{{ monthItem.targetYear }}年{{ monthItem.targetMonth | numberformat("00") }}月</div>
+                    <div class="calendar">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th class="sun">日</th>
+                            <th class="mon">月</th>
+                            <th class="tue">火</th>
+                            <th class="wed">水</th>
+                            <th class="thu">木</th>
+                            <th class="fri">金</th>
+                            <th class="sat">土</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                       {% for weekItem in monthItem.weekList %}
+                          <tr>
+                            <td class="{% if weekItem.sundayEventIndex != null %} e{{ weekItem.sundayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.sunday != null %}
+                              <i>{{ weekItem.sunday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="{% if weekItem.mondayEventIndex != null %} e{{ weekItem.mondayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.monday != null %}
+                              <i>{{ weekItem.monday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="{% if weekItem.tuesdayEventIndex != null %} e{{ weekItem.tuesdayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.tuesday != null %}
+                              <i>{{ weekItem.tuesday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="{% if weekItem.wednesdayEventIndex != null %} e{{ weekItem.wednesdayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.wednesday != null %}
+                              <i>{{ weekItem.wednesday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="{% if weekItem.thursdayEventIndex != null %} e{{ weekItem.thursdayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.thursday != null %}
+                              <i>{{ weekItem.thursday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="{% if weekItem.fridayEventIndex != null %} e{{ weekItem.fridayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.friday != null %}
+                              <i>{{ weekItem.friday }}</i>
+                              {% endif %}
+                            </td>
+                            <td class="sat {% if weekItem.saturdayEventIndex != null %} e{{ weekItem.saturdayEventIndex + 1 }} {% endif %}">
+                              {% if weekItem.saturday != null %}
+                              <i>{{ weekItem.saturday }}</i>
+                              {% endif %}
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div><!--//calendar-->
+                  </div><!--//schedule-area-->
+                {% endfor %}
+                  <ul class="list-event">
+                  {% for eventItem in eventList %}
+                    <li class="event{{ loop.index + 1 }}">{{ eventItem.eventName }}</li>
+                  {% endfor %}
+                  </ul>
+                </div><!--//secondary-block-->
+              {% endif %}
+            <!--カレンダー▲-->
+            </div><!--//secondary-->
+          </div><!--//two-column-->
+        </div><!--//no_inner-->
+      </div><!--//container-->
+      <footer id="footer">
+        <div id="page-top"><a href="#header"></a></div>
+        <div class="footer-top">
+          <div class="inner">
+            <div class="footer-block">
+              <div class="footer-logo">
+              {% if ftrLogoDispFlag == 1 and ftrLogoImageUrl is not empty %}
+                <p class="site-name"><a href="/"><img src="{{ ftrLogoImageUrl }}" alt="{{ shopName }}"></a></p>
+              {% else %}
+                <p class="logo-text"><a href="/">{{ shopName }}</a></p>
+              {% endif %}
+              </div>
+            </div><!--//footer-block-->
+            <div class="footer-block">
+              <ul class="list-link">
+                <li><a href="/law">特定商取引法に基づく表記</a></li>
+                <li><a href="/privacy">個人情報保護方針</a></li>
+                <li><a href="/fee">送料について</a></li>
+                {% if registValidFlag == 1 %}<li><a href="/membership">会員規約</a></li>{% endif %}
+                {% if askpageUseFlag == 1 %}<li><a href="{{ shpCartUrl }}/ask/start/{{ shpHash }}">お問合せ</a></li>{% endif %}
+              </ul>
+            </div><!--//footer-block-->
+            <div class="footer-block">
+              <ul class="sns">
+                <li><a href="http://twitter.com/share?url={{ shpUrl }}&text={{ shopName }}" target="_blank"><i class="icon-x"></i></a></li>
+                <li><a href="http://www.facebook.com/share.php?u={{ shpUrl }}" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="icon-facebook"></i></a></li>
+              </ul>
+            </div><!--//footer-block-->
+          </div><!--//inner-->
+        </div><!--//footer-top-->
+        <div class="footer-bottom">
+          <p class="copyright">Copyright &copy; {{ shopName }} All Rights Reserved.</p>
+        </div>
+      </footer><!--//footer-->
     </div><!--//wrapper-->
     <div class="overlay"></div>
     <script src="{{shpImgUrl}}/cms/yt00037/js/jquery-1.12.4.min.js" type="text/javascript"></script>
@@ -343,28 +308,37 @@
     <script src="{{shpImgUrl}}/cms/yt00037/js/common-script.js" type="text/javascript"></script>
     <script src="{{shpImgUrl}}/cms/yt00037/js/shop-script.js" type="text/javascript"></script>
     <!-- slick CSS -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
     <!-- slick JS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
 
     <script>
-        $(document).on("ready", function () {
-            $(".full-screen").slick({
-                centerMode: true, // スライドを中心に表示して部分的に前後のスライドが見えるように設定（奇数番号のスライドに使用）
-                centerPadding: "0%", // センターモード時のサイドパディング。見切れるスライドの幅。’px’または’％’。
-                dots: true, // ドットインジケーターの表示
-                autoplay: true, // 自動再生を設定
-                autoplaySpeed: 5000, // 自動再生のスピード（ミリ秒単位）
-                speed: 1000, // スライド/フェードアニメーションの速度を設定
-                infinite: true, // スライドのループを有効にするか
-                pauseOnFocus: false, // スライドがフォーカスされたときに自動再生を一時停止するか
-                pauseOnHover: false, // スライドにマウスオーバーしたときに自動再生を一時停止するか
-            });
+      $(document).on("ready", function () {
+        $(".full-screen").slick({
+          centerMode: true, // スライドを中心に表示して部分的に前後のスライドが見えるように設定（奇数番号のスライドに使用）
+          centerPadding: "0%", // センターモード時のサイドパディング。見切れるスライドの幅。’px’または’％’。
+          dots: true, // ドットインジケーターの表示
+          autoplay: true, // 自動再生を設定
+          autoplaySpeed: 5000, // 自動再生のスピード（ミリ秒単位）
+          speed: 1000, // スライド/フェードアニメーションの速度を設定
+          infinite: true, // スライドのループを有効にするか
+          pauseOnFocus: false, // スライドがフォーカスされたときに自動再生を一時停止するか
+          pauseOnHover: false, // スライドにマウスオーバーしたときに自動再生を一時停止するか
         });
+      });
     </script>
     <[-- BODY_CUSTOM_CONTENTS --]>
-        </body>
-
+  </body>
 </html>

@@ -44,8 +44,8 @@
 cart/
 ├── README.md                         ... 本ファイル
 ├── assets/
-│   ├── cart.css                      ... 本番の cart.css（original/HTML/css/cart.css）を変換して使用
-│   ├── common.css                    ... 本番の common.css（ログイン画面用）を変換して使用
+│   ├── cart-common.css               ... 本番の /resources/css/cart-common.css をそのまま使用
+│   ├── theme.css                     ... 本番の /getCss/{shpHash}（店舗テーマ）をそのまま使用
 │   └── cart-app.js                   ... 挙動層（localStorageでカート/会員/注文を管理）
 ├── cart/index.html                   ... ショッピングカート
 ├── member/regist/

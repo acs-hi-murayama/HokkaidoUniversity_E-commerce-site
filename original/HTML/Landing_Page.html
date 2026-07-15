@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width" />
@@ -17,82 +16,87 @@
     <meta property="og:description" content="{{ itemData.metadescription }}" />
     {% endif %} {% if topFaviconUrl is not empty %}
     <link rel="shortcut icon" href="{{ topFaviconUrl }}" />
-    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ topFaviconUrl }}" />
+    <link
+      rel="icon"
+      type="image/vnd.microsoft.icon"
+      href="{{ topFaviconUrl }}"
+    />
     {% endif %}
     <link href="{{ cssAddr }}" rel="stylesheet" type="text/css" />
     <[-- HEADER_CUSTOM_CONTENTS --]> {% if robots is not empty %}
-        <meta name="robots" content="{{ robots }}" />
-        {% endif %} {% if canonicalUrl is not empty %}
-        <link rel="canonical" href="{{ canonicalUrl }}" />
-        {% endif %} {% if prevUrl is not empty %}
-        <link rel="prev" href="{{ prevUrl }}" />
-        {% endif %} {% if nextUrl is not empty %}
-        <link rel="next" href="{{ nextUrl }}" />
-        {% endif %}
-        <!-- Googleフォント読み込み 2025/12/02追加-->
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet" />
-        <!-- Googleフォント読み込み 2026/02/10追加-->
-        <link href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&amp;display=swap"
-            rel="stylesheet" />
-</head>
-
-<body class="body-lp">
+    <meta name="robots" content="{{ robots }}" />
+    {% endif %} {% if canonicalUrl is not empty %}
+    <link rel="canonical" href="{{ canonicalUrl }}" />
+    {% endif %} {% if prevUrl is not empty %}
+    <link rel="prev" href="{{ prevUrl }}" />
+    {% endif %} {% if nextUrl is not empty %}
+    <link rel="next" href="{{ nextUrl }}" />
+    {% endif %}
+<!-- Googleフォント読み込み 2025/12/02追加-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+<!-- Googleフォント読み込み 2026/02/10追加-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaisei+Tokumin:wght@500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="body-lp">
     <div id="wrapper">
-        <header id="header">
-            <div class="header-in cl">
-                <div class="h_center">
-                    {% if hdrLogoDispFlag == 1 and hdrLogoImageUrl is not empty %}
-                    <h1 class="site-name">
-                        <a href="/"><img src="{{ hdrLogoImageUrl }}" alt="{{ shopName }}" /></a>
-                    </h1>
-                    {% else %}
-                    <h1 class="site-name-txt"><a href="/">{{ shopName }}</a></h1>
-                    {% endif %}
-                </div>
-            </div>
-            <!--//header-in-->
-        </header>
-        <!--//header-->
-        <div id="container">
-            <div class="no_inner">
-                <div class="one-column">
-                    <div id="main" role="main">
-                        <div class="wysiwyg-data"><[-- MAIN_CONTENTS --]></div>
-                    </div>
-                </div>
-            </div>
+      <header id="header">
+        <div class="header-in cl">
+          <div class="h_center">
+            {% if hdrLogoDispFlag == 1 and hdrLogoImageUrl is not empty %}
+            <h1 class="site-name">
+              <a href="/"
+                ><img src="{{ hdrLogoImageUrl }}" alt="{{ shopName }}"
+              /></a>
+            </h1>
+            {% else %}
+            <h1 class="site-name-txt"><a href="/">{{ shopName }}</a></h1>
+            {% endif %}
+          </div>
         </div>
-
-        <footer id="footer">
-            <div id="page-top"><a href="#header"></a></div>
-            <div class="footer-top">
-                <div class="inner">
-                    <div class="footer-block">
-                        <div class="footer-logo">
-                            {% if ftrLogoDispFlag == 1 and ftrLogoImageUrl is not empty %}
-                            <p class="site-name"><a href="/"><img src="{{ ftrLogoImageUrl }}" alt="{{ shopName }}"></a>
-                            </p>
-                            {% else %}
-                            <p class="logo-text"><a href="/">{{ shopName }}</a></p>
-                            {% endif %}
-                        </div>
-                    </div><!--//footer-block-->
-                    <div class="footer-block">
-                        <ul class="sns">
-                            <li><a href="http://twitter.com/share?url={{ shpUrl }}&text={{ shopName }}"
-                                    target="_blank"><i class="icon-x"></i></a></li>
-                            <li><a href="http://www.facebook.com/share.php?u={{ shpUrl }}"
-                                    onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i
-                                        class="icon-facebook"></i></a></li>
-                        </ul>
-                    </div><!--//footer-block-->
-                </div><!--//inner-->
-            </div><!--//footer-top-->
-            <div class="footer-bottom">
-                <p class="copyright">Copyright &copy; {{ shopName }} All Rights Reserved.</p>
+        <!--//header-in-->
+      </header>
+      <!--//header-->
+      <div id="container">
+        <div class="no_inner">
+          <div class="one-column">
+            <div id="main" role="main">
+              <div class="wysiwyg-data"><[-- MAIN_CONTENTS --]></div>
             </div>
-        </footer><!--//footer-->
-    </div>
-</body>
+          </div>
+        </div>
+      </div>
 
+      <footer id="footer">
+        <div id="page-top"><a href="#header"></a></div>
+        <div class="footer-top">
+          <div class="inner">
+            <div class="footer-block">
+              <div class="footer-logo">
+              {% if ftrLogoDispFlag == 1 and ftrLogoImageUrl is not empty %}
+                <p class="site-name"><a href="/"><img src="{{ ftrLogoImageUrl }}" alt="{{ shopName }}"></a></p>
+              {% else %}
+                <p class="logo-text"><a href="/">{{ shopName }}</a></p>
+              {% endif %}
+              </div>
+            </div><!--//footer-block-->
+            <div class="footer-block">
+              <ul class="sns">
+                <li><a href="http://twitter.com/share?url={{ shpUrl }}&text={{ shopName }}" target="_blank"><i class="icon-x"></i></a></li>
+                <li><a href="http://www.facebook.com/share.php?u={{ shpUrl }}" onclick="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;"><i class="icon-facebook"></i></a></li>
+              </ul>
+            </div><!--//footer-block-->
+          </div><!--//inner-->
+        </div><!--//footer-top-->
+        <div class="footer-bottom">
+          <p class="copyright">Copyright &copy; {{ shopName }} All Rights Reserved.</p>
+        </div>
+      </footer><!--//footer-->
+    </div>
+  </body>
 </html>
