@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>「北大グッズ」の検索結果 | 北海道大学オンラインショップ（テスト）</title>
+    <meta name="description" content="「北大グッズ」の検索結果一覧">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ cssAddr }}" rel="stylesheet" type="text/css">
+</head>
+
+<body ontouchstart="">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_left">
+                    <h1 class="site-name-txt"><a href="./index.html">北大オリジナルグッズ</a></h1>
+                </div>
+                <div class="h_right">
+                    <ul class="header-menu">
+                        <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                        <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
+                        <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
+                        <li class="cart"><a href="/cart/cart/" class="cart"><b>カート</b></a></li>
+                    </ul>
+                </div><!--//h_right-->
+                <div class="search-area cl">
+                    <form action="./search" method="get" id="cmsCommonForm" class="searchform1">
+                        <input type="text" name="searchWord" id="js-searchbox" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
+                        <button class="sbtn1" type="submit" title="検索する"></button>
+                    </form>
+                </div><!--//search-area-->
+            </div><!--//header-in-->
+        </header><!--//header-->
+        <nav id="global-nav">
+            <ul class="header-menu-sp">
+                <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
+            </ul>
+            <ul class="cat-menu sp">
+                <li class="cat-dropdown"><b>CATEGORY</b>
+                    <ul>
+                        <li><a href="./product-list?categoryId=CG-00004">ウェア</a></li>
+                        <li><a href="./product-list?categoryId=CG-00001">食品</a></li>
+                        <li><a href="./product-list?categoryId=CG-00002">酒類</a></li>
+                        <li><a href="./product-list?categoryId=CG-00003">文具</a></li>
+                        <li><a href="./product-list?categoryId=CG-00019">小物</a></li>
+                        <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a>
+                            <ul>
+                                <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div id="container">
+            <div class="breadcrumbs">
+                <div class="inner">
+                    <ol>
+                        <li><a href="./index.html">ホーム</a></li>
+                        <li><strong id="js-crumb">検索結果</strong></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="no_inner">
+                <div class="two-column">
+                    <article id="main" role="main">
+                        <div class="cat-head">
+                            <h1 class="title1" id="js-search-title">検索結果一覧</h1>
+                        </div><!--//cat-head-->
+                        <div class="sort">
+                            <ul>
+                                <li>表示順　:</li>
+                                <li><a href="./search.html?sortKind=1">価格の低い順</a></li>
+                                <li><a href="./search.html?sortKind=2">価格の高い順</a></li>
+                                <li><span>更新日順</span></li>
+                            </ul>
+                        </div>
+                        <ul id="js-results" class="list-product col-3"></ul><!--//list-product-->
+                        <div class="item-list-itemcount" id="js-count"></div>
+                        <div id="js-noresult" class="product-list" style="display:none;">検索した結果0件でした。</div>
+                    </article><!--//main-->
+
+                    <div id="secondary">
+                        <div class="pc">
+                            <div class="secondary-block">
+                                <div class="secondary-head">
+                                    <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
+                                </div>
+                                <ul class="nav-2 nav-2-slide">
+                                    <li><a href="./product-list?categoryId=CG-00004">ウェア</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00001">食品</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00002">酒類</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00003">文具</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00019">小物</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a><span></span>
+                                        <ul>
+                                            <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a><span></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div><!--//secondary-->
+                </div><!--//two-column-->
+            </div><!--//no_inner-->
+        </div><!--//container-->
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="./index.html">北大オリジナルグッズ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">会員規約</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- 検索結果描画（products.json） -->
+    <!-- TODO(本番): shop.js は不要。商品描画は Twig {% for item in itemList %} に置換 -->
+    <script>
+    Shop.load().then(function (all) {
+        var word = (Shop.param("searchWord") || "").trim();
+        var box = document.getElementById("js-searchbox");
+        if (box) box.value = word;
+        var title = document.getElementById("js-search-title");
+        var crumb = document.getElementById("js-crumb");
+        if (word) {
+            if (title) title.textContent = "「" + word + "」に関する検索結果一覧";
+            if (crumb) crumb.textContent = "「" + word + "」の検索結果";
+            document.title = "「" + word + "」の検索結果 | 北海道大学オンラインショップ（テスト）";
+        }
+        var list = Shop.published(all);
+        if (word) list = list.filter(function (p) { return p.name && p.name.indexOf(word) !== -1; });
+        Shop.fill("#js-results", list.map(Shop.card).join(""));
+        var cnt = document.querySelector("#js-count");
+        if (cnt) cnt.textContent = "表示件数：" + (list.length ? 1 : 0) + "〜" + list.length + " / " + list.length;
+        var none = document.getElementById("js-noresult");
+        if (none) none.style.display = list.length ? "none" : "block";
+    }).catch(function (e) { console.error(e); });
+    </script>
+    <script>
+    $(document).ready(function () {
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+            $("#global-nav").toggleClass("is-open");
+        });
+        $(".nav-2-slide > li > span").on("click", function () {
+            $(this).parent().toggleClass("open");
+            $(this).siblings("ul").slideToggle(200);
+        });
+    });
+    </script>
+</body>
+
+</html>

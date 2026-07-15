@@ -26,4 +26,4 @@
 
 - 本文（`freepage-body` の中身）だけをカートの「お知らせ本文」に貼り付ける。
 - ヘッダ/フッタはカート側の `Common_Part.html` が付与するので、移行時は不要（本文のみ）。
-- 詳細は [../MAPPING.md](../MAPPING.md) を参照。
+- 詳細は [MAPPING.md](../docs/MAPPING.md) を参照。

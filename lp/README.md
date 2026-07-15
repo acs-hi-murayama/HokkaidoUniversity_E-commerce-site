@@ -73,4 +73,4 @@ lp/
 - ヘッダ/フッタはカート側の `Landing_Page.html` が付与するので、移行時は本文のみでよい。
 - LP内の画像は本番でも実URL直書き。`picsum.photos` の仮画像を実URLに差し替えること。
 - LP専用の `<style>` は、本番では「HEADER_CUSTOM_CONTENTS」に相当する箇所へ移す。
-- 詳細は [../MAPPING.md](../MAPPING.md) を参照。
+- 詳細は [MAPPING.md](../docs/MAPPING.md) を参照。

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>北大オリジナルグッズOnlineShop</title>
+    <meta name="description" content="北大生協公式オンラインショップ。北海道大学オリジナルグッズを取り扱っています。ご入学祝いの記念品や北海道土産にふさわしいアイテムグッズから、日常使いできるグッズまで幅広くラインナップ。北大の魅力を感じられる特別な一品を、ぜひお選びください。">
+    <link rel="shortcut icon" href="{{ topFaviconUrl }}">
+    <link rel="icon" type="image/vnd.microsoft.icon" href="{{ topFaviconUrl }}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ cssAddr }}" rel="stylesheet" type="text/css">
+</head>
+
+<body ontouchstart="">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_left">
+                    <h1 class="site-name-txt"><a href="./index.html">北大オリジナルグッズ</a></h1>
+                </div>
+                <div class="h_right">
+                    <ul class="header-menu">
+                        <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                        <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
+                        <li class="menubtn"><a href="#" id="jq-btn-menu"><span id="jq-btn-menu-icon"></span></a></li>
+                        <li class="cart"><a href="/cart/cart/" class="cart"><b>カート</b></a></li>
+                    </ul>
+                </div><!--//h_right-->
+                <div class="search-area cl">
+                    <form action="./search" method="get" id="cmsCommonForm" class="searchform1">
+                        <input type="text" name="searchWord" maxlength="50" value="" placeholder="何をお探しですか？" class="sbox1">
+                        <button class="sbtn1" type="submit" title="検索する"></button>
+                    </form>
+                </div><!--//search-area-->
+            </div><!--//header-in-->
+        </header><!--//header-->
+        <nav id="global-nav">
+            <ul class="header-menu-sp">
+                <li class="entry"><a href="/cart/member/regist/input/" class="entry">会員登録</a></li>
+                <li class="mypage"><a href="/cart/mypage/login/" class="mypage">マイページ</a></li>
+            </ul><!--//header-menu-sp-->
+            <ul class="cat-menu sp">
+                <li class="cat-dropdown"><b>CATEGORY</b>
+                    <ul>
+                        <li><a href="./product-list?categoryId=CG-00004">ウェア</a></li>
+                        <li><a href="./product-list?categoryId=CG-00001">食品</a></li>
+                        <li><a href="./product-list?categoryId=CG-00002">酒類</a></li>
+                        <li><a href="./product-list?categoryId=CG-00003">文具</a></li>
+                        <li><a href="./product-list?categoryId=CG-00019">小物</a></li>
+                        <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a>
+                            <ul>
+                                <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a></li>
+                        <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a></li>
+                    </ul>
+                </li>
+                <li class="cat-dropdown"><b>CAMPAIGN</b>
+                    <ul>
+                        <li><a href="./product-list.html">春の新入生応援セール</a></li>
+                        <li><a href="./product-list.html">北大150周年記念フェア</a></li>
+                    </ul>
+                </li>
+            </ul><!--//cat-menu-->
+        </nav><!--//g-nav-->
+        <div id="container">
+            <div class="no_inner">
+                <div class="two-column">
+                    <!-- MAIN CONTENTS -->
+                    <div id="main" class="main">
+                        <!-- メインビジュアル（本番: dsnTopHtmlTag 相当 / data/main-visual.html を注入。LPバナーとは別物） -->
+                        <div id="js-main-visual"></div>
+
+                        <!-- ショップ説明1（本番: dsnTopDesc1Shop 相当 / data/top-message1.html を注入） -->
+                        <section class="section-block">
+                            <div id="top-shop-message1">
+                                <div id="js-top-message1"></div>
+                            </div>
+                        </section><!--//section-block-->
+
+                        <!-- お知らせ -->
+                        <section class="section-block">
+                            <div class="section-head">
+                                <h2 class="title1">NEWS<span class="sub-title">お知らせ</span></h2>
+                            </div>
+                            <dl class="list-info cl">
+                                <dt>2026.06.20</dt>
+                                <dd><a href="./fr/1.html">堀内、パチンコ辞める。</a></dd>
+                                <dt>2026.06.10</dt>
+                                <dd><a href="./fr/2.html">堀内、タバコ辞める。</a></dd>
+                                <dt>2026.05.25</dt>
+                                <dd><a href="./fr/3.html">堀内、寝不足。</a></dd>
+                            </dl><!--//list-info-->
+                        </section><!--//section-block-->
+
+                        <!-- 新着商品 -->
+                        <section class="section-block">
+                            <div class="section-head">
+                                <h2 class="title1">NEW ARRIVALS<span class="sub-title">新着商品</span></h2>
+                            </div>
+                            <ul id="js-new" class="list-product col-3"></ul><!--//list-product-->
+                        </section><!--//section-block-->
+
+                        <!-- おすすめ商品 -->
+                        <section class="section-block">
+                            <div class="section-head">
+                                <h2 class="title1">ギフトおすすめ商品</h2>
+                            </div>
+                            <ul id="js-recommend" class="list-product col-3"></ul><!--//list-product-->
+                        </section><!--//section-block-->
+
+                        <!-- 販売ランキング: 本番では itemSalesRankingList が空のため非表示（dsnTopDispFlagSalesRanking 相当）。
+                             データが蓄積されて有効化された場合は、下記を復元してください:
+                        <section class="section-block">
+                            <div class="section-head">
+                                <h2 class="title1">RANKING<span class="sub-title">販売ランキング</span></h2>
+                            </div>
+                            <ul id="js-ranking" class="list-product col-3"></ul>
+                        </section>
+                        -->
+
+                        <!-- ショップ説明2（本番: dsnTopDesc2Shop 相当 / data/top-message2.html を注入） -->
+                        <section class="section-block">
+                            <div id="top-shop-message2">
+                                <div id="js-top-message2"></div>
+                            </div>
+                        </section><!--//section-block-->
+                    </div><!--//main-->
+
+                    <div id="secondary">
+                        <div class="pc">
+                            <div class="secondary-block">
+                                <div class="secondary-head">
+                                    <h3 class="title2">CAMPAIGN<span class="sub-title">キャンペーン</span></h3>
+                                </div>
+                                <ul class="nav-1">
+                                    <li><a href="./product-list.html">春の新入生応援セール</a></li>
+                                    <li><a href="./product-list.html">北大150周年記念フェア</a></li>
+                                </ul>
+                            </div><!--//secondary-block-->
+                            <div class="secondary-block">
+                                <div class="secondary-head">
+                                    <h3 class="title2">CATEGORY<span class="sub-title">カテゴリー</span></h3>
+                                </div>
+                                <ul class="nav-2 nav-2-slide">
+                                    <li><a href="./product-list?categoryId=CG-00004">ウェア</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00001">食品</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00002">酒類</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00003">文具</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00019">小物</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00017">生活雑貨</a><span></span>
+                                        <ul>
+                                            <li><a href="./product-list?categoryId=CG-00016">革製品グッズ</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00018">ガラスジュエリー</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00015">寮歌CD</a></li>
+                                            <li><a href="./product-list?categoryId=CG-00008">その他</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./product-list?categoryId=CG-00007">おしょろ丸グッズ</a><span></span></li>
+                                    <li><a href="./product-list?categoryId=CG-00014">ミズナラグッズ</a><span></span></li>
+                                </ul><!--//nav-2-->
+                            </div><!--//secondary-block-->
+                        </div><!--//pc-->
+                    </div><!--//secondary-->
+                </div><!--//two-column-->
+            </div><!--//no_inner-->
+        </div><!--//container-->
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="./index.html">北大オリジナルグッズ</a></p>
+                    </div><!--//footer-block-->
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">会員規約</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div><!--//footer-block-->
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div><!--//footer-block-->
+                </div><!--//inner-->
+            </div><!--//footer-top-->
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <!-- jQuery + Slick Carousel CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- 商品データ描画 & ショップ説明の注入 -->
+    <!-- TODO(本番): shop.js は不要。商品描画は Twig {% for item in itemList %} に置換 -->
+    <script>
+    /* 商品セクション（表示件数: 新着3 / おすすめ6 / 販売ランキング12） */
+    Shop.load().then(function (all) {
+        var pub = Shop.published(all);
+        var news = pub.filter(function (p) { return p.isNew === "1"; });
+        if (news.length < 3) news = pub;                 // 新着フラグが少なければ公開商品で補完
+        Shop.fill("#js-new", news.slice(0, 3).map(Shop.card).join(""));
+        Shop.fill("#js-recommend", pub.slice(0, 6).map(Shop.rankCard).join(""));
+        // 販売ランキング(#js-ranking)は本番が現在非表示のためコメントアウト中。復元時は下記を有効化:
+        // Shop.fill("#js-ranking", pub.slice(0, 12).map(Shop.rankCard).join(""));
+    }).catch(function (e) { console.error(e); });
+
+    /* メインビジュアル（別ファイルを注入 / 本番: dsnTopHtmlTag。LPバナーとは別物） */
+    Shop.include("#js-main-visual", "./data/main-visual.html");
+
+    /* ショップ説明2（別ファイルを注入 / 本番: dsnTopDesc2Shop） */
+    Shop.include("#js-top-message2", "./data/top-message2.html");
+
+    /* ショップ説明1（別ファイルを注入 / 本番: dsnTopDesc1Shop）→ 注入後にスライダー初期化 */
+    Shop.include("#js-top-message1", "./data/top-message1.html").then(function () {
+        if (window.jQuery && $.fn.slick) {
+            $(".full-screen").slick({
+                centerMode: true,
+                centerPadding: "0%",
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                speed: 1000,
+                infinite: true,
+                pauseOnFocus: false,
+                pauseOnHover: false
+            });
+        }
+    });
+    </script>
+    <script>
+    $(document).ready(function () {
+        /* ハンバーガーメニュー開閉 */
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+            $("#global-nav").toggleClass("is-open");
+        });
+
+        /* サイドバー カテゴリ開閉 */
+        $(".nav-2-slide > li > span").on("click", function () {
+            $(this).parent().toggleClass("open");
+            $(this).siblings("ul").slideToggle(200);
+        });
+    });
+    </script>
+</body>
+
+</html>

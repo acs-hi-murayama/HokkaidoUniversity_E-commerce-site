@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- ============================================================
+     本番: https://cart.raku-uru.jp/member/regist/complete/{shpHash} (画面ID MEM0001D03)
+     ※本番はPOST遷移のため生HTML取得不可。同一 chrome/CSS で完了画面を構成。
+     ============================================================ -->
+<head>
+<title>会員登録 | 北大オリジナルグッズ</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="https://contents.raku-uru.jp/01/14604/189/favicon.ico">
+<link href="/resources/css/cart-common.css" rel="stylesheet">
+<link href="/getCss/{{ shpHash }}" rel="stylesheet">
+<style>.btn-pagetop.is-show { z-index: 101; opacity: 1; }</style>
+</head>
+
+<body id="MEM0001D03">
+	<div class="overlay"></div>
+	<div id="wrapper">
+			<div class="header">
+				<div class="header-top-cart clearfix">
+					<div class="row">
+						<div class="logo"><h1><a href="https://hokudai-goods-seikyou.net"><p class="logo-text">北大オリジナルグッズ</p></a></h1></div>
+					</div>
+				</div>
+			</div>
+
+		<div class="contents">
+			<div class="bread">
+				<ul>
+					<li><a href="/">HOME</a></li>
+					<li><span>会員登録</span></li>
+				</ul>
+			</div>
+			<div class="main main-1col">
+				<div class="ttl"><h2>REGISTRATION</h2><h3>会員登録</h3></div>
+
+				<div class="cart-1col">
+					<div class="cart-1col-inner">
+						<h4>会員登録完了</h4>
+						<div class="cart-1col-msg">
+							<p>会員登録が完了しました。</p>
+							<p>ご登録いただいたメールアドレス宛に確認メールをお送りします。</p>
+						</div>
+					</div>
+					<div class="cart-1col-btn">
+						<a href="/mypage/login/{{ shpHash }}" class="btn"><span>マイページへ</span></a>
+						<a href="/" class="btn"><span>ショップへ戻る</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+			<div class="btn-pagetop"><a href="#wrapper"></a></div>
+			<div class="footer-top"><div class="row clearfix"><div class="footer-top-cart"><div class="footer-logo"><div class="logo-text logo-text-footer">北大オリジナルグッズ</div></div></div></div></div>
+			<div class="footer-bottom"><div class="row clearfix"><p class="copyright">Copyright © 北大オリジナルグッズ All Rights Reserved.</p></div></div>
+		</div>
+		<!-- footer -->
+	</div>
+	<div class="btn-pagetop"><a href="#wrapper"></a></div>
+
+	<script src="/resources/js/jquery-1.12.4.min.js"></script>
+	<script src="/resources/js/jquery-ui-1.11.4.min.js"></script>
+	<script src="/resources/js/jquery.flicksimple.js"></script>
+	<script src="/resources/js/jquery.blockUI.js"></script>
+	<script src="/resources/js/cart-script.js"></script>
+</body>
+</html>

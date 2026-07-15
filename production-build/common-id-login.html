@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>共通IDログイン | 北海道大学オンラインショップ（テスト）</title>
+    <meta name="description" content="北海道大学オンラインショップの共通IDログインページです。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ cssAddr }}" rel="stylesheet" type="text/css">
+    <style>
+        /* ログイン画面レイアウト補足 */
+        body.body-login #container { padding-top: 80px; }
+        .contents-login {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+        .login-tbl-wrapper {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 36px 32px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+        }
+        .login-tbl-wrapper h2 {
+            text-align: center;
+            font-size: 22px;
+            color: #0f4c5c;
+            margin-bottom: 8px;
+        }
+        .login-tbl-wrapper .login-note {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+        .login-tbl {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+        .login-tbl th, .login-tbl td {
+            padding: 10px 8px;
+            font-size: 14px;
+            border: none;
+            background: none;
+            display: table-cell;
+        }
+        .login-tbl th {
+            width: 120px;
+            color: #555;
+            vertical-align: middle;
+        }
+        .login-tbl input[type="text"],
+        .login-tbl input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bfbfbf;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        .login-tbl-pw-chk {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #666;
+        }
+        .login-tbl-pw-chk label { cursor: pointer; }
+        .login-btn {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .login-btn a {
+            display: inline-block;
+            background: #1a7a57;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 14px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .login-btn a:hover { background: #0f4c5c; transform: translateY(-1px); text-decoration: none; }
+        /* 区切り線 */
+        .login-separator {
+            text-align: center;
+            margin: 20px 0;
+            color: #bbb;
+            font-size: 12px;
+            position: relative;
+        }
+        .login-separator::before, .login-separator::after {
+            content: "";
+            display: inline-block;
+            width: 80px;
+            height: 1px;
+            background: #ddd;
+            vertical-align: middle;
+            margin: 0 12px;
+        }
+        .login-alt-link {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .login-alt-link a {
+            display: inline-block;
+            border: 2px solid #0f4c5c;
+            color: #0f4c5c;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 10px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .login-alt-link a:hover { background: #0f4c5c; color: #fff; text-decoration: none; }
+        .login-link ul { list-style: none; padding: 0; text-align: center; margin-top: 16px; }
+        .login-link ul li { display: inline-block; margin: 0 10px; font-size: 13px; }
+        .login-link ul li a { text-decoration: underline; color: #0f4c5c; }
+    </style>
+</head>
+
+<body class="body-login">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    <h1 class="site-name-txt"><a href="./index.html">北大オリジナルグッズ</a></h1>
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+
+        <div id="container">
+            <div class="contents contents-login clearfix">
+                <div class="main clearfix">
+
+                    <form action="#" method="post" id="com-login-form">
+                        <div class="login-tbl-wrapper">
+                            <h2>共通IDログイン</h2>
+                            <p class="login-note">北海道大学の共通IDでログインできます。<br>学内アカウントをお持ちの方はこちらからどうぞ。</p>
+
+                            <table class="login-tbl">
+                                <tbody>
+                                    <tr class="login-tbl-id">
+                                        <th>ID</th>
+                                        <td>
+                                            <input type="text" maxlength="20" style="ime-mode:disabled" id="comLoginId"
+                                                name="comLoginId" value="" placeholder="共通IDを入力">
+                                        </td>
+                                    </tr>
+                                    <tr class="login-tbl-pw">
+                                        <th>パスワード</th>
+                                        <td>
+                                            <input type="password" maxlength="20" style="ime-mode:disabled"
+                                                id="comLoginPassword" name="comLoginPassword" value="" placeholder="パスワードを入力">
+                                            <div class="login-tbl-pw-chk">
+                                                <input type="checkbox" name="showpw" id="showpw-com">
+                                                <label for="showpw-com">パスワードを表示する</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="login-btn">
+                                <a href="#" id="btn-com-login"><span>ログイン</span></a>
+                            </div>
+
+                            <div class="login-separator">または</div>
+
+                            <div class="login-alt-link">
+                                <a href="./members-only-login.html">会員IDでログインする</a>
+                            </div>
+
+                            <div class="login-link">
+                                <ul>
+                                    <li><a href="#">パスワードを忘れた場合</a></li>
+                                    <li><a href="./index.html">戻る</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!-- main -->
+            </div><!-- contents -->
+        </div><!--//container-->
+
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="./index.html">北大オリジナルグッズ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        /* パスワード表示切り替え */
+        $("#showpw-com").on("change", function () {
+            var type = $(this).is(":checked") ? "text" : "password";
+            $("#comLoginPassword").attr("type", type);
+        });
+
+        /* ログインボタン（デモ） */
+        $("#btn-com-login").on("click", function (e) {
+            e.preventDefault();
+            var id = $("#comLoginId").val().trim();
+            var pw = $("#comLoginPassword").val().trim();
+            if (!id || !pw) {
+                alert("IDとパスワードを入力してください。");
+                return;
+            }
+            alert("【テスト用】共通IDでのログインを試みました。\n（ローカルプレビューのため実際のログイン処理は行われません）");
+        });
+    });
+    </script>
+</body>
+
+</html>

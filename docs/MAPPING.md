@@ -21,7 +21,21 @@
 | `members-only-login.html` | `original/HTML/Members-Only_Login.html` | 会員限定ログイン（独立HTML） |
 | `landing-page.html` | `original/HTML/Landing_Page.html` | LP（独立HTML、MAIN_CONTENTSに自由記述） |
 | `404.html` | `original/HTML/404_Not_Found.html` | 404 |
-| `CSS/common.css` ほか | `original/css/common.css` ほか | 中身同一。参照パスのみ差異 |
+
+### CSS ファイル（本番と種類・役割・命名を統一）
+
+`css/` は本番 `original/css/` と**同一の5ファイル構成**（旧命名の重複ファイルは整理済み。フォルダ名も小文字 `css` に統一）。
+
+| ローカル `css/` | original | 役割（どのページが使うか） |
+|---|---|---|
+| `common.css` | `original/css/common.css` | ストアフロント共通（トップ/一覧/詳細/検索/404/お知らせ）＝本番の `{{ cssAddr }}` |
+| `common-id-login.css` | `original/css/common-id-login.css` | 共通IDログイン（`common-id-login.html`） |
+| `members-only-login.css` | `original/css/members-only-login.css` | 会員限定ログイン（`members-only-login.html`） |
+| `landing-page.css` | `original/css/landing-page.css` | ランディングページ |
+| `cart.css` | `original/css/cart.css` | カート/会員/マイページ用テーマの原本（Twig変数入り）。解決版は `cart/assets/theme.css` |
+
+> 取引アプリ（cart.raku-uru.jp）側の実CSS `cart/assets/cart-common.css`（＝ `/resources/css/cart-common.css`）と
+> `cart/assets/theme.css`（＝ `/getCss/{hash}`）は別ドメインのASP配信物。役割が異なるため `cart/assets/` に分離。
 
 ### 共通の仕組み（重要）
 - original版はカート側が **`Common_Part.html`（ヘッダ/フッタ/サイドバー）** の `<[-- MAIN_CONTENTS --]>` に各ページ本体を差し込んで1枚のHTMLを生成する。
