@@ -125,31 +125,8 @@
 	<script src="/resources/js/jquery.flicksimple.js"></script>
 	<script src="/resources/js/jquery.blockUI.js"></script>
 	<script src="/resources/js/cart-script.js"></script>
-	<!-- TODO(本番): cart-app.js は不要（会員/カート/注文はサーバー処理） -->
-	<script>
-	(function () {
-		var form = document.getElementById("myp0001d01Form");
-		$("#forgetpw").on("change", function () {
-			$("#loginPassword").attr("type", this.checked ? "text" : "password");
-		});
-		$("#forgot-link").on("click", function (e) { e.preventDefault(); alert("【ローカルデモ】パスワード再設定画面へ遷移します（本番環境の機能）。"); });
+	<!-- 本番: cart-app.js は不要（会員/カート/注文はサーバー処理） -->
 
-		if (TX.isLoggedIn()) { location.replace("/cart/mypage/"); return; }
-		function qs(n) { try { return new URLSearchParams(location.search).get(n); } catch (e) { return null; } }
-
-		function doLogin(e) {
-			if (e) e.preventDefault();
-			var id = ($("#loginId").val() || "").trim();
-			var pw = ($("#loginPassword").val() || "").trim();
-			if (!id || !pw) { alert("会員IDとパスワードを入力してください。"); return; }
-			if (!TX.getMember()) { alert("登録済みの会員が見つかりません。先に会員登録を行ってください。"); return; }
-			if (TX.login(id, pw)) {
-				location.href = qs("return") === "checkout" ? "/cart/cart/" : "/cart/mypage/";
-			} else { alert("会員IDまたはパスワードが正しくありません。"); }
-		}
-		$(".postOnClick").on("click", doLogin);
-		$(form).on("submit", doLogin);
-	})();
-	</script>
+<!-- 本番: 取引挙動のインラインJS(TX.*)は削除（サーバー処理） -->
 </body>
 </html>

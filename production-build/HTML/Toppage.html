@@ -1,0 +1,150 @@
+<div id="main" class="main">
+<!--キービジュアル▼-->
+{% if dsnTopVisualDispFlag == 1 %}
+{{ dsnTopHtmlTag }}
+{% endif %}
+<!--キービジュアル▲-->
+<!--フリー1▼-->
+  {% if dsnTopDispFlag1Shop == 1 %}
+  <section class="section-block">
+    <div id="top-shop-message1">
+      <div>{{ dsnTopDesc1Shop }}</div>
+    </div><!--//top-shop-message1-->
+  </section><!--//section-block-->
+  {% endif %}
+<!--フリー1▲-->
+<!--お知らせ▼-->
+{% if dsnTopDispFlagInfo == 1 and freepageList is not empty %}
+  <section class="section-block">
+    <div class="section-head">
+      <h2 class="title1">{% if dsnTopTitle1Info is not empty %}{{ dsnTopTitle1Info }}{% endif %}
+    {% if dsnTopTitle2Info is not empty %}<span class="sub-title">{{ dsnTopTitle2Info }}</span>{% endif %}</h2>
+    </div>
+    <dl class="list-info cl">
+    {% for item in freepageList %}
+      <dt>{{ item.updateTime }}</dt>
+      <dd><a href="/fr/{{ item.freepageSerialNo }}">{{ item.title }}</a></dd>
+    {% endfor %}
+    </dl><!--//list-info-->
+  </section><!--//section-block-->
+{% endif %}
+<!--お知らせ▲-->
+<!--新着▼-->
+{% if dsnTopDispFlagNewItem == 1 and itemRecentList is not empty %}
+  <section class="section-block">
+    <div class="section-head">
+      <h2 class="title1">{% if dsnTopTitle1NewItem is not empty %}{{ dsnTopTitle1NewItem }}{% endif %}
+      {% if dsnTopTitle2NewItem is not empty %}<span class="sub-title">{{ dsnTopTitle2NewItem }}</span>{% endif %}</h2>
+    </div>
+    <ul class="list-product col-3">
+    <!--商品リスト▼-->
+    {% for item in itemRecentList %}
+      <li>
+        <div class="item-photo product-list-photo{% if item.badgeId != null %} icon-badge{{ item.badgeId }}{% endif %}">
+          <a href="/item-detail/{{ item.itemId }}">
+          {% if item.dispMediaUrl is not empty %}
+            <img src="{{ item.dispMediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% else %}
+            <img src="{{ item.mediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% endif %}
+          </a>
+        </div><!--//item-photo-->
+        <div class="item-info">
+          <p class="item-name{% if item.shpRsvFlag == 1 %} icn-reservation{% endif %}">
+            <a href="/item-detail/{{ item.itemId }}">{{ item.itemName }}</a>
+          </p>
+          <p class="item-price">{{ item.displayPrice }}<span class="tax">{{ item.displayTax }}</span></p>
+          {% if item.stockOutMessage is not empty %}<p class="item-nonstock">{{ item.stockOutMessage }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+    <!--商品リスト▲-->
+    </ul><!--//list-product-->
+  </section><!--//section-block-->
+{% endif %}
+<!--新着▲-->
+<!--おすすめ▼-->
+{% if dsnTopDispFlagRanking == 1 and itemRecommendList is not empty %}
+  <section class="section-block">
+  {% if dsnTopTitle1Ranking is not empty %}
+    <div class="section-head">
+      <h2 class="title1">{{ dsnTopTitle1Ranking }}
+      {% if dsnTopTitle2Ranking is not empty %}<span class="sub-title">{{ dsnTopTitle2Ranking }}</span>{% endif %}
+      </h2>
+    </div>
+  {% endif %}
+    <ul class="list-product col-3">
+    <!--商品リスト▼-->
+    {% for item in itemRecommendList %}
+      <li>
+        <div class="item-photo">
+          <div class="icon-rank rank{{ loop.index + 1 }}"><span>{{ loop.index + 1 }}</span></div>
+          <a href="/item-detail/{{ item.itemId }}">
+          {% if item.dispMediaUrl is not empty %}
+            <img src="{{ item.dispMediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% else %}
+            <img src="{{ item.mediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% endif %}
+          </a>
+        </div><!--//item-photo-->
+        <div class="item-info">
+          <p class="item-name{% if item.shpRsvFlag == 1 %} icn-reservation{% endif %}">
+            <a href="/item-detail/{{ item.itemId }}">{{ item.itemName }}</a>
+          </p>
+          <p class="item-price">{{ item.displayPrice }}<span class="tax">{{ item.displayTax }}</span></p>
+          {% if item.stockOutMessage is not empty %}<p class="item-nonstock">{{ item.stockOutMessage }}</p>{% endif %}
+        </div>
+      </li>
+    {% endfor %}
+    <!--商品リスト▲-->
+    </ul><!--//list-product-->
+  </section><!--//section-block-->
+{% endif %}
+<!--おすすめ▲-->
+<!--販売ランキング▼-->
+{% if dsnTopDispFlagSalesRanking == 1 and itemSalesRankingList is not empty %}
+  <section class="section-block">
+  {% if dsnTopTitle1SalesRanking is not empty %}
+    <div class="section-head">
+      <h2 class="title1">{{ dsnTopTitle1SalesRanking }}
+      {% if dsnTopTitle2SalesRanking is not empty %}<span class="sub-title">{{ dsnTopTitle2SalesRanking }}</span>{% endif %}
+      </h2>
+    </div>
+  {% endif %}
+    <ul class="list-product col-3">
+    <!--商品リスト▼-->
+    {% for item in itemSalesRankingList %}
+      <li>
+        <div class="item-photo"><div class="icon-rank rank{{ loop.index + 1 }}"><span>{{ loop.index + 1 }}</span></div>
+          <a href="/item-detail/{{ item.itemId }}">
+          {% if item.dispMediaUrl is not empty %}
+            <img src="{{ item.dispMediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% else %}
+            <img src="{{ item.mediaUrlSmall }}" alt="{{ item.itemName }}">
+          {% endif %}
+          </a>
+        </div><!--//item-photo-->
+        <div class="item-info">
+          <p class="item-name{% if item.shpRsvFlag == 1 %} icn-reservation{% endif %}">
+            <a href="/item-detail/{{ item.itemId }}">{{ item.itemName }}</a>
+          </p>
+          <p class="item-variation">{{ item.variationName }}</p>
+          <p class="item-price">{{ item.displayPrice }}<span class="tax">{{ item.displayTax }}</span></p>
+        </div>
+      </li>
+    {% endfor %}
+    <!--商品リスト▲-->
+    </ul><!--//list-product-->
+  </section><!--//section-block-->
+{% endif %}
+<!--販売ランキング▲-->
+<!--フリー2▼-->
+{% if dsnTopDispFlag2Shop == 1 %}
+  <section class="section-block">
+    <div id="top-shop-message2">
+      <div>{{ dsnTopDesc2Shop }}</div>
+    </div><!--//top-shop-message1-->
+  </section><!--//section-block-->
+{% endif %}
+<!--フリー2▲-->
+</div><!--//main-->

@@ -295,7 +295,7 @@
 						<div class="cart-1col-inner">
 							<div>
 								<div class="cart-member-msg">
-									<p><a href="https://hokudai-goods-seikyou.net/membership" target="_blank">会員規約</a>に同意のうえ、会員登録を行ってください。</p>
+									<p><a href="{{ shpUrl }}/membership" target="_blank">会員規約</a>に同意のうえ、会員登録を行ってください。</p>
 								</div>
 							</div>
 							<div class="cart-member-terms">
@@ -345,84 +345,8 @@
 	<script src="/resources/js/jquery.flicksimple.js"></script>
 	<script src="/resources/js/jquery.blockUI.js"></script>
 	<script src="/resources/js/cart-script.js"></script>
-	<!-- TODO(本番): cart-app.js は不要（会員/カート/注文はサーバー処理） -->
-	<script>
-	(function () {
-		var $y = $("#birthYear"), $m = $("#birthMonth"), $d = $("#birthDay");
-		// 生年月日：本番同様 1930〜2026、空白"----"は1979と1980の間・既定選択
-		var yh = "";
-		for (var y = 1930; y <= 2026; y++) {
-			if (y === 1980) yh += '<option value="" selected="selected">----</option>';
-			yh += '<option value="' + y + '">' + y + '</option>';
-		}
-		$y.html(yh);
-		var mh = '<option value="" selected="selected">--</option>';
-		for (var mo = 1; mo <= 12; mo++) mh += '<option value="' + mo + '">' + mo + '</option>';
-		$m.html(mh);
-		var dh = '<option value="" selected="selected">--</option>';
-		for (var da = 1; da <= 31; da++) dh += '<option value="' + da + '">' + da + '</option>';
-		$d.html(dh);
+	<!-- 本番: cart-app.js は不要（会員/カート/注文はサーバー処理） -->
 
-		// パスワード表示
-		$("#forgetpw").on("change", function () { $("#loginPassword").attr("type", this.checked ? "text" : "password"); });
-
-		// 郵便番号検索（デモ：札幌の一部）
-		$("#js-zip-search").on("click", function (e) {
-			e.preventDefault();
-			var zip = ($("#postNo").val() || "").replace(/[^0-9]/g, "");
-			if (zip.indexOf("060") === 0) { $("#kenId").val("1"); $("#city").val("札幌市北区"); $("#houseNo").val("北8条西5丁目"); }
-			else if (zip.length >= 7) { alert("該当する住所が見つかりませんでした（ローカルデモのため一部住所のみ対応）。手入力してください。"); }
-			else { alert("郵便番号を7桁でご入力ください。"); }
-		});
-
-		// 入力復元（確認画面から戻った場合）
-		var saved = TX.getRegTmp();
-		if (saved) {
-			Object.keys(saved).forEach(function (k) {
-				var el = document.getElementById(k);
-				if (k === "optinFlag") { var r = document.querySelector('[name=optinFlag][value="' + saved[k] + '"]'); if (r) r.checked = true; }
-				else if (k === "agreement") { $("#chk-member-terms").prop("checked", !!saved[k]); }
-				else if (el) { el.value = saved[k]; }
-			});
-		}
-
-		var kenName = {};
-		$("#kenId option").each(function () { if (this.value) kenName[this.value] = this.text; });
-
-		$("#js-confirm").on("click", function (e) {
-			e.preventDefault();
-			var v = function (id) { return (document.getElementById(id).value || "").trim(); };
-			var errs = [];
-			if (!/^[A-Za-z0-9\-_@.]{8,128}$/.test(v("loginId"))) errs.push("会員IDは半角英数字と-_@.のみ、8～128文字で入力してください。");
-			if (!/^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$/.test(v("loginPassword"))) errs.push("会員パスワードは半角英数字を組み合わせて8～20文字で入力してください。");
-			if (!v("lastName") || !v("firstName")) errs.push("氏名を入力してください。");
-			if (!v("lastNameKana") || !v("firstNameKana")) errs.push("氏名フリガナを入力してください。");
-			if (!/^[0-9]{7}$/.test(v("postNo"))) errs.push("郵便番号を7桁（ハイフンなし）で入力してください。");
-			if (!v("kenId")) errs.push("都道府県を選択してください。");
-			if (!v("city")) errs.push("市区町村を入力してください。");
-			if (!v("houseNo")) errs.push("町域・番地を入力してください。");
-			if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("mailadd"))) errs.push("メールアドレスの形式が正しくありません。");
-			if (v("mailadd") !== v("mailaddAgain")) errs.push("確認用メールアドレスが一致しません。");
-			if (!v("tel")) errs.push("電話番号を入力してください。");
-			if (!v("birthYear") || !v("birthMonth") || !v("birthDay")) errs.push("生年月日を選択してください。");
-			if (!v("free1Field")) errs.push("年齢を入力してください。");
-			if (!$("#chk-member-terms").prop("checked")) errs.push("会員規約への同意が必要です。");
-			if (errs.length) { alert(errs.join("\n")); return; }
-
-			TX.setRegTmp({
-				loginId: v("loginId"), loginPassword: v("loginPassword"),
-				lastName: v("lastName"), firstName: v("firstName"), lastNameKana: v("lastNameKana"), firstNameKana: v("firstNameKana"),
-				postNo: v("postNo"), kenId: v("kenId"), kenName: kenName[v("kenId")] || "", city: v("city"), houseNo: v("houseNo"), building: v("building"),
-				mailadd: v("mailadd"), tel: v("tel"), cellularphone: v("cellularphone"), fax: v("fax"),
-				gender: v("gender"), genderName: (v("gender") === "1" ? "男性" : v("gender") === "2" ? "女性" : ""),
-				birthYear: v("birthYear"), birthMonth: v("birthMonth"), birthDay: v("birthDay"),
-				free1Field: v("free1Field"),
-				optinFlag: (document.querySelector("[name=optinFlag]:checked") || {}).value || "1",
-				agreement: true
-			});
-			location.href = "/cart/member/regist/confirm/";
-		});
-	})();
-	</script>
+<!-- 本番: 取引挙動のインラインJS(TX.*)は削除（サーバー処理） -->
 </body>
 </html>

@@ -1,0 +1,1634 @@
+<style>
+                  /* クラーク博士の恋人LP用追記分 */
+
+                  /* =========================================================
+   Clark LP (stylish / museum tone)
+   - 枠/角丸/カード感を排除
+   - 罫線（金）と余白で区切る
+   - 原材料だけ角丸なしの枠
+========================================================= */
+
+                  :root {
+                    --cream: #f3ead7;
+                    --paper: #efe3cf;
+                    --ink: #23160f;
+                    --muted: rgba(35, 22, 15, 0.7);
+
+                    --dark: #2a1a10; /* 焦げ茶 */
+                    --gold: #b5923a; /* 真鍮 */
+                    --navy: #162a4a; /* 差し色 */
+
+                    --container: 1120px;
+                  }
+
+                  * {
+                    box-sizing: border-box;
+                  }
+                  .lp {
+                    margin: 0;
+                    color: var(--ink);
+                    background: transparent; /* ← 背景はここでは持たない */
+                    font-family:
+                      "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+                    line-height: 1.8;
+                  }
+
+                  /* =========================================================
+   RESET / BASE
+========================================================= */
+                  html,
+                  body {
+                    margin: 0;
+                  }
+
+                  /* ヘッダーは白固定（ここは触らない） */
+                  body.body-lp #header,
+                  body.body-lp #header .header-in,
+                  body.body-lp #header .h_center {
+                    background: #fff !important;
+                  }
+
+                  /* テンプレ側の左右ガターは殺す */
+                  body.body-lp #container,
+                  body.body-lp .no_inner,
+                  body.body-lp .one-column,
+                  body.body-lp #main,
+                  body.body-lp .wysiwyg-data {
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                    background: transparent !important;
+                    overflow: visible !important;
+                  }
+
+                  /* =========================================================
+   LP 背景：起点は lp-wrap（mainより上の余白も塗れる）
+========================================================= */
+                  :root {
+                    --lp-overlap: 18px; /* ← ロゴ下の“白い空白”を埋める量。ここだけ触ればOK */
+                  }
+
+                  .lp-wrap {
+                    position: relative;
+                    isolation: isolate;
+                    margin-top: calc(var(--lp-overlap) * -1);
+                    padding-top: var(--lp-overlap);
+                  }
+
+                  /* 背景レイヤーだけ 100vw */
+                  .lp-bg {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 50%;
+                    width: 100vw;
+                    transform: translateX(-50%);
+                    z-index: -1;
+
+                    background:
+                      radial-gradient(
+                        900px 500px at 15% 0%,
+                        rgba(181, 146, 58, 0.1),
+                        transparent 60%
+                      ),
+                      radial-gradient(
+                        900px 500px at 100% 35%,
+                        rgba(22, 42, 74, 0.08),
+                        transparent 55%
+                      ),
+                      linear-gradient(180deg, var(--cream), #f7f1e6 55%, var(--paper));
+                  }
+
+                  /* main自体は透明でOK（背景は lp-bg が担当） */
+                  main.lp {
+                    position: relative;
+                    background: transparent;
+                  }
+
+                  /* ★重要：これが残ってると二重背景やズレの原因 */
+                  main.lp::before {
+                    content: none !important;
+                  }
+
+                  /* テキスト切れ対策 */
+                  .ck-heading,
+                  .ck-text {
+                    overflow: visible;
+                    overflow-wrap: anywhere;
+                    word-break: break-word;
+                  }
+
+                  @media screen and (min-width: 768px) {
+                    body.body-lp #container .no_inner,
+                    body.body-lp #container .cat-menu {
+                      max-width: none !important;
+                      margin: 0 !important;
+                    }
+                  }
+
+                  img {
+                    max-width: 100%;
+                    height: auto;
+                    display: block;
+                  }
+
+                  .ck-container {
+                    width: min(var(--container), calc(100% - clamp(70px, 20vw - 4vw, 140px)));
+                    margin: 0 auto;
+                  }
+
+                  /* ===== Section spacing ===== */
+                  .ck-section {
+                    padding: 50px 0;
+                  }
+                  .ck-section--insert {
+                    padding-top: 56px;
+                  }
+                  .ck-center {
+                    text-align: center;
+                  }
+
+                  /* ===== Simple divider (gold rule) ===== */
+                  .ck-rule {
+                    height: 1px;
+                    background: linear-gradient(
+                      90deg,
+                      transparent,
+                      rgba(181, 146, 58, 0.7),
+                      transparent
+                    );
+                    margin: 56px 0;
+                  }
+
+                  /* =========================================================
+   HERO: 画像の上に文字（枠なし）
+========================================================= */
+                  .ck-hero {
+                    position: relative;
+                    display: grid !important;
+                    place-items: center;
+                    background-position: center;
+                  }
+                  /* =========================================================
+   STORY: 枠なし。左右レイアウト＋余白＋罫線
+========================================================= */
+                  .ck-split {
+                    display: grid !important;
+                    grid-template-columns: 1.05fr 0.95fr;
+                    gap: 40px;
+                    align-items: center;
+                  }
+
+                  /* 逆配置 */
+                  .ck-split--reverse {
+                    grid-template-columns: 0.95fr 1.05fr;
+                  }
+                  .ck-split--reverse .ck-split__media {
+                    order: 2;
+                  }
+                  .ck-split--reverse .ck-split__content {
+                    order: 1;
+                  }
+
+                  .ck-split__media img {
+                    width: 100%;
+                    aspect-ratio: 4 / 3;
+                    object-fit: cover;
+
+                    /* 枠・角丸・影なしで“写真”として置く */
+                    filter: contrast(1.03) saturate(0.92);
+                  }
+
+                  /* テキスト側 */
+                  .ck-split__content {
+                    padding-top: 8px;
+                  }
+
+                  .ck-eyebrow {
+                    margin: 0 0 10px;
+                    font-family:
+                      ui-sans-serif,
+                      system-ui,
+                      -apple-system,
+                      "Segoe UI",
+                      sans-serif;
+                    font-weight: 700 !important;
+                    letter-spacing: 0.18em;
+                    font-size: 12px !important;
+                    color: var(--navy) !important;
+                  }
+
+                  .ck-heading {
+                    margin: 0 0 14px;
+                    font-size: clamp(20px, 2.2vw, 28px) !important;
+                    line-height: 1.35;
+                    letter-spacing: 0.06em;
+                    color: var(--dark) !important;
+                  }
+
+                  /* 見出しの下に金の細線（カード枠の代替） */
+                  .ck-heading::after {
+                    content: "";
+                    display: block;
+                    width: 360px;
+                    height: 1px;
+                    margin-top: 12px;
+                    background: rgba(181, 146, 58, 0.7);
+                  }
+
+                  .ck-text {
+                    margin: 0;
+                    color: var(--muted) !important;
+                    font-size: 15px !important;
+                  }
+
+                  @keyframes ck-pop {
+                    from {
+                      opacity: 0;
+                      transform: translateY(10px) scale(0.92);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateY(0) scale(1);
+                    }
+                  }
+                  @keyframes ck-fadeUp {
+                    from {
+                      opacity: 0;
+                      transform: translateY(14px);
+                      filter: blur(2px);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateY(0);
+                      filter: blur(0);
+                    }
+                  }
+                  @keyframes ck-rise {
+                    from {
+                      opacity: 0;
+                      transform: translateY(18px);
+                    }
+                    to {
+                      opacity: 1;
+                      transform: translateY(0);
+                    }
+                  }
+
+                  /* 初期状態（まだ表示しない） */
+                  .ck-split__content .ck-eyebrow,
+                  .ck-split__content .ck-heading,
+                  .ck-split__content .ck-text {
+                    opacity: 0;
+                    transform: translateY(12px);
+                    will-change: transform, opacity, filter;
+                  }
+
+                  /* 01 / Almond：パッ */
+                  .ck-split__content.is-inview .ck-eyebrow {
+                    animation: ck-pop 420ms cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+                    animation-delay: 120ms;
+                  }
+
+                  /* 見出し：ふわあ */
+                  .ck-split__content.is-inview .ck-heading {
+                    animation: ck-fadeUp 700ms ease forwards;
+                    animation-delay: 400ms;
+                  }
+
+                  /* 本文：ニュッ */
+                  .ck-split__content.is-inview .ck-text {
+                    animation: ck-rise 650ms cubic-bezier(0.18, 0.85, 0.22, 1) forwards;
+                    animation-delay: 1000ms;
+                  }
+
+                  /* =========================================================
+   INSERT: フルスクリーンをやめる版（画像エリアを固定レンジ化）
+========================================================= */
+
+                  /* セクション：100svhをやめて“普通のセクション”にする */
+                  .ck-section--insert.ck-insert {
+                    position: relative;
+                    height: auto; /* ★重要 */
+                    padding: 56px 0 72px; /* 余白。好みで調整 */
+                    overflow: visible; /* ★重要（切らない） */
+                  }
+
+                  /* 背景画像は「画像エリア」にだけ敷く */
+                  .ck-section--insert.ck-insert .ck-bleed {
+                    position: relative; /* ★重要：absoluteやめる */
+                    margin: 0 auto;
+                    width: min(1200px, 100%);
+                    padding: 0 16px;
+                    box-sizing: border-box;
+                  }
+
+                  /* 画像エリア（高さを固定レンジに） */
+                  .ck-section--insert.ck-insert .ck-bleed picture,
+                  .ck-section--insert.ck-insert .ck-bleed img {
+                    display: block;
+                    width: 100%;
+                    height: clamp(520px, 62svh, 760px); /* ★ここで“画面いっぱい禁止” */
+                    border-radius: 24px;
+                  }
+
+                  /* 背景画像の見え方 */
+                  .ck-section--insert.ck-insert .ck-bleed img {
+                    object-fit: cover;
+                    object-position: center;
+                  }
+
+                  /* overlay：画像エリア内だけで中央配置 */
+                  .ck-section--insert.ck-insert .ck-insert__overlay {
+                    position: absolute;
+                    inset: 16px; /* 画像の内側余白 */
+                    z-index: 1;
+
+                    display: grid;
+                    place-items: center;
+                    pointer-events: none;
+
+                    min-height: 0;
+                    min-width: 0;
+                  }
+
+                  /* 箱：最大サイズを固定して、あふれたら本文スクロール */
+                  .ck-section--insert.ck-insert .ck-insert__box {
+                    pointer-events: auto;
+                    box-sizing: border-box;
+
+                    width: clamp(320px, 78vw, 760px);
+                    max-height: min(520px, calc(100% - 0px)); /* ★箱の“天井” */
+                    /* heightは固定しない：中身が少なければ小さく */
+                    height: auto;
+
+                    background: rgba(247, 241, 230, 0.965);
+                    border-radius: 22px;
+                    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+
+                    padding: 18px 16px;
+
+                    display: grid;
+                    grid-template-rows: auto minmax(0, 1fr);
+
+                    min-height: 0;
+                    min-width: 0;
+
+                    overflow: hidden;
+                  }
+
+                  /* 本文：ここだけスクロール（あなたの現状のままでOK） */
+                  .ck-section--insert.ck-insert .ck-insert__body {
+                    overflow: auto;
+                    min-height: 0;
+                    min-width: 0;
+
+                    padding-right: 10px;
+                    -webkit-overflow-scrolling: touch;
+                    overscroll-behavior: contain;
+                  }
+
+                  /* 物語ボックスだけ：明朝→角ゴへ */
+                  .ck-insert__box {
+                    font-family: "Kaisei Tokumin", "Noto Sans JP", sans-serif;
+
+                    font-weight: 500;
+                    letter-spacing: 0.04em;
+                    line-height: 1.95;
+                  }
+
+                  .ck-insert__box .ck-insert__h2 {
+                    font-family: "Kaisei Tokumin", "Noto Sans JP", sans-serif;
+
+                    font-weight: 700;
+                    letter-spacing: 0.12em;
+                    line-height: 1.25;
+                  }
+
+                  /* SP調整 */
+                  @media (max-width: 920px) {
+                    .ck-section--insert.ck-insert {
+                      padding: 40px 0 56px;
+                    }
+
+                    .ck-section--insert.ck-insert .ck-bleed {
+                      padding: 0 12px;
+                    }
+
+                    /* 画像エリア：少しだけ背を低くしてもOK（好み） */
+                    .ck-section--insert.ck-insert .ck-bleed picture,
+                    .ck-section--insert.ck-insert .ck-bleed img {
+                      height: clamp(480px, 62svh, 660px); /* ←前より小さめ */
+                      border-radius: 18px;
+                    }
+
+                    /* ★箱の周りに“見える画像”を作るために余白を増やす */
+                    .ck-section--insert.ck-insert .ck-insert__overlay {
+                      inset: 18px; /* ← 12px → 18px */
+                    }
+
+                    /* ★箱を小さくする（幅・高さの天井を下げる） */
+                    .ck-section--insert.ck-insert .ck-insert__box {
+                      width: clamp(280px, 84vw, 330px); /* ←最大360px→330px */
+                      max-height: min(420px, 100%); /* ←520px→420px */
+                      border-radius: 18px;
+                      padding: 14px 12px;
+                    }
+                  }
+
+                  /* =========================================================
+   PRODUCT: 中央寄せ、余白とタイポで見せる（枠なし）
+========================================================= */
+                  /* スライダー外枠（商品画像エリア） */
+                  .ck-product__image.ck-slider {
+                    margin: 50px auto 18px;
+                    width: min(680px, 100%);
+                    position: relative;
+                  }
+
+                  /* 表示窓（ここが「枠」） */
+                  .ck-slider__viewport {
+                    width: 100%;
+                    overflow: hidden;
+                    background: transparent;
+                    box-shadow: none;
+                  }
+
+                  /* 念のため、周辺も透明化 */
+                  .ck-product__image.ck-slider,
+                  .ck-slider__slide {
+                    background: transparent;
+                  }
+
+                  /* 横スライドのトラック */
+                  .ck-slider__track {
+                    display: flex !important;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    width: 100%;
+                    transition: transform 0.35s ease;
+                    will-change: transform;
+                  }
+
+                  /* 1枚ぶんのスライド = 枠（高さを統一） */
+                  .ck-slider__slide {
+                    flex: 0 0 100% !important;
+                    min-width: 100%;
+                    height: clamp(260px, 42vw, 350px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+
+                  /* 画像は枠からはみ出さず縮小（比率維持） */
+                  .ck-slider__slide img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    display: block;
+                    margin: 0;
+                  }
+
+                  .ck-slider__btn {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 999px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border: 1px solid rgba(181, 146, 58, 0.55);
+                    background: rgba(13, 24, 42, 0.55);
+
+                    cursor: pointer;
+
+                    opacity: 0;
+                    pointer-events: none;
+                    transition:
+                      opacity 0.18s ease,
+                      transform 0.18s ease,
+                      filter 0.18s ease;
+
+                    z-index: 2;
+                  }
+
+                  .ck-slider__btn--prev {
+                    left: 12px;
+                  }
+                  .ck-slider__btn--next {
+                    right: 12px;
+                  }
+
+                  /* SVGは“図形”なので100%中央 */
+                  .ck-slider__btn svg {
+                    width: 18px;
+                    height: 18px;
+                    fill: none;
+                    stroke: var(--cream);
+                    stroke-width: 2.5;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    display: block !important;
+                    transform: translateX(4px);
+                  }
+
+                  /* 表示制御 */
+                  .ck-slider:hover .ck-slider__btn,
+                  .ck-slider:focus-within .ck-slider__btn {
+                    opacity: 1;
+                    pointer-events: auto;
+                  }
+
+                  .ck-slider__btn:hover {
+                    transform: translateY(-50%) translateY(-1px);
+                    filter: brightness(1.06);
+                  }
+
+                  .ck-slider__btn:focus-visible {
+                    outline: 3px solid rgba(181, 146, 58, 0.35);
+                    outline-offset: 3px;
+                  }
+
+                  .ck-slider[data-solo="true"] .ck-slider__btn {
+                    display: none;
+                  }
+
+                  .ck-product__name {
+                    position: relative;
+                    margin: 0;
+                    letter-spacing: 0.05em;
+                    color: var(--dark) !important;
+                    font-size: clamp(16px, 2vw, 22px) !important;
+                    text-align: center;
+                  }
+
+                  .ck-product__name::after {
+                    content: "";
+                    display: block;
+                    width: 340px;
+                    height: 1px;
+                    margin: 12px auto 0;
+                    background: rgba(181, 146, 58, 0.65);
+                  }
+
+                  .ck-product__price {
+                    margin: 10px 0 18px !important;
+                    font-weight: 800 !important;
+                    font-size: clamp(15px, 1.8vw, 20px) !important;
+                    color: var(--navy) !important;
+                    text-align: center;
+                  }
+
+                  /* ボタン：角丸はするが“枠で囲むUI”にはしない（細く・硬派に） */
+                  .ck-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    padding: 8px 20px;
+                    font-weight: 800;
+                    letter-spacing: 0.1em;
+                    font-size: 14px;
+
+                    background: linear-gradient(
+                      180deg,
+                      rgba(22, 42, 74, 0.96),
+                      rgba(13, 24, 42, 0.96)
+                    );
+                    border: 1px solid rgba(181, 146, 58, 0.45);
+                    border-radius: 45px;
+
+                    transition:
+                      transform 0.18s ease,
+                      filter 0.18s ease;
+
+                    font-family:
+                      "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Times New Roman", serif;
+                  }
+                  .ck-btn:hover {
+                    transform: translateY(-1px);
+                    filter: brightness(1.03);
+                  }
+                  .ck-btn:focus-visible {
+                    outline: 3px solid rgba(181, 146, 58, 0.35);
+                    outline-offset: 3px;
+                  }
+
+                  .ck-btn,
+                  .ck-btn:link,
+                  .ck-btn:visited,
+                  .ck-btn:hover,
+                  .ck-btn:active {
+                    color: var(--cream);
+                    text-decoration: none;
+                  }
+
+                  .ck-btn--invert {
+                    background: linear-gradient(180deg, var(--cream), #f7f1e6);
+
+                    color: rgba(22, 42, 74, 0.96);
+                    border: 1px solid rgba(181, 146, 58, 0.55);
+                  }
+
+                  /* link states */
+                  .ck-btn--invert,
+                  .ck-btn--invert:link,
+                  .ck-btn--invert:visited,
+                  .ck-btn--invert:hover,
+                  .ck-btn--invert:active {
+                    color: rgba(22, 42, 74, 0.96);
+                    text-decoration: none;
+                  }
+
+                  /* hover */
+                  .ck-btn--invert:hover {
+                    transform: translateY(-1px);
+                    filter: brightness(0.98);
+                  }
+
+                  /* focus */
+                  .ck-btn--invert:focus-visible {
+                    outline: 3px solid rgba(22, 42, 74, 0.25);
+                    outline-offset: 3px;
+                  }
+
+                  .set {
+                    display: flex !important;
+                    justify-content: center;
+                  }
+
+                  /* 横並びと間隔は form に当てる（ここが本体） */
+                  .set form {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                  }
+
+                  /* a と button の “見た目の高さ差” を潰す */
+                  .ck-btn {
+                    height: 36px; /* ← 同じ高さに固定 */
+                    padding: 0 20px; /* 縦paddingをやめる */
+                    line-height: 1; /* 行高ブレ防止 */
+                    white-space: nowrap; /* 改行させない */
+                  }
+
+                  /* 2つを “同じ横幅” にしたい場合（おすすめ） */
+                  .set form .ck-btn {
+                    min-width: 140px; /* 好きに調整 */
+                  }
+
+                  /* buttonのデフォルト余計な見た目を潰す保険 */
+                  button.ck-btn {
+                    appearance: none;
+                    -webkit-appearance: none;
+                  }
+
+                  /* =========================================================
+   SPEC: ここだけ枠あり（角丸なし）
+========================================================= */
+                  .ck-spec {
+                    margin: 40px auto 20px;
+                    width: min(600px, 100%);
+                    padding: 14px 18px 8px;
+
+                    background: rgba(255, 255, 255, 0.6);
+                    border: 1px solid rgba(42, 26, 16, 0.22);
+
+                    font-size: 13px;
+
+                    text-align: center;
+                  }
+
+                  .ck-spec__list {
+                    margin: 0 !important;
+                  }
+                  .ck-spec__row {
+                    display: grid;
+                    grid-template-columns: 92px 1fr;
+                    gap: 14px;
+                    padding: 10px 2px;
+                    border-bottom: 1px solid rgba(42, 26, 16, 0.12);
+                    justify-items: center;
+                  }
+                  .ck-spec__row:last-child {
+                    border-bottom: 0;
+                  }
+
+                  .ck-spec dt {
+                    font-weight: 800;
+                    color: rgba(42, 26, 16, 0.9);
+                  }
+                  .ck-spec dd {
+                    margin: 0;
+                    color: rgba(35, 22, 15, 0.78);
+                  }
+
+                  /* ===== 既存（PC/タブレット：右端 縦ボタン） ===== */
+                  .ck-float-buy {
+                    position: fixed;
+                    right: -3px; /* 右端ピッタリ */
+                    top: 65%; /* もっと上へ（好みで 12%〜25% あたり） */
+
+                    z-index: 9999;
+                    isolation: isolate;
+
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    /* 縦書き */
+                    writing-mode: vertical-rl;
+                    text-orientation: mixed; /* 英数字が混ざっても破綻しにくい */
+                    letter-spacing: 0.12em;
+
+                    /* サイズ（縦長ボタン） */
+                    width: 56px; /* 横幅 */
+                    height: clamp(160px, 26vh, 240px); /* 縦の長さ */
+
+                    /* 右端に貼り付く形状 */
+                    border-radius: 16px 0 0 16px;
+
+                    background: linear-gradient(180deg, #1c2f55 0%, #0f1e38 100%);
+                    border: 2px solid rgba(181, 146, 58, 0.75);
+                    border-right: 0; /* 右端ピッタリ感（境界の二重線防止） */
+
+                    color: var(--cream);
+                    text-decoration: none;
+
+                    font-weight: 900;
+                    font-size: 16px;
+
+                    box-shadow:
+                      -10px 18px 32px rgba(0, 0, 0, 0.3),
+                      0 0 0 1px rgba(181, 146, 58, 0.18) inset;
+
+                    overflow: hidden;
+                    transition:
+                      transform 0.22s ease,
+                      filter 0.22s ease,
+                      opacity 0.18s ease;
+
+                    /* 初期は隠す */
+                    opacity: 0;
+                    pointer-events: none;
+                    transform: translateX(8px); /* 右からスッと出る */
+                  }
+
+                  .ck-float-buy::before {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    border-radius: inherit;
+                    background: linear-gradient(
+                      to bottom,
+                      rgba(255, 255, 255, 0.28),
+                      rgba(255, 255, 255, 0.1) 40%,
+                      rgba(255, 255, 255, 0) 70%
+                    );
+                    pointer-events: none;
+                    z-index: 0;
+                  }
+
+                  @keyframes shine {
+                    0% {
+                      transform: translateY(-120%);
+                    }
+                    40% {
+                      transform: translateY(120%);
+                    }
+                    100% {
+                      transform: translateY(120%);
+                    }
+                  }
+
+                  .ck-float-buy.is-show {
+                    opacity: 1;
+                    pointer-events: auto;
+                    transform: translateX(0);
+                  }
+
+                  .ck-float-buy.is-show::before {
+                    animation: shine 3.2s ease-in-out infinite;
+                  }
+
+                  .ck-float-buy:hover {
+                    transform: translateX(-3px); /* 右端から少し浮かせる */
+                    filter: brightness(1.08);
+                  }
+
+                  .ck-float-buy:focus-visible {
+                    outline: 3px solid rgba(181, 146, 58, 0.45);
+                    outline-offset: 4px;
+                  }
+
+                  .ck-float-buy,
+                  .ck-float-buy:link,
+                  .ck-float-buy:visited,
+                  .ck-float-buy:hover,
+                  .ck-float-buy:active {
+                    text-decoration: none;
+                    color: var(--cream);
+                  }
+
+                  .ck-float-buy {
+                    -webkit-tap-highlight-color: transparent;
+                  }
+
+                  /* ===== SP（<=920px：中央下部 横ボタン） ===== */
+                  @media (max-width: 920px) {
+                    .ck-float-buy {
+                      position: fixed;
+                      left: 50%;
+                      right: auto;
+                      top: auto;
+
+                      /* iPhoneのセーフエリア込みで下部固定 */
+                      bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+
+                      /* 中央寄せ（Xは常に保持） */
+                      transform: translateX(-50%) translateY(10px) scale(0.98);
+
+                      z-index: 9999;
+                      isolation: isolate;
+
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      white-space: nowrap;
+
+                      /* サイズ（細め・低め） */
+                      height: 44px;
+                      width: clamp(160px, 52vw, 240px);
+                      padding: 0 16px;
+                      border-radius: 999px;
+
+                      /* 横書き固定 */
+                      writing-mode: horizontal-tb;
+                      text-orientation: mixed;
+                      letter-spacing: 0.1em;
+
+                      /* 見た目（既存のまま） */
+                      background: linear-gradient(180deg, #1c2f55 0%, #0f1e38 100%);
+                      border: 2px solid rgba(181, 146, 58, 0.75);
+                      box-shadow:
+                        0 12px 28px rgba(0, 0, 0, 0.3),
+                        0 0 0 1px rgba(181, 146, 58, 0.22) inset;
+
+                      color: var(--cream);
+                      text-decoration: none;
+                      font-weight: 900;
+                      font-size: 14px;
+
+                      overflow: hidden;
+                      transition:
+                        transform 0.22s ease,
+                        filter 0.22s ease,
+                        opacity 0.22s ease;
+
+                      /* 初期は非表示 */
+                      opacity: 0;
+                      pointer-events: none;
+
+                      -webkit-tap-highlight-color: transparent;
+                    }
+
+                    /* shine（SP用に上書き） */
+                    .ck-float-buy::before {
+                      content: "";
+                      position: absolute;
+                      inset: 0;
+                      border-radius: inherit;
+                      background: linear-gradient(
+                        to bottom,
+                        rgba(255, 255, 255, 0.32),
+                        rgba(255, 255, 255, 0.1) 35%,
+                        rgba(255, 255, 255, 0) 62%
+                      );
+                      pointer-events: none;
+                      z-index: 0;
+                    }
+
+                    /* 表示状態（X中央寄せを維持） */
+                    .ck-float-buy.is-show {
+                      opacity: 1;
+                      pointer-events: auto;
+                      transform: translateX(-50%) translateY(0) scale(1);
+                    }
+
+                    .ck-float-buy.is-show::before {
+                      animation: shine 3.2s ease-in-out infinite;
+                    }
+
+                    /* hover（X中央寄せを維持） */
+                    .ck-float-buy:hover {
+                      transform: translateX(-50%) translateY(-2px) scale(1.02);
+                      filter: brightness(1.08);
+                    }
+
+                    /* active */
+                    .ck-float-buy:active {
+                      filter: brightness(1.05);
+                    }
+
+                    /* focus */
+                    .ck-float-buy:focus-visible {
+                      outline: 3px solid rgba(181, 146, 58, 0.45);
+                      outline-offset: 4px;
+                    }
+
+                    /* リンク状態の色・下線固定 */
+                    .ck-float-buy,
+                    .ck-float-buy:link,
+                    .ck-float-buy:visited,
+                    .ck-float-buy:hover,
+                    .ck-float-buy:active {
+                      color: var(--cream);
+                      text-decoration: none;
+                    }
+
+                    /* アニメーション（SPは横方向に流す） */
+                    @keyframes shine {
+                      0% {
+                        transform: translateX(-120%);
+                      }
+                      40% {
+                        transform: translateX(120%);
+                      }
+                      100% {
+                        transform: translateX(120%);
+                      }
+                    }
+                  }
+
+                  .ps-title {
+                    margin-top: 50px !important;
+                    font-size: clamp(16px, 2vw, 22px) !important;
+                    text-align: center;
+                  }
+
+                  .ps-title::after {
+                    content: "";
+                    display: block;
+                    width: min(360px, 72%);
+                    height: 1px;
+                    margin: 10px auto 0;
+                    background: rgba(181, 146, 58, 0.7);
+                  }
+
+                  /* 丸角カード本体（左右2分割） */
+                  .ps-card {
+                    width: min(880px, calc(100% - 40px));
+                    margin: 0px auto 40px;
+
+                    display: grid !important;
+                    grid-template-columns: 34% 66%;
+                    overflow: hidden;
+
+                    border-radius: 22px; /* 丸角 */
+                    background: #fff; /* 白カード */
+                    border: 1.5px solid rgba(0, 0, 0, 0.2);
+                  }
+
+                  /* 左：画像 */
+                  .ps-card__media {
+                    margin: 0;
+                    position: relative;
+
+                    /* 仕切り線（手描きの縦線イメージ） */
+                    border-right: 1px solid rgba(0, 0, 0, 0.12);
+
+                    background: #f4f4f4;
+                  }
+
+                  .ps-card__media img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: cover;
+                    aspect-ratio: 4 / 3; /* PCでカードが潰れにくい */
+                  }
+
+                  /* 任意：縦書きタグ（左側に「豆知識」みたいに入れたい時） */
+                  .ps-card__tag {
+                    position: absolute;
+                    left: 14px;
+                    top: 14px;
+
+                    writing-mode: vertical-rl;
+                    text-orientation: upright;
+
+                    font-size: 12px;
+                    letter-spacing: 0.12em;
+                    font-weight: 700;
+
+                    color: rgba(0, 0, 0, 0.78);
+                    background: rgba(255, 255, 255, 0.75);
+                    border: 1px solid rgba(0, 0, 0, 0.12);
+                    border-radius: 12px;
+                    padding: 10px 8px;
+                  }
+
+                  /* 右：リンク領域（ここ全体がクリック可能） */
+                  .ps-card__content {
+                    display: grid;
+                    align-content: center;
+                    gap: 14px;
+
+                    padding: clamp(16px, 2vw, 28px);
+
+                    color: #121212;
+                    text-decoration: none;
+
+                    transition:
+                      transform 0.18s ease,
+                      background-color 0.18s ease;
+                  }
+
+                  .ps-card__content:hover {
+                    background-color: rgba(0, 0, 0, 0.03);
+                    transform: translateY(-1px);
+                  }
+
+                  .ps-card__title {
+                    margin: 0;
+                    font-size: clamp(18px, 2.2vw, 26px);
+                    line-height: 1.35;
+                    font-weight: 700;
+                  }
+
+                  .ps-card__desc {
+                    margin: 0;
+                    font-size: 14px;
+                    line-height: 1.9;
+                    color: rgba(18, 18, 18, 0.78);
+                    max-width: 46em;
+                  }
+
+                  .ps-card__cta {
+                    font-size: 13px;
+                    letter-spacing: 0.08em;
+                    font-weight: 700;
+                    color: rgba(18, 18, 18, 0.72);
+                  }
+
+                  /* フォーカス（キーボード操作の視認性） */
+                  .ps-card__content:focus-visible {
+                    outline: 3px solid rgba(181, 146, 58, 0.55);
+                    outline-offset: -3px;
+                  }
+
+                  .ps-card__content,
+                  .ps-card__content:link,
+                  .ps-card__content:visited,
+                  .ps-card__content:hover,
+                  .ps-card__content:active {
+                    color: #121212;
+                    text-decoration: none;
+                  }
+
+                  .ps-card__content * {
+                    text-decoration: none;
+                  }
+
+                  .ps-card__cta {
+                    text-decoration: underline;
+                    text-underline-offset: 4px;
+                  }
+
+                  /* SP：縦積み */
+                  @media (max-width: 768px) {
+                    .ps-card {
+                      grid-template-columns: 1fr;
+                    }
+
+                    .ps-card__media {
+                      border-right: 0;
+                      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                      background: #fff; /* 余白が出るので背景を敷く（任意） */
+                    }
+
+                    .ps-card__media img {
+                      aspect-ratio: 16 / 10;
+                      width: 100%;
+                      height: 100%;
+                      object-fit: contain; /* ★見切れ防止の核心 */
+                      object-position: center;
+                      display: block;
+                    }
+                  }
+
+                  /* =========================================================
+   Responsive
+========================================================= */
+                  @media (max-width: 920px) {
+                    .ck-split,
+                    .ck-split--reverse {
+                      grid-template-columns: 1fr;
+                      justify-items: center;
+                      row-gap: 5px;
+                    }
+
+                    .ck-split__media {
+                      margin: 0;
+                    } /* ← これが右寄りの主犯対策 */
+
+                    .ck-split__media,
+                    .ck-split__content {
+                      width: min(520px, 100%);
+                      margin: 0 auto; /* ブロック自体は中央 */
+                    }
+
+                    .ck-split__content {
+                      text-align: left;
+                    } /* 本文は左揃え */
+
+                    /* ラベルと見出しだけ中央にしたいなら個別指定 */
+                    .ck-eyebrow,
+                    .ck-heading {
+                      text-align: center;
+                    }
+
+                    /* 見出し下線も中央に */
+                    .ck-heading::after {
+                      margin-left: auto;
+                      margin-right: auto;
+                    }
+
+                    .ck-split--reverse .ck-split__media {
+                      order: 0;
+                    }
+
+                    .ck-spec__row {
+                      grid-template-columns: 1fr;
+                    }
+                    .ck-spec dt {
+                      letter-spacing: 0.06em;
+                      text-align: center;
+                    }
+
+                    .ck-heading::after {
+                      width: min(360px, 100%);
+                      margin-left: auto;
+                      margin-right: auto;
+                    }
+
+                    .ck-product__name::after {
+                      width: min(340px, 100%);
+                      margin-left: auto;
+                      margin-right: auto;
+                    }
+
+                    .ck-product__image.ck-slider {
+                      margin: 50px auto 18px;
+                      width: min(400px, 100%);
+                      position: relative;
+                    }
+                    .ck-section {
+                      padding: 20px 0;
+                    } /* 余白がデカいなら */
+
+                    .ck-bleed img {
+                      width: 100%;
+                      height: auto;
+                      object-fit: contain;
+                    }
+
+                    /* 画像側に余白を作らない */
+                    .ck-section--insert.ck-insert .ck-bleed {
+                      margin: 0;
+                    }
+                    .ck-section--insert.ck-insert picture,
+                    .ck-section--insert.ck-insert img {
+                      display: block;
+                      width: 100%;
+                      height: auto;
+                      padding: 0 !important; /* ← padding-bottom を殺す */
+                    }
+
+                    /* セクション自体の上下paddingも事故りやすいので0に寄せる（必要なら後で戻す） */
+                    .ck-section--insert.ck-insert {
+                      padding: 0 !important;
+                    }
+
+                    /* 上下余白は overlay で“均等”に作る
+  .ck-section--insert.ck-insert .ck-insert__overlay{
+    padding: 20px;           /* ← ここが上下左右の“均等余白” */
+                    /*} */
+
+                    .ck-spec {
+                      width: min(300px, 92%); /* ← 好きな値に */
+                      margin-left: auto;
+                      margin-right: auto;
+                      padding: 10px 14px 10px;
+                      margin-top: 30px;
+                      margin-bottom: 30px;
+                    }
+
+                    .ck-spec__row {
+                      padding: 10px 0;
+                    }
+                  }
+                </style>
+                <div class="lp-bg" aria-hidden="true"></div>
+                <style></style>
+
+                <!-- <div style="text-align: center">ここに自由に記述してください！！</div> -->
+                <main class="lp">
+                  <!-- ===== FV / Hero ===== -->
+                  <section class="ck-hero" aria-label="ファーストビュー">
+                    <img
+                      src="https://image.raku-uru.jp/01/14604/416/%E3%82%AF%E3%83%A9%E3%83%BC%E3%82%AF%E5%8D%9A%E5%A3%AB%E3%81%AE%E6%81%8B%E4%BA%BA%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E5%83%8F+%281%29_1770367286797.jpg"
+                      alt="ヒーロービジュアル画像"
+                    />
+                  </section>
+
+                  <!-- ===== Story 01 (image left / text right) ===== -->
+                  <section class="ck-section ck-section--story" aria-label="こだわり 1">
+                    <div class="ck-container">
+                      <div class="ck-split">
+                        <figure class="ck-split__media">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/412/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E3%82%A2%E3%83%BC%E3%83%A2%E3%83%B3%E3%83%89_1770365107908.jpg"
+                            alt="アーモンドの写真"
+                            loading="lazy"
+                          />
+                        </figure>
+
+                        <div class="ck-split__content">
+                          <p class="ck-eyebrow">01 / Almond</p>
+                          <h2 class="ck-heading">スライスアーモンドのアクセント</h2>
+                          <p class="ck-text">
+                            薄焼きのラングドシャの表面に、スライスアーモンドをあしらいました。ひと口目から広がるアーモンドの豊かな風味。噛むほどに、アーモンドの香りが心地よく残ります。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ===== Story 02 (image right / text left) ===== -->
+                  <section class="ck-section ck-section--story" aria-label="こだわり 2">
+                    <div class="ck-container">
+                      <div class="ck-split ck-split--reverse">
+                        <figure class="ck-split__media">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/409/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E5%BE%8C%E7%94%BB%E5%83%8F-6_1770087239026.jpg"
+                            alt="ラングドシャの写真"
+                            loading="lazy"
+                          />
+                        </figure>
+
+                        <div class="ck-split__content">
+                          <p class="ck-eyebrow">02 / Flavor</p>
+                          <h2 class="ck-heading">こだわり製法が生む、サクッとした食感</h2>
+                          <p class="ck-text">
+                            しっかりと焼き上げた生地は、サクッとした歯切れのよい食感。香ばしさとともに、焼き菓子らしい味わいを楽しめます。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ===== Story 03 (image left / text right) ===== -->
+                  <section class="ck-section ck-section--story" aria-label="こだわり 3">
+                    <div class="ck-container">
+                      <div class="ck-split">
+                        <figure class="ck-split__media">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/408/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E5%BE%8C%E7%94%BB%E5%83%8F-3_1770087237450.jpg"
+                            alt="お皿に乗ったラングドシャの写真"
+                            loading="lazy"
+                          />
+                        </figure>
+
+                        <div class="ck-split__content">
+                          <p class="ck-eyebrow">03 / For Gift</p>
+                          <h2 class="ck-heading">北大の想い出を、贈り物に</h2>
+                          <p class="ck-text">
+                            「クラーク博士の恋人」は、北海道大学でも人気のお菓子。お土産や贈りものにもおすすめです。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ===== Insert: 画像 + オーバーレイ箱（重ねる） ===== -->
+                  <section class="ck-section--insert ck-insert" aria-label="商品イメージ">
+                    <figure class="ck-bleed">
+                      <picture>
+                        <source
+                          media="(max-width: 920px)"
+                          srcset="
+                            https://image.raku-uru.jp/01/14604/414/%E3%82%AF%E3%83%A9%E3%83%BC%E3%82%AF%E5%8D%9A%E5%A3%AB%E3%81%AE%E6%81%8B%E4%BA%BA%E3%82%BF%E3%82%A4%E3%83%AB_90_1770365308234.jpg
+                          "
+                        />
+                        <img
+                          src="https://image.raku-uru.jp/01/14604/413/%E3%82%AF%E3%83%A9%E3%83%BC%E3%82%AF%E5%8D%9A%E5%A3%AB%E3%81%AE%E6%81%8B%E4%BA%BA%E3%82%BF%E3%82%A4%E3%83%AB_1770365267516.jpg"
+                          alt="商品イメージのビジュアル"
+                          loading="lazy"
+                        />
+                      </picture>
+                    </figure>
+
+                    <div class="ck-insert__overlay" aria-hidden="false">
+                      <div class="ck-insert__box">
+                        <h2 class="ck-insert__h2">「クラーク博士の恋人」について</h2>
+                        <div class="ck-insert__body">
+                          <p class="ck-insert__text">
+                            北海道大学の象徴であるクラーク博士と、アメリカの詩人エミリー・ディキンソン。この二人の知られざる縁をテーマにしたのが、「クラーク博士の恋人」です。
+                          </p>
+
+                          <p class="ck-insert__text">
+                            エミリーの死後、彼女の遺品から『Dear
+                            Master』と綴られた3通の未投函の手紙が見つかりました。その宛先こそが、ハンサムで知性溢れる若き日のクラーク博士であったという新説が、近年注目を集めています。博士はエミリーの兄と親交が深く、彼女が極度の不安に陥っていた時期は、南北戦争に出征した博士が消息不明となっていた期間と重なります。
+                          </p>
+
+                          <p class="ck-insert__text">
+                            博士の死からわずか三ヶ月後に彼女も後を追うように旅立ち、現在は同じ墓地で眠る二人の不思議な符号。この歴史に秘められたロマンを形にした、北大ならではの物語が詰まった一品です。旅の記憶や、大切な方への贈り物としてぜひご利用ください。
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- ===== Product ===== -->
+                  <div id="buy"></div>
+                  <figure class="ck-product__image ck-slider" aria-label="商品画像スライダー">
+                    <div class="ck-slider__viewport">
+                      <div class="ck-slider__track">
+                        <div class="ck-slider__slide">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/407/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E5%BE%8C%E7%94%BB%E5%83%8F-4_1770087236110.jpg"
+                            alt="パッケージとクッキー"
+                            loading="lazy"
+                            draggable="false"
+                          />
+                        </div>
+
+                        <div class="ck-slider__slide">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/406/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E5%BE%8C%E7%94%BB%E5%83%8F-7_1770087234600.jpg"
+                            alt="パッケージと中身"
+                            loading="lazy"
+                            draggable="false"
+                          />
+                        </div>
+
+                        <div class="ck-slider__slide">
+                          <img
+                            src="https://image.raku-uru.jp/01/14604/415/%E3%83%AC%E3%82%BF%E3%83%83%E3%83%81%E5%BE%8C%E7%94%BB%E5%83%8F-7_1770366262868.jpg"
+                            alt="お皿に乗ったラングドシャ"
+                            loading="lazy"
+                            draggable="false"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      class="ck-slider__btn ck-slider__btn--prev"
+                      type="button"
+                      aria-label="前の画像"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="15,4 7,12 15,20"></polyline>
+                      </svg>
+                    </button>
+
+                    <button
+                      class="ck-slider__btn ck-slider__btn--next"
+                      type="button"
+                      aria-label="次の画像"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="9,4 17,12 9,20"></polyline>
+                      </svg>
+                    </button>
+                  </figure>
+
+                  <p class="ck-product__name">クラーク博士の恋人<br />ラングドシャクッキー</p>
+                  <p class="ck-product__price">864円(税込)</p>
+                  <div class="set">
+                    <form action="{{shpCartUrl}}/incart" method="post" accept-charset="UTF-8">
+                      <input type="hidden" name="itemId" value="1288000" />
+                      <input type="hidden" name="variationId" value="1624756" />
+                      <input type="hidden" name="itemQuantity" value="1" />
+                      <input type="hidden" name="shpHash" value="{{shpHash}}" />
+                      <a
+                        class="ck-btn ck-btn--invert"
+                        href="https://hokudai-goods-seikyou.net/item-detail/1288000"
+                        >商品詳細</a
+                      >
+                      <button type="submit" class="ck-btn">カートに追加</button>
+                    </form>
+                  </div>
+
+                  <!-- 原材料枠（添付画像2の雰囲気） -->
+                  <div class="ck-spec" aria-label="商品情報">
+                    <dl class="ck-spec__list">
+                      <div class="ck-spec__row">
+                        <dt>原材料</dt>
+                        <dd>
+                          小麦粉（国内生産）、砂糖、鶏卵、植物性油脂、ホワイトチョコレート、アーモンド、脱脂粉乳、食塩/膨張剤、香料、乳化剤、酸化防止剤（ビタミンE）、着色料（カロチン）、（一部に小麦・卵・乳成分・アーモンド・大豆を含む）
+                        </dd>
+                      </div>
+                      <div class="ck-spec__row">
+                        <dt>賞味期限</dt>
+                        <dd>お届け予定日から30日</dd>
+                      </div>
+                      <div class="ck-spec__row">
+                        <dt>内容量</dt>
+                        <dd>12枚入</dd>
+                      </div>
+                      <div class="ck-spec__row">
+                        <dt>保存方法</dt>
+                        <dd>高温多湿、直射日光を避けて保存してください。</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <a class="ck-float-buy" href="#buy" aria-label="購入はこちら">購入はこちら</a>
+
+                  <h3 class="ps-title">「クラーク博士の恋人」とあわせてお楽しみください。</h3>
+                  <section class="ps-wrap" aria-label="商品紹介">
+                    <div class="ps-card">
+                      <!-- 左：画像（非リンク） -->
+                      <figure class="ps-card__media" aria-label="商品画像">
+                        <img
+                          src="https://image.raku-uru.jp/01/14604/289/IMG_E0036_1667979039554.JPG"
+                          alt="商品画像"
+                          loading="lazy"
+                        />
+
+                        <!-- 左側に縦書きラベルを置きたい場合（任意） -->
+                        <!-- <span class="ps-card__tag">豆知識</span> -->
+                      </figure>
+
+                      <!-- 右：テキスト（ここ全体がリンク） -->
+                      <a
+                        class="ps-card__content"
+                        href="https://hokudai-goods-seikyou.net/item-detail/1288011"
+                        aria-label="商品詳細へ"
+                      >
+                        <h2 class="ps-card__title">
+                          北海道大学×LUPICIA 北海道大学オリジナルティー
+                        </h2>
+                        <p class="ps-card__desc">
+                          「クラーク博士の恋人」と楽しみたい、北大×LUPICIAのオリジナルティー。<br />
+                          紅茶専門店LUPICIAと北海道大学のコラボレーションから生まれた、やさしい味わいのティーバッグです。
+                        </p>
+                        <span class="ps-card__cta">商品詳細を見る →</span>
+                      </a>
+                    </div>
+                  </section>
+                </main>
+                <script>
+                  (() => {
+                    const targets = document.querySelectorAll(".ck-split__content");
+
+                    const io = new IntersectionObserver(
+                      (entries) => {
+                        for (const e of entries) {
+                          if (e.isIntersecting) {
+                            e.target.classList.add("is-inview");
+                            io.unobserve(e.target); // 1回だけ発火
+                          }
+                        }
+                      },
+                      {
+                        threshold: 0.2, // 20%見えたら発火
+                        rootMargin: "0px 0px -5% 0px", // 少し早め/遅め調整したい時用
+                      },
+                    );
+
+                    targets.forEach((t) => io.observe(t));
+                  })();
+                </script>
+
+                <script>
+                  (function () {
+                    const sliders = document.querySelectorAll(".ck-slider");
+
+                    sliders.forEach((slider) => {
+                      const track = slider.querySelector(".ck-slider__track");
+                      const prev = slider.querySelector(".ck-slider__btn--prev");
+                      const next = slider.querySelector(".ck-slider__btn--next");
+
+                      const slides = () => Array.from(track.querySelectorAll(".ck-slider__slide"));
+
+                      const moveRight = () => {
+                        track.style.transition = "transform .4s ease";
+                        track.style.transform = "translateX(-100%)";
+
+                        track.addEventListener("transitionend", function handler() {
+                          track.removeEventListener("transitionend", handler);
+                          track.style.transition = "none";
+                          track.style.transform = "translateX(0)";
+                          track.appendChild(slides()[0]); // 先頭を末尾へ
+                        });
+                      };
+
+                      const moveLeft = () => {
+                        track.style.transition = "none";
+                        track.insertBefore(slides()[slides().length - 1], slides()[0]);
+                        track.style.transform = "translateX(-100%)";
+
+                        requestAnimationFrame(() => {
+                          track.style.transition = "transform .4s ease";
+                          track.style.transform = "translateX(0)";
+                        });
+                      };
+
+                      next.addEventListener("click", moveRight);
+                      prev.addEventListener("click", moveLeft);
+                    });
+                  })();
+                </script>
+
+                <script>
+                  (() => {
+                    const btn = document.querySelector(".ck-float-buy");
+                    const buyAnchor = document.querySelector("#buy");
+                    if (!btn) return;
+
+                    /* =========================
+         表示 / 非表示 制御
+      ========================= */
+
+                    const SHOW_Y = 300; // ここまでは表示しない
+
+                    const update = () => {
+                      // ▼ 毎回その時点の viewport で判定する
+                      const isSP = window.matchMedia("(max-width: 768px)").matches;
+
+                      // PC / SP で非表示になる位置を切り替え
+                      const BTN_TOP_RATIO = isSP ? 0.9 : 0.28;
+
+                      // まだ十分スクロールしていない
+                      if (window.scrollY <= SHOW_Y) {
+                        btn.classList.remove("is-show");
+                        return;
+                      }
+
+                      // #buy が見えている or それ以降にいる間は非表示
+                      if (buyAnchor) {
+                        const rect = buyAnchor.getBoundingClientRect();
+                        const inOrAfterProduct = rect.top <= window.innerHeight * BTN_TOP_RATIO;
+
+                        if (inOrAfterProduct) {
+                          btn.classList.remove("is-show");
+                          return;
+                        }
+                      }
+
+                      // それ以外は表示
+                      btn.classList.add("is-show");
+                    };
+
+                    window.addEventListener("scroll", update, { passive: true });
+                    window.addEventListener("resize", update, { passive: true });
+                    update(); // 初期判定
+
+                    /* =========================
+         クリック時スムーススクロール
+         （速度調整可能）
+      ========================= */
+
+                    const DURATION = 1500; // ms
+                    const easing = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+
+                    const smoothScrollTo = (targetY, duration) => {
+                      const startY = window.scrollY;
+                      const diff = targetY - startY;
+                      let startTime = null;
+
+                      const step = (time) => {
+                        if (!startTime) startTime = time;
+                        const elapsed = time - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const eased = easing(progress);
+
+                        window.scrollTo(0, startY + diff * eased);
+
+                        if (progress < 1) {
+                          requestAnimationFrame(step);
+                        }
+                      };
+
+                      requestAnimationFrame(step);
+                    };
+
+                    btn.addEventListener("click", (e) => {
+                      e.preventDefault();
+                      if (!buyAnchor) return;
+
+                      const rect = buyAnchor.getBoundingClientRect();
+                      const targetY = window.scrollY + rect.top;
+
+                      smoothScrollTo(targetY, DURATION);
+                    });
+                  })();
+                </script>

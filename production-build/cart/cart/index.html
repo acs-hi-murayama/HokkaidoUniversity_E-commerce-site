@@ -133,85 +133,8 @@
 	<script src="/resources/js/jquery.flicksimple.js"></script>
 	<script src="/resources/js/jquery.blockUI.js"></script>
 	<script src="/resources/js/cart-script.js"></script>
-	<!-- TODO(本番): cart-app.js は不要（会員/カート/注文はサーバー処理） -->
-	<script>
-	(function () {
-		function render() {
-			var items = TX.getCart();
-			var $tbl = $("#js-cart-table");
-			var t = TX.cartTotals();
+	<!-- 本番: cart-app.js は不要（会員/カート/注文はサーバー処理） -->
 
-			if (!items.length) {
-				$tbl.empty();
-				$("#js-empty-msg").show();
-				$("#js-checkout-btn").hide();
-				$(".cart-action-sum-ship").hide();
-				$(".cart-action-sum-point").hide();
-				$("#cart-itemtotal").text("¥0");
-				$("#cart-costtotal").text("¥0");
-				return;
-			}
-			$("#js-empty-msg").hide();
-			$("#js-checkout-btn").show();
-			$(".cart-action-sum-ship").show();
-
-			var rows = items.map(function (it) {
-				return '<tr class="product-number-row" data-id="' + TX.esc(it.itemId) + '">' +
-					'<th class="cart-item-list-photo"><img src="' + TX.esc(it.imageUrl) + '" alt="' + TX.esc(it.name) + '"></th>' +
-					'<td class="cart-item-list-info">' +
-						'<ul>' +
-							(it.itemCode ? '<li class="cart-item-list-cord">' + TX.esc(it.itemCode) + '</li>' : '') +
-							'<li class="cart-item-list-name">' + TX.esc(it.name) + '</li>' +
-							'<li class="cart-item-list-price">' + TX.yen(it.price) + '</li>' +
-							'<li class="cart-item-list-quantity">' +
-								'<span class="cart-item-list-cnt">' +
-									'<input type="button" value="-" data-act="dec">' +
-									'<input type="number" min="1" value="' + it.qty + '" data-act="qty">' +
-									'<input type="button" value="+" data-act="inc">' +
-								'</span>' +
-							'</li>' +
-							'<li class="cart-item-list-btn"><span class="cart-item-list-del"><input type="button" value="削除" data-act="del"></span></li>' +
-						'</ul>' +
-					'</td>' +
-				'</tr>';
-			}).join("");
-			$tbl.html(rows);
-
-			$("#cart-itemtotal").text(TX.yen(t.itemTotal));
-			// 送料は配送先・サイズで決まるため、カート時点では未確定（全国一律ではない）。合計は「送料別」。
-			$("#cart-carriage").text(t.ship == null ? "未確定" : TX.yen(t.ship));
-			$("#cart-costtotal").text(TX.yen(t.total));
-		}
-
-		$("#js-cart-table").on("click", "input[data-act]", function () {
-			var act = $(this).data("act");
-			var id = $(this).closest("tr[data-id]").data("id") + "";
-			var cur = TX.getCart().filter(function (x) { return x.itemId === id; })[0];
-			if (!cur) return;
-			if (act === "inc") TX.updateQty(id, cur.qty + 1);
-			else if (act === "dec") TX.updateQty(id, cur.qty - 1);
-			else if (act === "del") TX.removeItem(id);
-			else return;
-			render();
-		});
-		$("#js-cart-table").on("change", "input[data-act='qty']", function () {
-			var id = $(this).closest("tr[data-id]").data("id") + "";
-			TX.updateQty(id, parseInt($(this).val(), 10));
-			render();
-		});
-		$("#js-checkout-btn").on("click", "a", function (e) {
-			e.preventDefault();
-			if (!TX.isLoggedIn()) {
-				if (confirm("ご注文にはログインが必要です。\nログイン画面へ進みますか？\n（キャンセルで会員登録へ）")) location.href = "/cart/mypage/login/?return=checkout";
-				else location.href = "/cart/member/regist/input/";
-				return;
-			}
-			var order = TX.createOrder();
-			if (order) { alert("ご注文を受け付けました。\n受注番号：" + order.no); location.href = "/cart/mypage/?view=history"; }
-		});
-
-		render();
-	})();
-	</script>
+<!-- 本番: 取引挙動のインラインJS(TX.*)は削除（サーバー処理） -->
 </body>
 </html>

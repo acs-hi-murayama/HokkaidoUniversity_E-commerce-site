@@ -1,0 +1,177 @@
+<!-- 本番LP本文（管理画面フリーページ/LPのWYSIWYGへ貼付。URLは /lp/{n} で公開） -->
+<!-- ⚠ 画像(src)にローカル相対パスが残存。らくうるカートへ画像をアップロードし https://image.raku-uru.jp/... のURLへ差し替えること -->
+<style>
+/* LP専用スタイル（クラフトビール） */
+        body.body-lp #container { padding-top: 80px; padding-bottom: 60px; }
+        .lp-hero {
+            width: 100%;
+            background: linear-gradient(135deg, #c98a1e 0%, #e6b23c 50%, #f7dd8f 100%);
+            color: #3a2a06;
+            text-align: center;
+            padding: 70px 5% 60px;
+        }
+        .lp-hero .kv-label {
+            display: inline-block;
+            background: #fff;
+            color: #b7791a;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 2px;
+            padding: 4px 18px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+        }
+        .lp-hero h1 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: clamp(28px, 5vw, 50px);
+            line-height: 1.4;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .lp-hero h1 span { color: #3a2a06; }
+        .lp-hero .hero-img {
+            max-width: 380px;
+            width: 72%;
+            border-radius: 16px;
+            margin: 8px auto 28px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(58,42,6,0.22);
+        }
+        .lp-hero p {
+            font-size: 16px;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 34px;
+            color: #3a2a06;
+        }
+        .lp-hero .btn-cta {
+            display: inline-block;
+            background: #fff;
+            color: #b7791a;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 16px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(58,42,6,0.22);
+        }
+        .lp-hero .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(58,42,6,0.3); text-decoration: none; }
+        .lp-agecheck {
+            background: #3a2a06; color: #f7dd8f; text-align: center;
+            font-size: 13px; padding: 12px 5%; letter-spacing: .04em;
+        }
+        .lp-section { max-width: 960px; margin: 0 auto; padding: 60px 5%; }
+        .lp-section h2 {
+            font-family: "Kaisei Tokumin", serif;
+            font-size: 28px; text-align: center; margin-bottom: 8px; color: #b7791a;
+        }
+        .lp-section .section-sub { text-align: center; font-size: 14px; color: #a98a4f; margin-bottom: 40px; }
+        .lp-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-card {
+            background: #fff; border: 1px solid #efe4cf; border-radius: 12px; overflow: hidden;
+            width: calc(33.3% - 20px); min-width: 220px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .lp-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
+        .lp-card img { width: 100%; height: 180px; object-fit: cover; display: block; border: none; }
+        .lp-card .card-body { padding: 16px; }
+        .lp-card .card-name { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: #333; }
+        .lp-card .card-price { color: #b7791a; font-size: 16px; font-weight: 700; }
+        .lp-card .card-price span { font-size: 12px; font-weight: 400; color: #888; }
+        .lp-point { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-point-item { text-align: center; width: calc(33.3% - 20px); min-width: 200px; }
+        .lp-point-item .icon {
+            width: 64px; height: 64px; background: linear-gradient(135deg, #c98a1e, #f7dd8f);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; font-size: 28px;
+        }
+        .lp-point-item h3 { font-size: 16px; font-weight: 700; color: #b7791a; margin-bottom: 8px; }
+        .lp-point-item p { font-size: 13px; color: #666; line-height: 1.7; }
+        .lp-cta-band { background: #3a2a06; color: #fff; text-align: center; padding: 60px 5%; }
+        .lp-cta-band h2 { font-family: "Kaisei Tokumin", serif; font-size: 26px; margin-bottom: 14px; color: #f7dd8f; }
+        .lp-cta-band p { font-size: 14px; opacity: 0.85; margin-bottom: 32px; line-height: 1.8; }
+        .lp-cta-band .btn-cta {
+            display: inline-block; background: #f7dd8f; color: #3a2a06; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none; transition: transform 0.2s;
+        }
+        .lp-cta-band .btn-cta:hover { transform: translateY(-2px); text-decoration: none; }
+        .lp-divider { border: none; border-top: 1px solid #efe4cf; margin: 0; }
+</style>
+<!-- ヒーローセクション -->
+                            <section class="lp-hero">
+                                <p class="kv-label">CRAFT BEER</p>
+                                <h1>北大限定<br><span>クラフトビール</span>で乾杯</h1>
+                                <img class="hero-img" src="./lp_sample2.png" alt="北大限定クラフトビールで乾杯">
+                                <p>北の大地の恵みで醸した、ここだけの一杯。<br>大切な人との「おつかれさま」に、特別な乾杯を。</p>
+                                <a href="https://hokudai-goods-seikyou.net/item-list" class="btn-cta">商品一覧を見る</a>
+                            </section>
+                            <div class="lp-agecheck">🍺 お酒は20歳になってから。20歳未満の飲酒は法律で禁止されています。</div>
+
+                            <hr class="lp-divider">
+
+                            <!-- 特徴セクション -->
+                            <section class="lp-section" style="background: #fbf5e8; max-width: 100%; padding: 60px 5%;">
+                                <div style="max-width: 960px; margin: 0 auto;">
+                                    <h2>3つのこだわり</h2>
+                                    <p class="section-sub">Point</p>
+                                    <div class="lp-point">
+                                        <div class="lp-point-item">
+                                            <div class="icon">🌾</div>
+                                            <h3>北海道産原料</h3>
+                                            <p>道内産の麦芽とホップにこだわり、北の大地ならではの豊かな風味を引き出しました。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🍺</div>
+                                            <h3>少量仕込みの手造り</h3>
+                                            <p>丁寧な少量仕込みで、香り高くコクのある味わいに。数量限定でお届けします。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🎁</div>
+                                            <h3>ギフトにも最適</h3>
+                                            <p>化粧箱入りの飲み比べセットもご用意。記念日や贈り物にぴったりです。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- おすすめ商品セクション -->
+                            <section class="lp-section">
+                                <h2>ラインナップ</h2>
+                                <p class="section-sub">Lineup</p>
+                                <div class="lp-grid">
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/beer1/400/300" alt="北大クラフトビール ペールエール">
+                                        <div class="card-body">
+                                            <p class="card-name">ペールエール（330ml）</p>
+                                            <p class="card-price">¥660 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/beer2/400/300" alt="北大クラフトビール ヴァイツェン">
+                                        <div class="card-body">
+                                            <p class="card-name">ヴァイツェン（330ml）</p>
+                                            <p class="card-price">¥680 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="lp-card">
+                                        <img src="https://picsum.photos/seed/beer3/400/300" alt="北大クラフトビール 飲み比べ4本セット">
+                                        <div class="card-body">
+                                            <p class="card-name">飲み比べ4本セット</p>
+                                            <p class="card-price">¥2,860 <span>（税込）</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p style="text-align:center; margin-top: 36px;">
+                                    <a href="https://hokudai-goods-seikyou.net/item-list" class="btn-cta" style="display:inline-block; background:#b7791a; color:#fff; font-weight:700; font-size:16px; padding:14px 44px; border-radius:50px; text-decoration:none;">すべての商品を見る</a>
+                                </p>
+                            </section>
+
+                            <!-- CTAバンド -->
+                            <section class="lp-cta-band">
+                                <h2>特別な一杯で乾杯しよう</h2>
+                                <p>会員登録で最新情報やお得なキャンペーン情報をいち早くお届けします。<br>登録は無料で、すぐにお買い物を楽しめます。</p>
+                                <a href="https://hokudai-goods-seikyou.net/member/regist/input/47409ca9deadd2be6543f3c2fc49d40f" class="btn-cta">会員登録・ログイン</a>
+                            </section>

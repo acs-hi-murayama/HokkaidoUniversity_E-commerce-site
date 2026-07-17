@@ -22,7 +22,7 @@
 			<div class="header">
 				<div class="header-top-cart clearfix">
 					<div class="row">
-						<div class="logo"><h1><a href="https://hokudai-goods-seikyou.net"><p class="logo-text">北大オリジナルグッズ</p></a></h1></div>
+						<div class="logo"><h1><a href="{{ shpUrl }}"><p class="logo-text">北大オリジナルグッズ</p></a></h1></div>
 					</div>
 				</div>
 			</div>
@@ -65,50 +65,8 @@
 	<script src="/resources/js/jquery.flicksimple.js"></script>
 	<script src="/resources/js/jquery.blockUI.js"></script>
 	<script src="/resources/js/cart-script.js"></script>
-	<!-- TODO(本番): cart-app.js は不要（会員/カート/注文はサーバー処理） -->
-	<script>
-	(function () {
-		var d = TX.getRegTmp();
-		if (!d) { location.replace("/cart/member/regist/input/"); return; }
-		var rows = [
-			["会員ID", d.loginId],
-			["会員パスワード", "●●●●●●●●"],
-			["氏名", d.lastName + " " + d.firstName],
-			["氏名フリガナ", d.lastNameKana + " " + d.firstNameKana],
-			["郵便番号", d.postNo],
-			["都道府県", d.kenName],
-			["市区町村", d.city],
-			["町域・番地", d.houseNo],
-			["ビル・マンション名", d.building || "―"],
-			["メールアドレス", d.mailadd],
-			["電話番号", d.tel],
-			["携帯電話番号", d.cellularphone || "―"],
-			["FAX番号", d.fax || "―"],
-			["性別", d.genderName || "―"],
-			["生年月日", d.birthYear + "年" + d.birthMonth + "月" + d.birthDay + "日"],
-			["年齢", d.free1Field],
-			["メルマガ配信希望", d.optinFlag === "1" ? "希望する" : "希望しない"]
-		];
-		document.getElementById("conf-tbl").innerHTML = rows.map(function (r) {
-			return '<tr><th>' + TX.esc(r[0]) + '</th><td>' + TX.esc(r[1]) + '</td></tr>';
-		}).join("");
+	<!-- 本番: cart-app.js は不要（会員/カート/注文はサーバー処理） -->
 
-		$("#js-regist").on("click", function (e) {
-			e.preventDefault();
-			TX.saveMember({
-				memberId: d.loginId, password: d.loginPassword,
-				loginId: d.loginId,
-				lastName: d.lastName, firstName: d.firstName, lastNameKana: d.lastNameKana, firstNameKana: d.firstNameKana,
-				postNo: d.postNo, kenId: d.kenId, kenName: d.kenName, city: d.city, houseNo: d.houseNo, building: d.building,
-				mailadd: d.mailadd, tel: d.tel, cellularphone: d.cellularphone, fax: d.fax,
-				gender: d.gender, genderName: d.genderName,
-				birthYear: d.birthYear, birthMonth: d.birthMonth, birthDay: d.birthDay,
-				free1Field: d.free1Field, optinFlag: d.optinFlag, registeredAt: TX.todayStr()
-			});
-			TX.clearRegTmp();
-			location.href = "/cart/member/regist/complete/";
-		});
-	})();
-	</script>
+<!-- 本番: 取引挙動のインラインJS(TX.*)は削除（サーバー処理） -->
 </body>
 </html>

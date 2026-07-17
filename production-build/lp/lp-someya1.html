@@ -1,0 +1,100 @@
+<!-- 本番LP本文（管理画面フリーページ/LPのWYSIWYGへ貼付。URLは /lp/{n} で公開） -->
+<!-- ⚠ 画像(src)にローカル相対パスが残存。らくうるカートへ画像をアップロードし https://image.raku-uru.jp/... のURLへ差し替えること -->
+<style>
+/* LP専用スタイル（染谷銀志①・フレンドリー/グリーン） */
+        body.body-lp #container { padding-top: 80px; padding-bottom: 60px; }
+        .lp-hero {
+            width: 100%;
+            background: linear-gradient(135deg, #14683f 0%, #2e9e63 55%, #57c98a 100%);
+            color: #eafff3;
+            text-align: center;
+            padding: 70px 5% 60px;
+        }
+        .lp-hero .kv-label {
+            display: inline-block; background: #fff; color: #2e9e63; font-weight: 700;
+            font-size: 12px; letter-spacing: 2px; padding: 4px 18px; border-radius: 20px; margin-bottom: 22px;
+        }
+        .lp-hero h1 {
+            font-family: "Kaisei Tokumin", serif; font-size: clamp(28px, 5vw, 48px);
+            line-height: 1.4; margin-bottom: 24px; color: #fff;
+        }
+        .lp-hero h1 span { color: #ffe066; }
+        .lp-hero .hero-img {
+            max-width: 340px; width: 78%; border-radius: 16px; margin: 8px auto 28px;
+            display: block; box-shadow: 0 12px 34px rgba(0,0,0,0.30);
+        }
+        .lp-hero p { font-size: 16px; line-height: 1.8; max-width: 600px; margin: 0 auto 34px; color: #eafff3; }
+        .lp-hero .btn-cta {
+            display: inline-block; background: #ffe066; color: #14683f; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.22);
+        }
+        .lp-hero .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.32); text-decoration: none; }
+        .lp-section { max-width: 960px; margin: 0 auto; padding: 60px 5%; }
+        .lp-section h2 { font-family: "Kaisei Tokumin", serif; font-size: 28px; text-align: center; margin-bottom: 8px; color: #2e9e63; }
+        .lp-section .section-sub { text-align: center; font-size: 14px; color: #86bfa0; margin-bottom: 40px; }
+        .lp-point { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-point-item { text-align: center; width: calc(33.3% - 20px); min-width: 200px; }
+        .lp-point-item .icon {
+            width: 64px; height: 64px; background: linear-gradient(135deg, #2e9e63, #57c98a);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; font-size: 28px;
+        }
+        .lp-point-item h3 { font-size: 16px; font-weight: 700; color: #2e9e63; margin-bottom: 8px; }
+        .lp-point-item p { font-size: 13px; color: #666; line-height: 1.7; }
+        .lp-cta-band { background: #14683f; color: #fff; text-align: center; padding: 60px 5%; }
+        .lp-cta-band h2 { font-family: "Kaisei Tokumin", serif; font-size: 26px; margin-bottom: 14px; color: #ffe066; }
+        .lp-cta-band p { font-size: 14px; opacity: 0.85; margin-bottom: 32px; line-height: 1.8; }
+        .lp-cta-band .btn-cta {
+            display: inline-block; background: #ffe066; color: #14683f; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none; transition: transform 0.2s;
+        }
+        .lp-cta-band .btn-cta:hover { transform: translateY(-2px); text-decoration: none; }
+        .lp-divider { border: none; border-top: 1px solid #e0efe7; margin: 0; }
+        .lp-note { max-width: 700px; margin: 0 auto; padding: 24px 5% 0; font-size: 12px; color: #9bb5a7; text-align: center; }
+</style>
+<!-- ヒーローセクション -->
+                            <section class="lp-hero">
+                                <p class="kv-label">SAMPLE LP</p>
+                                <h1>今日もいい仕事、<br><span>染谷銀志</span></h1>
+                                
+                                <img class="hero-img" src="./someya1.jpg" alt="ピースサインの染谷銀志">
+                                <p>カメラに向けたピースサインと、やわらかな笑顔。<br>チームの空気をつくる一枚を使った、サンプルLPです。</p>
+                                <a href="https://hokudai-goods-seikyou.net/item-list" class="btn-cta">商品一覧を見る</a>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- ポイントセクション -->
+                            <section class="lp-section" style="background: #f2faf5; max-width: 100%; padding: 60px 5%;">
+                                <div style="max-width: 960px; margin: 0 auto;">
+                                    <h2>染谷銀志のいいところ</h2>
+                                    <p class="section-sub">Point</p>
+                                    <div class="lp-point">
+                                        <div class="lp-point-item">
+                                            <div class="icon">✌️</div>
+                                            <h3>いつも前向き</h3>
+                                            <p>難しいタスクにも笑顔で「やってみます」。ピースサインが似合う。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🤝</div>
+                                            <h3>チーム思い</h3>
+                                            <p>周りを明るくする空気づくりの名人。相談しやすい存在。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🚀</div>
+                                            <h3>成長スピード</h3>
+                                            <p>学んだことをすぐ形に。ローカル環境の再現もお手のもの。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- CTAバンド -->
+                            <section class="lp-cta-band">
+                                <h2>LPはこんな風に作れます</h2>
+                                <p>これは <code>lp/lp-someya1/</code> に置いたサンプルLPです。<br>写真・文章・色を差し替えれば、あなたのLPが完成します。</p>
+                                <a href="https://hokudai-goods-seikyou.net/member/regist/input/47409ca9deadd2be6543f3c2fc49d40f" class="btn-cta">会員登録・ログイン</a>
+                            </section>
+
+                            <p class="lp-note">※本ページはローカル再現環境の動作確認用サンプルです。</p>

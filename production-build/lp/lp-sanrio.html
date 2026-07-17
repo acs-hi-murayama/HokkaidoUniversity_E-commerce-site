@@ -1,0 +1,431 @@
+<!-- 本番LP本文（管理画面フリーページ/LPのWYSIWYGへ貼付。URLは /lp/{n} で公開） -->
+<!-- ✓ 画像(src)は本番CDN(image.raku-uru.jp)の絶対URL済み。アップロード差し替え不要 -->
+<style>
+/* ===== サンリオLP（本番用・lp-hokudai150year方式）=====
+           元は dc-format（JS駆動コンポーネント）だったが、静的HTML＋素のscriptに変換。
+           JSの「やっていること」（見どころスライダー／数量ステッパー／カート追加fetch）は
+           元(dc版)のロジックをそのまま移植している。 */
+        body.body-lp #container { padding-top: 0; padding-bottom: 0; }
+        .sr-bg {
+            font-family: 'Zen Maru Gothic', system-ui, sans-serif;
+            color: #4A403A;
+            background:
+              radial-gradient(120% 55% at 18% 0%, rgba(212,147,166,.32) 0%, rgba(212,147,166,0) 55%),
+              radial-gradient(120% 50% at 88% 14%, rgba(182,169,201,.34) 0%, rgba(182,169,201,0) 55%),
+              radial-gradient(130% 55% at 50% 100%, rgba(191,217,232,.30) 0%, rgba(191,217,232,0) 55%),
+              linear-gradient(180deg,#EFE4E6 0%,#E9E2EC 40%,#E4EAEF 75%,#F1EBEA 100%);
+        }
+        .sr-wrap {
+            max-width: 452px; margin: 0 auto; background: #F6EFE7;
+            box-shadow: 0 10px 60px rgba(74,64,58,.18); position: relative; isolation: isolate;
+        }
+        .sr-wrap a { color: #C46A82; text-decoration: none; }
+        .sr-wrap a:hover { color: #C2567A; text-decoration: none; opacity: 1; }
+        .sr-wrap img { border: none; }
+        .sr-story-img { transition: opacity .9s ease; }
+        .sr-chip-circle { transition: all .45s ease; }
+        .sr-chip-label { transition: all .3s ease; }
+        .sr-conn { transition: border-color .45s ease; }
+        @media (prefers-reduced-motion: reduce) {
+            .sr-story-img, .sr-chip-circle, .sr-chip-label, .sr-conn { transition: none; }
+        }
+</style>
+<!-- =========================
+  北海道大学 × サンリオ LP（本番WYSIWYG本文）
+  ※このブロックを .wysiwyg-data の中に貼り付け
+  ※画像は本番CDN(image.raku-uru.jp)を参照済み。カート追加は cart.raku-uru.jp/incart へPOST。
+========================= -->
+<div id="sr-sanrio" class="sr-bg">
+  <div class="sr-wrap">
+
+    <!-- ===== ブランドバー（元dc版の固定ヘッダーを、埋め込み用に非固定へ） ===== -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:9px;padding:11px 18px;background:rgba(246,239,231,.9);border-bottom:1px solid rgba(74,64,58,.08);">
+      <span style="font-weight:900;font-size:15px;letter-spacing:.02em;color:#4A403A;">北海道大学</span>
+      <span style="width:5px;height:5px;border-radius:50%;background:#D493A6;display:inline-block;"></span>
+      <span style="font-weight:900;font-size:15px;letter-spacing:.02em;color:#4A403A;">SANRIO CHARACTERS</span>
+    </div>
+
+    <!-- ===== ① FIRST VIEW ===== -->
+    <section style="position:relative;padding:42px 10px 42px;text-align:center;background:linear-gradient(180deg,rgba(191,217,232,.5) 0%,rgba(191,217,232,.12) 46%,rgba(246,239,231,0) 100%);overflow:hidden;">
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid rgba(212,147,166,.5);border-radius:999px;padding:6px 15px;margin-bottom:20px;box-shadow:0 3px 12px rgba(74,64,58,.06);">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.05em;color:#C46A82;">北海道大学 × サンリオ 第1弾</span>
+      </div>
+      <h1 style="font-weight:900;font-size:32px;line-height:1.44;letter-spacing:.01em;margin:0;color:#4A403A;">北大に、<br>サンリオキャラクターが<br><span style="color:rgb(196,106,130);">遊びに来ました。</span></h1>
+      <p style="font-size:13.5px;line-height:1.95;color:#6f645f;margin:18px auto 0;max-width:305px;">北大 × サンリオ、はじめての公式グッズ。<br>キャンパスの風景を描いた、<br>全３種のクリアファイル。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);align-items:start;gap:10px;margin:34px 0 8px;position:relative;">
+        <div aria-hidden="true" style="position:absolute;top:69px;left:50%;width:320px;height:320px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(212,147,166,.42),rgba(212,147,166,0) 68%);z-index:0;"></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;z-index:1;min-width:0;">
+          <div style="width:100%;aspect-ratio:1/1;border-radius:12px;background:#fff;border:1px solid rgba(167,185,140,.5);overflow:hidden;">
+            <img src="https://image.raku-uru.jp/01/14604/465/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%81%AF%E3%81%B2%E3%82%9A%E3%81%9F%E3%82%99%E3%82%93%E3%81%B5%E3%82%99%E3%81%84%E8%A1%A8_1777612251501.jpg" alt="正門×はぴだんぶい" style="width:100%;height:100%;object-fit:cover;object-position:center 78%;border-radius:6px;display:block;">
+          </div>
+          <span style="max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#fff;color:#4a86a8;font-weight:700;font-size:clamp(8px,2.4vw,11.5px);padding:5px clamp(6px,2vw,10px);border-radius:999px;box-shadow:0 3px 10px rgba(74,64,58,.1);">はぴだんぶい</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;z-index:1;min-width:0;">
+          <div style="width:100%;aspect-ratio:1/1;border-radius:12px;background:#fff;border:1px solid rgba(191,217,232,.6);overflow:hidden;">
+            <img src="https://image.raku-uru.jp/01/14604/471/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%82%AD%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E8%A1%A8_1777612255723.jpg" alt="クラーク像×ハローキティ" style="width:100%;height:100%;object-fit:cover;object-position:center 82%;border-radius:6px;display:block;">
+          </div>
+          <span style="max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#fff;color:#C46A82;font-weight:700;font-size:clamp(8px,2.4vw,11.5px);padding:5px clamp(6px,2vw,10px);border-radius:999px;box-shadow:0 3px 10px rgba(74,64,58,.1);">ハローキティ</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:9px;z-index:1;min-width:0;">
+          <div style="width:100%;aspect-ratio:1/1;border-radius:12px;background:#fff;border:1px solid rgba(182,169,201,.55);overflow:hidden;">
+            <img src="https://image.raku-uru.jp/01/14604/472/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%83%9E%E3%82%A4%E3%83%A1%E3%83%AD%E8%A1%A8_1777612256439.jpg" alt="並木道×マイメロ・クロミ" style="width:100%;height:100%;object-fit:cover;object-position:center 82%;border-radius:6px;display:block;">
+          </div>
+          <span style="max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:#fff;color:#8b6fb0;font-weight:700;font-size:clamp(8px,2.4vw,11.5px);padding:5px clamp(6px,2vw,10px);border-radius:999px;box-shadow:0 3px 10px rgba(74,64,58,.1);">マイメロディ＆クロミ</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:11px;margin-top:24px;">
+        <a href="#products" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;max-width:302px;background:#C2567A;color:#fff;font-weight:700;font-size:16.5px;padding:16px;border-radius:999px;box-shadow:0 8px 22px rgba(194,86,122,.34);">今すぐ購入する →</a>
+        <span style="font-size:12px;color:#9a8f89;">第１弾商品 / 全3種 / 1枚 税込 <b style="color:rgb(194,86,122);font-weight:700;">380円</b></span>
+      </div>
+
+      <div style="position:absolute;right:14px;bottom:8px;font-size:8.5px;color:#b7aca6;letter-spacing:.01em;">© 2026 SANRIO CO., LTD. APPROVAL NO. L670723</div>
+    </section>
+
+    <!-- ===== ② COLLAB VOL.1 ===== -->
+    <section style="padding:54px 26px;text-align:center;background:#4A403A;color:#F6EFE7;position:relative;overflow:hidden;">
+      <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:rgba(212,147,166,.2);"></div>
+      <div style="position:absolute;bottom:-50px;left:-30px;width:140px;height:140px;border-radius:50%;background:rgba(191,217,232,.15);"></div>
+      <div style="position:relative;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.24em;color:#D493A6;margin:0 0 12px;">COLLABORATION</p>
+        <div style="font-size:38px;font-weight:600;line-height:1;background:linear-gradient(120deg,#EED9C4,#F6EFE7,#D9C4A8);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:8px;">コラボ第1弾</div>
+        <p style="font-size:15px;font-weight:700;margin:0 0 14px;letter-spacing:.03em;">北海道大学 × サンリオ</p>
+        <p style="font-size:13px;line-height:2;color:#d9cfc8;margin:0 auto;max-width:300px;">記念すべき第１弾商品として、<br>キャラクタークリアファイル全3種を<br>お届けします。</p>
+      </div>
+    </section>
+
+    <!-- ===== ③ STORY（見どころ・自動スライドショー：dc版のslide/goToSlideロジックを移植） ===== -->
+    <section style="padding:52px 26px;text-align:center;background:linear-gradient(180deg,rgba(182,169,201,.16),rgba(212,147,166,.11));">
+      <p style="font-size:11px;font-weight:700;letter-spacing:.22em;color:#A7B98C;margin:0 0 18px;">HIGHLIGHTS</p>
+      <p id="sr-hl-title" style="font-size:22px;line-height:1.85;color:#4A403A;margin:0;min-height:3.7em;display:flex;align-items:center;justify-content:center;">北大 正門 ×  はぴだんぶい</p>
+      <div style="width:32px;height:1px;background:#D493A6;margin:22px auto;"></div>
+      <p id="sr-hl-desc" style="font-size:13.5px;line-height:2.05;color:#6f645f;margin:0 auto;max-width:312px;min-height:4.1em;">北大の顔ともいえる正門を舞台に、ポチャッコや<br>ハンギョドンら「はぴだんぶい」が集合。</p>
+
+      <div style="position:relative;width:100%;aspect-ratio:1/1;border-radius:16px;overflow:hidden;margin-top:26px;box-shadow:0 10px 30px rgba(74,64,58,.12);background:#fff;">
+        <img class="sr-story-img" data-idx="0" src="https://image.raku-uru.jp/01/14604/465/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%81%AF%E3%81%B2%E3%82%9A%E3%81%9F%E3%82%99%E3%82%93%E3%81%B5%E3%82%99%E3%81%84%E8%A1%A8_1777612251501.jpg" alt="北大 正門" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:1;">
+        <img class="sr-story-img" data-idx="1" src="https://image.raku-uru.jp/01/14604/472/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%83%9E%E3%82%A4%E3%83%A1%E3%83%AD%E8%A1%A8_1777612256439.jpg" alt="ポプラ並木" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:0;">
+        <img class="sr-story-img" data-idx="2" src="https://image.raku-uru.jp/01/14604/471/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%82%AD%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E8%A1%A8_1777612255723.jpg" alt="クラーク像" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:0;">
+      </div>
+
+      <div style="display:flex;justify-content:center;align-items:flex-start;gap:10px;margin-top:24px;">
+        <button type="button" class="sr-chip" data-idx="0" aria-label="正門×はぴだんぶいを見る" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px;margin:-6px;cursor:pointer;background:none;border:none;-webkit-tap-highlight-color:transparent;">
+          <span class="sr-chip-circle" style="width:36px;height:36px;border-radius:50%;background:#C2567A;color:#fff;display:flex;align-items:center;justify-content:center;transform:scale(1.18);box-shadow:0 6px 15px rgba(194,86,122,.42);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="3" x2="4" y2="21"></line><line x1="20" y1="3" x2="20" y2="21"></line><line x1="2" y1="4" x2="22" y2="4"></line><line x1="2" y1="8.5" x2="22" y2="8.5"></line></svg>
+          </span>
+          <span class="sr-chip-label" style="font-size:10px;font-weight:700;color:#C2567A;">正門</span>
+        </button>
+        <span class="sr-conn" data-conn="0" style="flex:1;max-width:40px;height:0;margin-top:18px;border-top:1.5px dashed #cbb8bf;"></span>
+        <button type="button" class="sr-chip" data-idx="1" aria-label="並木道×マイメロディ・クロミを見る" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px;margin:-6px;cursor:pointer;background:none;border:none;-webkit-tap-highlight-color:transparent;">
+          <span class="sr-chip-circle" style="width:36px;height:36px;border-radius:50%;background:#EDEAF1;color:#8b6fb0;display:flex;align-items:center;justify-content:center;transform:scale(1);box-shadow:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2 L17 10 H14.2 L18.4 16.5 H5.6 L9.8 10 H7 Z"></path><rect x="11" y="16.5" width="2" height="5"></rect></svg>
+          </span>
+          <span class="sr-chip-label" style="font-size:10px;font-weight:500;color:#8a7d78;">並木道</span>
+        </button>
+        <span class="sr-conn" data-conn="1" style="flex:1;max-width:40px;height:0;margin-top:18px;border-top:1.5px dashed #cbb8bf;"></span>
+        <button type="button" class="sr-chip" data-idx="2" aria-label="クラーク像×ハローキティを見る" style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px;margin:-6px;cursor:pointer;background:none;border:none;-webkit-tap-highlight-color:transparent;">
+          <span class="sr-chip-circle" style="width:36px;height:36px;border-radius:50%;background:#E6F0F6;color:#4a86a8;display:flex;align-items:center;justify-content:center;transform:scale(1);box-shadow:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="2.6"></circle><path d="M7 20 V14.5 Q7 10.5 12 10.5 Q17 10.5 17 14.5 V20"></path><line x1="5" y1="20" x2="19" y2="20"></line></svg>
+          </span>
+          <span class="sr-chip-label" style="font-size:10px;font-weight:500;color:#8a7d78;">クラーク像</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== ④ PRODUCTS ===== -->
+    <section id="products" style="padding:52px 20px 44px;scroll-margin-top:20px;">
+      <div style="text-align:center;margin-bottom:30px;">
+        <p style="font-size:11px;font-weight:700;letter-spacing:.22em;color:#C46A82;margin:0 0 8px;">LINEUP</p>
+        <h2 style="font-weight:900;font-size:24px;margin:0;color:#4A403A;">クリアファイル 全3種</h2>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <!-- ④b SET RECOMMEND -->
+        <div id="set-recommend" style="scroll-margin-top:70px;position:relative;background:linear-gradient(135deg,#F3E6EA,#EDEAF1);border-radius:20px;padding:22px 20px;border:1px solid rgba(212,147,166,.25);box-shadow:0 8px 22px rgba(74,64,58,.08);">
+          <span style="position:absolute;top:14px;right:14px;background:#C2567A;color:#fff;font-weight:700;font-size:14px;padding:8px 18px;border-radius:999px;">おすすめ</span>
+          <div style="border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:0 8px 20px rgba(74,64,58,.12);">
+            <img src="https://image.raku-uru.jp/01/14604/467/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%82%BB%E3%83%83%E3%83%88%E8%A1%A8_1777612253006.jpg" alt="3種セット" style="width:100%;display:block;">
+          </div>
+          <p style="font-size:10.5px;font-weight:700;letter-spacing:.18em;color:#8a7d78;margin:0 0 8px;">COMPLETE THE SET</p>
+          <p style="font-weight:900;font-size:17px;color:#4A403A;margin:0 0 6px;">3種セットで、<br>キャンパスの物語を、まるごと。</p>
+          <p style="font-size:12px;line-height:1.8;color:#6f645f;margin:10px 0 0;">正門・並木道・クラーク像。3枚そろえて、サンリオの仲間たちの北大めぐりを手元に。</p>
+          <p style="font-weight:900;font-size:19px;color:#C2567A;margin:14px 0 0;text-align:right;">¥1,140<span style="font-size:11px;font-weight:500;color:#9a8f89;"> 税込</span></p>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+            <div style="display:flex;align-items:center;border:1px solid rgba(74,64,58,.15);border-radius:999px;overflow:hidden;flex:none;background:#fff;">
+              <button type="button" class="sr-setqty-dec" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">−</button>
+              <span class="sr-setqty" style="width:34px;text-align:center;font-weight:700;font-size:14px;">1</span>
+              <button type="button" class="sr-setqty-inc" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">＋</button>
+            </div>
+            <button type="button" class="sr-addset" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background-color:#C2567A;color:#fff;font-weight:700;font-size:14.5px;padding:13px;border:none;border-radius:999px;box-shadow:0 6px 16px rgba(194,86,122,.28);cursor:pointer;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.4l1.6 10.3a2 2 0 0 0 2 1.7h8.7a2 2 0 0 0 2-1.6l1.3-6.9H6.2"></path></svg>
+              <span class="sr-btn-label">カートに入れる</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ① 北大 正門 × はぴだんぶい -->
+        <div id="prod-gate" data-key="gate" style="scroll-margin-top:70px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(74,64,58,.1);border:1px solid rgba(74,64,58,.05);">
+          <div style="padding:11px 16px;display:flex;align-items:center;gap:10px;background:rgba(167,185,140,.32);">
+            <span style="width:28px;height:28px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#6f8a4a;flex:none;">①</span>
+            <span style="font-weight:700;font-size:14px;color:#4A403A;">北大 正門</span>
+            <span style="margin-left:auto;font-size:11px;font-weight:700;color:#6f8a4a;text-align:right;">はぴだんぶい</span>
+          </div>
+          <div style="display:flex;gap:10px;padding:16px 16px 6px;">
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/465/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%81%AF%E3%81%B2%E3%82%9A%E3%81%9F%E3%82%99%E3%82%93%E3%81%B5%E3%82%99%E3%81%84%E8%A1%A8_1777612251501.jpg" alt="正門×はぴだんぶい 表" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.72);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">表</span>
+            </div>
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/466/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%81%AF%E3%81%B2%E3%82%9A%E3%81%9F%E3%82%99%E3%82%93%E3%81%B5%E3%82%99%E3%81%84%E8%A3%8F_1777612252278.jpg" alt="正門×はぴだんぶい 裏" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.55);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">裏</span>
+            </div>
+          </div>
+          <div style="padding:6px 18px 18px;">
+            <p style="font-size:13px;line-height:1.95;color:#6f645f;margin:0 0 12px;">北海道大学の正門と、はぴだんぶいを描いたクリアファイルです。</p>
+            <p style="font-weight:900;font-size:19px;color:#4A403A;margin:0 0 10px;text-align:right;">¥380<span style="font-size:11px;font-weight:500;color:#9a8f89;"> 税込</span></p>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;border:1px solid rgba(74,64,58,.15);border-radius:999px;overflow:hidden;flex:none;">
+                <button type="button" class="sr-qty-dec" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">−</button>
+                <span class="sr-qty" style="width:34px;text-align:center;font-weight:700;font-size:14px;">1</span>
+                <button type="button" class="sr-qty-inc" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">＋</button>
+              </div>
+              <button type="button" class="sr-add" data-item="1923883" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background-color:#C2567A;color:#fff;font-weight:700;font-size:14.5px;padding:13px;border:none;border-radius:999px;box-shadow:0 6px 16px rgba(194,86,122,.28);cursor:pointer;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.4l1.6 10.3a2 2 0 0 0 2 1.7h8.7a2 2 0 0 0 2-1.6l1.3-6.9H6.2"></path></svg>
+                <span class="sr-btn-label">カートに入れる</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ② ポプラ並木 × マイメロディ・クロミ -->
+        <div id="prod-poplar" data-key="poplar" style="scroll-margin-top:70px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(74,64,58,.1);border:1px solid rgba(74,64,58,.05);">
+          <div style="padding:11px 16px;display:flex;align-items:center;gap:10px;background:rgba(182,169,201,.34);">
+            <span style="width:28px;height:28px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#8b6fb0;flex:none;">②</span>
+            <span style="font-weight:700;font-size:14px;color:#4A403A;">ポプラ並木</span>
+            <span style="margin-left:auto;font-size:11px;font-weight:700;color:#8b6fb0;text-align:right;">マイメロディ・クロミ</span>
+          </div>
+          <div style="display:flex;gap:10px;padding:16px 16px 6px;">
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/472/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%83%9E%E3%82%A4%E3%83%A1%E3%83%AD%E8%A1%A8_1777612256439.jpg" alt="並木道×マイメロ・クロミ 表" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.72);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">表</span>
+            </div>
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/469/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%83%9E%E3%82%A4%E3%83%A1%E3%83%AD%E8%A3%8F_1777612254325.jpg" alt="並木道×マイメロ・クロミ 裏" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.55);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">裏</span>
+            </div>
+          </div>
+          <div style="padding:6px 18px 18px;">
+            <p style="font-size:13px;line-height:1.95;color:#6f645f;margin:0 0 12px;">北海道大学の美しいポプラ並木と、マイメロディ・クロミを描いたクリアファイルです。</p>
+            <p style="font-weight:900;font-size:19px;color:#4A403A;margin:0 0 10px;text-align:right;">¥380<span style="font-size:11px;font-weight:500;color:#9a8f89;"> 税込</span></p>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;border:1px solid rgba(74,64,58,.15);border-radius:999px;overflow:hidden;flex:none;">
+                <button type="button" class="sr-qty-dec" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">−</button>
+                <span class="sr-qty" style="width:34px;text-align:center;font-weight:700;font-size:14px;">1</span>
+                <button type="button" class="sr-qty-inc" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">＋</button>
+              </div>
+              <button type="button" class="sr-add" data-item="1923885" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background-color:#C2567A;color:#fff;font-weight:700;font-size:14.5px;padding:13px;border:none;border-radius:999px;box-shadow:0 6px 16px rgba(194,86,122,.28);cursor:pointer;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.4l1.6 10.3a2 2 0 0 0 2 1.7h8.7a2 2 0 0 0 2-1.6l1.3-6.9H6.2"></path></svg>
+                <span class="sr-btn-label">カートに入れる</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ③ クラーク像 × ハローキティ -->
+        <div id="prod-clark" data-key="clark" style="scroll-margin-top:70px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 32px rgba(74,64,58,.1);border:1px solid rgba(74,64,58,.05);">
+          <div style="padding:11px 16px;display:flex;align-items:center;gap:10px;background:rgba(191,217,232,.5);">
+            <span style="width:28px;height:28px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#4a86a8;flex:none;">③</span>
+            <span style="font-weight:700;font-size:14px;color:#4A403A;">クラーク像</span>
+            <span style="margin-left:auto;font-size:11px;font-weight:700;color:#4a86a8;text-align:right;">ハローキティ</span>
+          </div>
+          <div style="display:flex;gap:10px;padding:16px 16px 6px;">
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/471/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%82%AD%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E8%A1%A8_1777612255723.jpg" alt="クラーク像×ハローキティ 表" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.72);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">表</span>
+            </div>
+            <div style="flex:1;position:relative;border-radius:12px;overflow:hidden;background:#F6EFE7;border:1px solid rgba(74,64,58,.07);">
+              <img src="https://image.raku-uru.jp/01/14604/470/%E3%82%B5%E3%83%B3%E3%83%AA%E3%82%AA%E3%82%B3%E3%83%A9%E3%83%9B%E3%82%99_%E3%82%AD%E3%83%86%E3%82%A3%E3%81%A1%E3%82%83%E3%82%93%E8%A3%8F_1777612255049.jpg" alt="クラーク像×ハローキティ 裏" style="width:100%;display:block;">
+              <span style="position:absolute;bottom:7px;left:7px;background:rgba(74,64,58,.55);color:#fff;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:6px;">裏</span>
+            </div>
+          </div>
+          <div style="padding:6px 18px 18px;">
+            <p style="font-size:13px;line-height:1.95;color:#6f645f;margin:0 0 12px;">北海道大学を象徴するクラーク像と、ハローキティを描いたクリアファイルです。</p>
+            <p style="font-weight:900;font-size:19px;color:#4A403A;margin:0 0 10px;text-align:right;">¥380<span style="font-size:11px;font-weight:500;color:#9a8f89;"> 税込</span></p>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="display:flex;align-items:center;border:1px solid rgba(74,64,58,.15);border-radius:999px;overflow:hidden;flex:none;">
+                <button type="button" class="sr-qty-dec" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">−</button>
+                <span class="sr-qty" style="width:34px;text-align:center;font-weight:700;font-size:14px;">1</span>
+                <button type="button" class="sr-qty-inc" style="width:34px;height:40px;border:none;background:#F6EFE7;font-size:17px;color:#4A403A;cursor:pointer;">＋</button>
+              </div>
+              <button type="button" class="sr-add" data-item="1923886" style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background-color:#C2567A;color:#fff;font-weight:700;font-size:14.5px;padding:13px;border:none;border-radius:999px;box-shadow:0 6px 16px rgba(194,86,122,.28);cursor:pointer;">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.4"></circle><circle cx="18" cy="21" r="1.4"></circle><path d="M2.5 3h2.4l1.6 10.3a2 2 0 0 0 2 1.7h8.7a2 2 0 0 0 2-1.6l1.3-6.9H6.2"></path></svg>
+                <span class="sr-btn-label">カートに入れる</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ⑤ SPEC ===== -->
+    <section style="padding:8px 20px 40px;">
+      <div style="background:#fff;border-radius:22px;padding:22px 20px;box-shadow:0 8px 24px rgba(74,64,58,.08);border:1px solid rgba(74,64,58,.05);display:flex;flex-direction:column;gap:18px;">
+        <div>
+          <p style="font-weight:700;font-size:13px;color:#4A403A;margin:0 0 6px;">商品仕様</p>
+          <p style="font-size:12.5px;line-height:1.85;color:#6f645f;margin:0;">クリアファイル（A4サイズ）／ 材質：PP ／ 全3種</p>
+        </div>
+        <div style="border-top:1px dashed rgba(74,64,58,.15);padding-top:16px;">
+          <p style="font-weight:700;font-size:13px;color:#4A403A;margin:0 0 6px;">販売価格</p>
+          <p style="font-size:12.5px;line-height:1.85;color:#6f645f;margin:0;">各 380円（税込）</p>
+        </div>
+        <div style="border-top:1px dashed rgba(74,64,58,.15);padding-top:16px;">
+          <p style="font-weight:700;font-size:13px;color:#4A403A;margin:0 0 6px;">取扱店舗</p>
+          <p style="font-size:12.5px;line-height:1.85;color:#6f645f;margin:0;">北海道大学生協 オンラインショップ ／ 北大ショップ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ⑥ FOOTER ===== -->
+    <footer style="background:#4A403A;color:#d9cfc8;padding:34px 24px 30px;text-align:center;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:16px;">
+        <span style="font-weight:900;font-size:15px;color:#F6EFE7;">北海道大学</span>
+        <span style="width:5px;height:5px;border-radius:50%;background:#D493A6;"></span>
+        <span style="font-weight:900;font-size:15px;letter-spacing:.02em;color:#F6EFE7;">SANRIO CHARACTERS</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px 18px;margin-bottom:14px;">
+        <a href="https://hokudai-goods-seikyou.net/law" style="font-size:12px;color:#d9cfc8;">特定商取引法に基づく表記</a>
+        <a href="https://hokudai-goods-seikyou.net/privacy" style="font-size:12px;color:#d9cfc8;">個人情報保護方針</a>
+        <a href="https://hokudai-goods-seikyou.net/fee" style="font-size:12px;color:#d9cfc8;">送料について</a>
+        <a href="https://hokudai-goods-seikyou.net/membership" style="font-size:12px;color:#d9cfc8;">会員規約</a>
+        <a href="https://cart.raku-uru.jp/ask/start/47409ca9deadd2be6543f3c2fc49d40f" style="font-size:12px;color:#d9cfc8;">お問合せ</a>
+      </div>
+      <p style="font-size:11px;line-height:1.8;color:#9a8f89;margin:0;">運営：北海道大学 / 受託事業者<br>© 2026 SANRIO CO., LTD. APPROVAL NO. L670723<br>© 2026 北海道大学</p>
+    </footer>
+
+  </div><!--//sr-wrap-->
+</div><!--//sr-sanrio-->
+
+<script>
+/* サンリオLP：元は dc-format（JS駆動コンポーネント）。素のscriptへ移植。
+   元(dc版)の「やっていること」をそのまま再現している：
+   ① 見どころスライダー(slide/goToSlide, 8秒自動送り, chip操作でリセット)
+   ② 数量ステッパー(prodQty/setQty, 1〜99でクランプ)
+   ③ カート追加(itemId/itemQuantity/shpHash を cart.raku-uru.jp/incart へPOST, 2.2秒フィードバック) */
+(function () {
+  var root = document.getElementById('sr-sanrio');
+  if (!root) return;
+
+  /* --- 本番カート定数（dc版の {{shpCartUrl}} / {{shpHash}} を本番値に固定） --- */
+  var SHP_CART_URL = 'https://cart.raku-uru.jp';
+  var SHP_HASH = '47409ca9deadd2be6543f3c2fc49d40f';
+
+  /* ===== ① 見どころスライダー ===== */
+  var highlightData = [
+    { title: '北大 正門 ×  はぴだんぶい', desc: '北大の顔ともいえる正門を舞台に、ポチャッコや\nハンギョドンら「はぴだんぶい」が集合。' },
+    { title: 'ポプラ並木 × マイメロディ・クロミ', desc: '青空に伸びるポプラ並木を、マイメロディとクロミがお散歩。' },
+    { title: 'クラーク像 × ハローキティ', desc: '制服姿のハローキティが“Boys, be ambitious”の言葉とともにクラーク像のもとへ。' }
+  ];
+  var chipBg = ['#EDF1E7', '#EDEAF1', '#E6F0F6'];
+  var chipFg = ['#6f8a4a', '#8b6fb0', '#4a86a8'];
+  function circle(i, on) {
+    return 'width:36px;height:36px;border-radius:50%;background:' + (on ? '#C2567A' : chipBg[i]) +
+      ';color:' + (on ? '#fff' : chipFg[i]) + ';display:flex;align-items:center;justify-content:center;' +
+      'transform:scale(' + (on ? 1.18 : 1) + ');box-shadow:' + (on ? '0 6px 15px rgba(194,86,122,.42)' : 'none') + ';';
+  }
+  function chipLabel(on) {
+    return 'font-size:10px;font-weight:' + (on ? 700 : 500) + ';color:' + (on ? '#C2567A' : '#8a7d78') + ';';
+  }
+  function connector(on) {
+    return 'flex:1;max-width:40px;height:0;margin-top:18px;border-top:1.5px ' + (on ? 'solid #C2567A' : 'dashed #cbb8bf') + ';';
+  }
+  var imgs = root.querySelectorAll('.sr-story-img');
+  var chips = root.querySelectorAll('.sr-chip');
+  var conns = root.querySelectorAll('.sr-conn');
+  var titleEl = document.getElementById('sr-hl-title');
+  var descEl = document.getElementById('sr-hl-desc');
+  var slide = 0, slideTimer = null;
+
+  function show(active) {
+    slide = (active + highlightData.length) % highlightData.length;
+    imgs.forEach(function (im) { im.style.opacity = (String(slide) === im.getAttribute('data-idx')) ? '1' : '0'; });
+    chips.forEach(function (ch) {
+      var i = parseInt(ch.getAttribute('data-idx'), 10);
+      var on = (i === slide);
+      var c = ch.querySelector('.sr-chip-circle');
+      var l = ch.querySelector('.sr-chip-label');
+      if (c) c.style.cssText = 'display:flex;align-items:center;justify-content:center;' + circle(i, on);
+      if (l) l.style.cssText = chipLabel(on);
+    });
+    conns.forEach(function (cn) {
+      var ci = parseInt(cn.getAttribute('data-conn'), 10);   // conn0: active>=1 / conn1: active>=2
+      cn.style.cssText = connector(slide >= (ci + 1));
+    });
+    if (titleEl) titleEl.textContent = highlightData[slide].title;
+    if (descEl) descEl.innerHTML = highlightData[slide].desc.replace(/\n/g, '<br>');
+  }
+  function startTimer() { stopTimer(); slideTimer = setInterval(function () { show(slide + 1); }, 8000); }
+  function stopTimer() { if (slideTimer) { clearInterval(slideTimer); slideTimer = null; } }
+  chips.forEach(function (ch) {
+    ch.addEventListener('click', function () {   // goToSlide: 選択して自動送りをリセット
+      show(parseInt(ch.getAttribute('data-idx'), 10));
+      startTimer();
+    });
+  });
+  show(0); startTimer();
+
+  /* ===== ② 数量ステッパー（1〜99でクランプ） ===== */
+  function stepQty(span, delta) {
+    var v = parseInt(span.textContent, 10) || 1;
+    v = Math.max(1, Math.min(99, v + delta));
+    span.textContent = String(v);
+  }
+  root.querySelectorAll('.sr-qty-dec').forEach(function (b) {
+    b.addEventListener('click', function () { stepQty(b.parentNode.querySelector('.sr-qty'), -1); });
+  });
+  root.querySelectorAll('.sr-qty-inc').forEach(function (b) {
+    b.addEventListener('click', function () { stepQty(b.parentNode.querySelector('.sr-qty'), 1); });
+  });
+  var setDec = root.querySelector('.sr-setqty-dec'), setInc = root.querySelector('.sr-setqty-inc');
+  var setQtyEl = root.querySelector('.sr-setqty');
+  if (setDec) setDec.addEventListener('click', function () { stepQty(setQtyEl, -1); });
+  if (setInc) setInc.addEventListener('click', function () { stepQty(setQtyEl, 1); });
+
+  /* ===== ③ カート追加（itemId/itemQuantity/shpHash を /incart へPOST） ===== */
+  function postCart(itemId, qty) {
+    var body = new URLSearchParams({ itemId: itemId, itemQuantity: String(qty), shpHash: SHP_HASH });
+    // 元(dc版)と同じ fire-and-forget POST（失敗はcatchで無視）。
+    return fetch(SHP_CART_URL + '/incart', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).catch(function () { /* ネットワーク/CORS失敗は無視 */ });
+  }
+  function feedback(btn) {   // 2.2秒だけ「カートに入れました ✓」＋緑
+    var label = btn.querySelector('.sr-btn-label');
+    if (btn._t) clearTimeout(btn._t);
+    if (label) label.textContent = 'カートに入れました ✓';
+    btn.style.backgroundColor = '#7a9a5a';
+    btn._t = setTimeout(function () {
+      if (label) label.textContent = 'カートに入れる';
+      btn.style.backgroundColor = '#C2567A';
+    }, 2200);
+  }
+  // 単品
+  root.querySelectorAll('.sr-add').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var card = btn.closest('[data-key]');
+      var qty = parseInt(card.querySelector('.sr-qty').textContent, 10) || 1;
+      postCart(btn.getAttribute('data-item'), qty);
+      feedback(btn);
+    });
+  });
+  // セット（3商品を個別にPOST。setQty枚ずつ）
+  var ITEM_IDS = ['1923883', '1923885', '1923886'];
+  var addSet = root.querySelector('.sr-addset');
+  if (addSet) addSet.addEventListener('click', function () {
+    var q = parseInt(setQtyEl.textContent, 10) || 1;
+    ITEM_IDS.forEach(function (id) { postCart(id, q); });
+    feedback(addSet);
+  });
+})();
+</script>

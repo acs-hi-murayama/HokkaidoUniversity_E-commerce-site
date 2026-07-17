@@ -1,0 +1,87 @@
+{% set sortOrder = '&sortKind=1' %}
+{% if sortKind == '2' %}
+{% set sortOrder = '&sortKind=2' %}
+{% elseif sortKind == '3' %}
+{% set sortOrder = '&sortKind=3' %}
+{% endif %}
+<article id="main" role="main">
+{% if title2 is not empty %}
+  <div class="cat-head">
+    <h1 class="title1">「{{ title2 }}」に関する検索結果一覧</h1>
+  {% if description != null %}
+    <div class="lead-txt">
+      <p>{{ description }}</p>
+    </div>
+  {% endif %}
+  </div><!--//cat-head-->
+{% endif %}
+  <div class="sort">
+    <ul>
+      <li>表示順　:</li>
+    {% if sortKind == '1' %}
+      <li><span>価格の低い順</span></li>
+      <li><a href="/item-list?sortKind=2{{ condition }}">価格の高い順</a></li>
+      <li><a href="/item-list?sortKind=3{{ condition }}">更新日順</a></li>
+    {% endif %} {% if sortKind == '2' %}
+      <li><a href="/item-list?sortKind=1{{ condition }}">価格の低い順</a></li>
+      <li><span>価格の高い順</span></li>
+      <li><a href="/item-list?sortKind=3{{ condition }}">更新日順</a></li>
+    {% endif %} {% if sortKind == '3' %}
+      <li><a href="/item-list?sortKind=1{{ condition }}">価格の低い順</a></li>
+      <li><a href="/item-list?sortKind=2{{ condition }}">価格の高い順</a></li>
+      <li><span>更新日順</span></li>
+    {% endif %}
+    </ul>
+  </div>
+{% if itemList is not empty %}
+  <ul class="list-product col-3">
+  <!--商品リスト▼-->
+  {% for item in itemList %}
+    <li>
+      <div class="item-photo product-list-photo{% if item.badgeId != null %} icon-badge{{ item.badgeId }}{% endif %}">
+        <a href="/item-detail/{{ item.itemId }}">
+        {% if item.dispMediaUrl is not empty %}
+          <img src="{{ item.dispMediaUrlSmall }}" alt="{{ item.itemName }}">
+        {% else %}
+          <img src="{{ item.mediaUrlSmall }}" alt="{{ item.itemName }}">
+        {% endif %}
+        </a>
+      </div><!--//item-photo-->
+      <div class="item-info">
+        <p class="item-name{% if item.shpRsvFlag == 1 %} icn-reservation{% endif %}">
+          <a href="/item-detail/{{ item.itemId }}">{{ item.itemName }}</a>
+        </p>
+        <p class="item-price">{{ item.displayPrice }}<span class="tax">{{ item.displayTax }}</span></p>
+        {% if item.stockOutMessage is not empty %}<p class="item-nonstock">{{ item.stockOutMessage }}</p>{% endif %}
+      </div>
+    </li>
+  {% endfor %}
+  <!--商品リスト▲-->
+  </ul><!--//list-product-->
+  <div class="item-list-itemcount">表示件数：{{ startNum }}&#65374;{{ endNum }} / {{ totalCount }}</div>
+{% if backPageVisible == 1 or nextPageVisible == 1 %}
+  <div class="pager">
+    {% if backPageVisible == 1 %}
+    <div class="prev"><a href="/item-list?pageIndex={{ pageIndex - 1 }}{{ sortOrder }}{{ condition }}"><span>BACK</span></a></div>
+    {% endif %} {% if nextPageVisible == 1 %}
+    <div class="next"><a href="/item-list?pageIndex={{ pageIndex + 1 }}{{ sortOrder }}{{ condition }}"><span>NEXT</span></a></div>
+    {% endif %}
+    <div class="page-num">
+      <ul>
+      {% for page in pageList %}
+      {% if page == pageIndex %}
+        <li><span><a href="/item-list?pageIndex={{ page }}{{ sortOrder }}{{ condition }}">{{ page + 1 }}</a></span></li>
+      {% else %}
+        <li><a href="/item-list?pageIndex={{ page }}{{ sortOrder }}{{ condition }}">{{ page + 1 }}</a></li>
+      {% endif %}
+      {% endfor %}
+      </ul>
+    </div><!--//page-num-->
+  </div><!--//pager-->
+{% endif %}
+{% else %}
+  <div class="product-list">
+  検索した結果0件でした。
+  </div>
+{% endif %}
+</article><!--//main-->
