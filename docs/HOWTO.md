@@ -41,10 +41,10 @@
 
 ## 1. お知らせを追加する
 
-**使うファイル**：`fr/_template.html`（雛形）／ 新規 `fr/N.html`（本体）／ `index.html`（一覧リンク）
+**使うファイル**：`fr/_template.html`（雛形）／ 新規 `fr/N.html`（本体）／ `data/news.json`（一覧データ）
 
 ### 手順
-1. **雛形をコピー**して次の番号のファイルを作る。既存が 1〜3 なので次は `fr/4.html`。
+1. **雛形をコピー**して次の番号のファイルを作る。Nには数字を入力してください。例：`fr/4.html`。
    ```bash
    cp fr/_template.html fr/4.html
    ```
@@ -68,16 +68,24 @@
        <p>期間中のご注文は8月16日以降の発送となります。</p>
    </div>
    ```
-3. **トップの一覧に載せる**。[../index.html](../index.html) のお知らせ（NEWS）ブロック（93〜100行の `<dl>`）へ
-   **先頭に**1件追加する（新しい順）。
-   ```html
-   <!-- index.html の <dl class="list-info cl"> の中、先頭に追記 -->
-   <dt>2026.07.20</dt>
-   <dd><a href="./fr/4.html">夏季休業のお知らせ</a></dd>
+3. **一覧データに1件追加する**。[../data/news.json](../data/news.json) に要素を1つ足すだけ（`index.html` は触らない）。
+   `no` は本体ファイル名（`fr/{no}.html`）に対応。
+   ```jsonc
+   [
+     { "no": 4, "date": "2026.07.20", "title": "夏季休業のお知らせ" },  // ← 追記
+     { "no": 1, "date": "2026.06.20", "title": "堀内、パチンコ辞める。" },
+     { "no": 2, "date": "2026.06.10", "title": "堀内、タバコ辞める。" },
+     { "no": 3, "date": "2026.05.25", "title": "堀内、寝不足。" }
+   ]
    ```
-4. **確認**：<http://localhost:3000/> のお知らせ欄にリンクが出る → クリックで `fr/4.html` が開く。
+   > 並び順は気にしなくてよい（`date` の**新しい順に自動ソート**して表示される）。
+   > **BOMなしUTF-8**で保存すること（JSONが壊れるため）。
+4. **確認**：<http://localhost:3000/> のお知らせ欄に**新しい順で最新N件**が出る → クリックで `fr/4.html` が開く。
 
-> 💡 本番では、お知らせはカートが `freepageList` から自動生成するため **手順3（index.htmlへの手動追加）は不要**になります（ローカルだけの作業）。
+> 💡 **仕組み**：トップのお知らせは `data/news.json` を [../js/shop.js](../js/shop.js) の `Shop.renderNews()` が読み込み、
+> 新しい順に最新N件だけ描画する（本番らくうるカートの `{% for item in freepageList %}` と同型）。
+> **表示件数**は [../index.html](../index.html) の `Shop.renderNews("#js-news", 5)` の数字で変更（省略すると全件）。
+> `data/news.json` = 本番の `freepageList`、`fr/{no}.html` = `/fr/{freepageSerialNo}` に対応する。
 
 ---
 
@@ -217,7 +225,7 @@ cart/
 
 ### 4-3. 挙動（入力→確認や、カート計算）を変える
 **ファイル**：[../cart/assets/cart-app.js](../cart/assets/cart-app.js)
-- 送料ルール（`SHIP_FEE` / `SHIP_FREE_THRESHOLD`）、localStorageキー、バリデーション等はここ。
+- 送料（地域別テーブル `SHIP_REGIONS`・`shipFeeFor()`／全国一律ではない・送料無料なし）、localStorageキー、バリデーション等はここ。
 - 一連フロー（商品追加→カート→レジ→注文履歴）の全体像は [../cart/README.md](../cart/README.md)。
 
 > 💡 本番へ移行するときは、`theme.css` は `getCss` に、HTML項目はそのまま、`cart-app.js` はサーバー処理に

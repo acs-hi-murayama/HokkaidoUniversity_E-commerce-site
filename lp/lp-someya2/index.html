@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <title>染谷銀志 エンジニアLP② | 北海道大学オンラインショップ（サンプル）</title>
+    <meta name="description" content="サンプルLP。染谷銀志が黙々とコードを書く、開発現場の一枚。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Kaisei+Tokumin:wght@500;700&display=swap" rel="stylesheet">
+    <link href="../../css/landing-page.css" rel="stylesheet" type="text/css">
+    <style>
+        /* LP専用スタイル（染谷銀志②・テック/ブルー） */
+        body.body-lp #container { padding-top: 80px; padding-bottom: 60px; }
+        .lp-hero {
+            width: 100%;
+            background: linear-gradient(135deg, #0d2b5c 0%, #1f4f9c 55%, #3a7bd5 100%);
+            color: #eaf2ff;
+            text-align: center;
+            padding: 70px 5% 60px;
+        }
+        .lp-hero .kv-label {
+            display: inline-block; background: #fff; color: #1f4f9c; font-weight: 700;
+            font-size: 12px; letter-spacing: 2px; padding: 4px 18px; border-radius: 20px; margin-bottom: 22px;
+        }
+        .lp-hero h1 {
+            font-family: "Kaisei Tokumin", serif; font-size: clamp(28px, 5vw, 48px);
+            line-height: 1.4; margin-bottom: 24px; color: #fff;
+        }
+        .lp-hero h1 span { color: #ffd34d; }
+        .lp-hero .hero-img {
+            max-width: 340px; width: 78%; border-radius: 16px; margin: 8px auto 28px;
+            display: block; box-shadow: 0 12px 34px rgba(0,0,0,0.35);
+        }
+        .lp-hero p { font-size: 16px; line-height: 1.8; max-width: 600px; margin: 0 auto 34px; color: #eaf2ff; }
+        .lp-hero .btn-cta {
+            display: inline-block; background: #ffd34d; color: #0d2b5c; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        .lp-hero .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.35); text-decoration: none; }
+        .lp-section { max-width: 960px; margin: 0 auto; padding: 60px 5%; }
+        .lp-section h2 { font-family: "Kaisei Tokumin", serif; font-size: 28px; text-align: center; margin-bottom: 8px; color: #1f4f9c; }
+        .lp-section .section-sub { text-align: center; font-size: 14px; color: #7f9ac6; margin-bottom: 40px; }
+        .lp-point { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+        .lp-point-item { text-align: center; width: calc(33.3% - 20px); min-width: 200px; }
+        .lp-point-item .icon {
+            width: 64px; height: 64px; background: linear-gradient(135deg, #1f4f9c, #3a7bd5);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 16px; font-size: 28px;
+        }
+        .lp-point-item h3 { font-size: 16px; font-weight: 700; color: #1f4f9c; margin-bottom: 8px; }
+        .lp-point-item p { font-size: 13px; color: #666; line-height: 1.7; }
+        .lp-cta-band { background: #0d2b5c; color: #fff; text-align: center; padding: 60px 5%; }
+        .lp-cta-band h2 { font-family: "Kaisei Tokumin", serif; font-size: 26px; margin-bottom: 14px; color: #ffd34d; }
+        .lp-cta-band p { font-size: 14px; opacity: 0.85; margin-bottom: 32px; line-height: 1.8; }
+        .lp-cta-band .btn-cta {
+            display: inline-block; background: #ffd34d; color: #0d2b5c; font-weight: 700; font-size: 18px;
+            padding: 16px 50px; border-radius: 50px; text-decoration: none; transition: transform 0.2s;
+        }
+        .lp-cta-band .btn-cta:hover { transform: translateY(-2px); text-decoration: none; }
+        .lp-divider { border: none; border-top: 1px solid #e3e9f3; margin: 0; }
+        .lp-note { max-width: 700px; margin: 0 auto; padding: 24px 5% 0; font-size: 12px; color: #9aa7bd; text-align: center; }
+    </style>
+</head>
+
+<body class="body-lp">
+    <div id="wrapper">
+        <header id="header">
+            <div class="header-in cl">
+                <div class="h_center">
+                    <h1 class="site-name-txt"><a href="../../index.html">北大オリジナルグッズ</a></h1>
+                </div>
+            </div><!--//header-in-->
+        </header><!--//header-->
+
+        <div id="container">
+            <div class="no_inner">
+                <div class="one-column">
+                    <div id="main" role="main">
+                        <div class="wysiwyg-data">
+
+                            <!-- ヒーローセクション -->
+                            <section class="lp-hero">
+                                <p class="kv-label">SAMPLE LP</p>
+                                <h1>集中する男、<br><span>染谷銀志</span></h1>
+                                <!-- 写真は同じフォルダに someya2.jpg として配置してください -->
+                                <img class="hero-img" src="./someya2.jpg" alt="コードを書く染谷銀志">
+                                <p>キーボードの上を走る指先。画面に向かう、まっすぐな横顔。<br>これは開発現場のリアルを切り取った、サンプルLPです。</p>
+                                <a href="../../product-list.html" class="btn-cta">商品一覧を見る</a>
+                            </section>
+
+                            <hr class="lp-divider">
+
+                            <!-- ポイントセクション -->
+                            <section class="lp-section" style="background: #f3f7fd; max-width: 100%; padding: 60px 5%;">
+                                <div style="max-width: 960px; margin: 0 auto;">
+                                    <h2>染谷銀志の3つの流儀</h2>
+                                    <p class="section-sub">Point</p>
+                                    <div class="lp-point">
+                                        <div class="lp-point-item">
+                                            <div class="icon">💻</div>
+                                            <h3>ThinkPad一筋</h3>
+                                            <p>相棒はThinkPad。トラックポイントから指を離さず、思考を止めない。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">🔍</div>
+                                            <h3>細部までこだわる</h3>
+                                            <p>「どんな表記ずれも許さない」。ピクセル単位の再現に妥協なし。</p>
+                                        </div>
+                                        <div class="lp-point-item">
+                                            <div class="icon">☕</div>
+                                            <h3>水分補給も万全</h3>
+                                            <p>デスクにはサーモスの水筒。長丁場の開発を支える名脇役。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- CTAバンド -->
+                            <section class="lp-cta-band">
+                                <h2>LPはこんな風に作れます</h2>
+                                <p>これは <code>lp/lp-someya2/</code> に置いたサンプルLPです。<br>写真・文章・色を差し替えれば、あなたのLPが完成します。</p>
+                                <a href="../../members-only-login.html" class="btn-cta">会員登録・ログイン</a>
+                            </section>
+
+                            <p class="lp-note">※本ページはローカル再現環境の動作確認用サンプルです。</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--//container-->
+
+        <footer id="footer">
+            <div id="page-top"><a href="#header"></a></div>
+            <div class="footer-top">
+                <div class="inner">
+                    <div class="footer-block">
+                        <p class="logo-text"><a href="../../index.html">北大オリジナルグッズ</a></p>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="list-link">
+                            <li><a href="#">特定商取引法に基づく表記</a></li>
+                            <li><a href="#">個人情報保護方針</a></li>
+                            <li><a href="#">送料について</a></li>
+                            <li><a href="#">お問合せ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-block">
+                        <ul class="sns">
+                            <li><a href="#" target="_blank"><i class="icon-x"></i></a></li>
+                            <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">Copyright &copy; 北大オリジナルグッズ All Rights Reserved.</p>
+            </div>
+        </footer><!--//footer-->
+    </div><!--//wrapper-->
+    <div class="overlay"></div>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#jq-btn-menu").on("click", function (e) {
+            e.preventDefault();
+            $("body").toggleClass("open-menu");
+        });
+    });
+    </script>
+</body>
+
+</html>

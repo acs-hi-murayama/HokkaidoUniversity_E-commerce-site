@@ -18,9 +18,38 @@
   var KEY_ORDERS = "hokudai_orders";     // 注文履歴
   var KEY_REGTMP = "hokudai_regist_tmp"; // 登録 入力→確認 の一時保持(sessionStorage)
 
-  // 送料ルール（ローカル近似）：全国一律 ¥660、税込5,500円以上で無料
-  var SHIP_FEE = 660;
-  var SHIP_FREE_THRESHOLD = 5500;
+  /* 送料は「全国一律」ではない。配送先の地域 × 荷物のサイズ区分で決まる（送料無料の閾値は無し）。
+   * 本番でも送料は注文時点では未確定（配送先・サイズ確定後に決まる）。
+   * 出典: https://hokudai-goods-seikyou.net/fee （ヤマト運輸・常温）。単位：円。
+   * サイズ区分キー: "60-80" / "100-120" / "140-160" */
+  var SHIP_REGIONS = [
+    { name: "北海道", fee: { "60-80": 880, "100-120": 1300, "140-160": 1690 }, prefs: ["北海道"] },
+    { name: "北東北", fee: { "60-80": 1100, "100-120": 1490, "140-160": 1870 }, prefs: ["青森県", "秋田県", "岩手県"] },
+    { name: "南東北", fee: { "60-80": 1210, "100-120": 1580, "140-160": 1960 }, prefs: ["宮城県", "山形県", "福島県"] },
+    { name: "関東", fee: { "60-80": 1290, "100-120": 1670, "140-160": 2050 }, prefs: ["茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "神奈川県", "山梨県", "東京都"] },
+    { name: "信越", fee: { "60-80": 1290, "100-120": 1670, "140-160": 2050 }, prefs: ["新潟県", "長野県"] },
+    { name: "北陸", fee: { "60-80": 1380, "100-120": 1760, "140-160": 2150 }, prefs: ["富山県", "石川県", "福井県"] },
+    { name: "中部", fee: { "60-80": 1380, "100-120": 1760, "140-160": 2150 }, prefs: ["静岡県", "愛知県", "三重県", "岐阜県"] },
+    { name: "関西", fee: { "60-80": 1560, "100-120": 1950, "140-160": 2420 }, prefs: ["大阪府", "京都府", "滋賀県", "奈良県", "和歌山県", "兵庫県"] },
+    { name: "中国", fee: { "60-80": 1650, "100-120": 2040, "140-160": 2420 }, prefs: ["岡山県", "広島県", "山口県", "鳥取県", "島根県"] },
+    { name: "四国", fee: { "60-80": 1650, "100-120": 2040, "140-160": 2420 }, prefs: ["香川県", "徳島県", "愛媛県", "高知県"] },
+    { name: "九州", fee: { "60-80": 1980, "100-120": 2440, "140-160": 2900 }, prefs: ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県"] },
+    { name: "沖縄", fee: { "60-80": 2530, "100-120": 3200, "140-160": 4220 }, prefs: ["沖縄県"] }
+  ];
+
+  // 都道府県 → 地域 の逆引き（初期化時に構築）
+  var PREF_TO_REGION = {};
+  for (var _ri = 0; _ri < SHIP_REGIONS.length; _ri++) {
+    var _rg = SHIP_REGIONS[_ri];
+    for (var _pi = 0; _pi < _rg.prefs.length; _pi++) { PREF_TO_REGION[_rg.prefs[_pi]] = _rg; }
+  }
+
+  /* 配送先(都道府県)とサイズ区分から送料を引く。未指定・不明なら null（＝未確定）。 */
+  function shipFeeFor(pref, size) {
+    var rg = PREF_TO_REGION[pref];
+    if (!rg) return null;
+    return rg.fee[size || "60-80"]; // サイズ未指定時は最小区分(60-80)を既定
+  }
 
   /* ---------- storage helpers ---------- */
   function readJSON(store, key, def) {
@@ -84,11 +113,14 @@
     return items;
   }
   function clearCart() { saveCart([]); }
-  function cartTotals() {
+  /* カートの金額。送料は配送先・サイズ確定後に決まるため、この時点では未確定（=null）。
+   * 合計は「送料別」の商品合計。配送先(pref)を渡すと、その地域の送料(最小サイズ区分)を試算して含める。 */
+  function cartTotals(pref, size) {
     var items = getCart();
     var itemTotal = items.reduce(function (s, it) { return s + Number(it.price) * Number(it.qty); }, 0);
-    var ship = itemTotal === 0 ? 0 : (itemTotal >= SHIP_FREE_THRESHOLD ? 0 : SHIP_FEE);
-    return { itemTotal: itemTotal, ship: ship, total: itemTotal + ship, freeThreshold: SHIP_FREE_THRESHOLD };
+    var ship = pref ? shipFeeFor(pref, size) : null; // 配送先未指定なら未確定
+    var total = itemTotal + (typeof ship === "number" ? ship : 0);
+    return { itemTotal: itemTotal, ship: ship, total: total };
   }
 
   /* ---------- member / session ---------- */
@@ -158,6 +190,8 @@
     // cart
     getCart: getCart, addToCart: addToCart, updateQty: updateQty, removeItem: removeItem,
     clearCart: clearCart, cartCount: cartCount, cartTotals: cartTotals,
+    // shipping（地域別送料）
+    shipFeeFor: shipFeeFor, SHIP_REGIONS: SHIP_REGIONS,
     // member
     getMember: getMember, saveMember: saveMember, isLoggedIn: isLoggedIn,
     currentMember: currentMember, login: login, logout: logout,

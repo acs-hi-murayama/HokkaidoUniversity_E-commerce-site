@@ -174,7 +174,8 @@
 			$tbl.html(rows);
 
 			$("#cart-itemtotal").text(TX.yen(t.itemTotal));
-			$("#cart-carriage").text(t.ship === 0 ? (t.itemTotal >= t.freeThreshold ? "無料" : TX.yen(0)) : TX.yen(t.ship));
+			// 送料は配送先・サイズで決まるため、カート時点では未確定（全国一律ではない）。合計は「送料別」。
+			$("#cart-carriage").text(t.ship == null ? "未確定" : TX.yen(t.ship));
 			$("#cart-costtotal").text(TX.yen(t.total));
 		}
 

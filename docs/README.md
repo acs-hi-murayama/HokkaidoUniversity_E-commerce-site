@@ -1,7 +1,6 @@
 # ドキュメント目次（docs/）
 
 北大オリジナルグッズ Online Shop ローカル再現環境の**ドキュメント集**です。
-まず全体像を知りたい方は、プロジェクト入口の **[../README.md](../README.md)** から読んでください。
 
 ---
 
@@ -16,26 +15,26 @@
 | [MAPPING.md](MAPPING.md) | 対応表 | ローカルの各ファイル ↔ `original/`（本番テンプレ原本）の対応 |
 | [products_itemid_list.csv](products_itemid_list.csv) | データ | 商品ID一覧（参照用） |
 
-> ★印は解像度の高い主要ドキュメントです。
+> ★印は主要ドキュメントです。
 
 ---
 
 ## 目的別・おすすめの読む順番
 
-### 🛠 サイトを更新・運用したい（お知らせ/商品/LP/見た目）
+### サイトを更新・運用したい（お知らせ/商品/LP/見た目）
 1. [../README.md](../README.md) … 起動と全体像
 2. **[HOWTO.md](HOWTO.md)** … 具体的な変更手順（ほぼこれだけでOK）
 3. 必要に応じて [LOCAL-SPEC.md](LOCAL-SPEC.md) … 仕組みを深掘りするとき
 
-### 🧭 このローカル環境の作りを理解したい（引き継ぎ・改修）
+### このローカル環境の作りを理解したい（引き継ぎ・改修）
 1. [ARCHITECTURE.md](ARCHITECTURE.md) … 本番とローカルの関係を図で把握
 2. **[LOCAL-SPEC.md](LOCAL-SPEC.md)** … 実装（JS/データ/localStorage/URL）の詳細
 3. [MAPPING.md](MAPPING.md) … どのファイルが本番の何に対応するか
 
-### 🏭 らくうるカート本番の仕様を知りたい／本番へ戻したい
+### らくうるカート本番の仕様を知りたい／本番へ戻したい
 1. [ARCHITECTURE.md](ARCHITECTURE.md) … 2ドメイン構成・SSR・取引フロー
 2. **[RAKUURU-SPEC.md](RAKUURU-SPEC.md)** … Twig変数・URL・テーマの詳細仕様
-3. 本番化スキル … [../.claude/skills/build-production/SKILL.md](../.claude/skills/build-production/SKILL.md)
+3. 本番環境移行スキル … [../.claude/skills/build-production/SKILL.md](../.claude/skills/build-production/SKILL.md)
 
 ---
 

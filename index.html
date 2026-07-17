@@ -84,14 +84,8 @@
                             <div class="section-head">
                                 <h2 class="title1">NEWS<span class="sub-title">お知らせ</span></h2>
                             </div>
-                            <dl class="list-info cl">
-                                <dt>2026.06.20</dt>
-                                <dd><a href="./fr/1.html">堀内、パチンコ辞める。</a></dd>
-                                <dt>2026.06.10</dt>
-                                <dd><a href="./fr/2.html">堀内、タバコ辞める。</a></dd>
-                                <dt>2026.05.25</dt>
-                                <dd><a href="./fr/3.html">堀内、寝不足。</a></dd>
-                            </dl><!--//list-info-->
+                            <!-- お知らせは data/news.json を参照して最新N件を描画（本番: freepageList 相当） -->
+                            <dl id="js-news" class="list-info cl"></dl><!--//list-info-->
                         </section><!--//section-block-->
 
                         <!-- 新着商品 -->
@@ -207,6 +201,10 @@
         // 販売ランキング(#js-ranking)は本番が現在非表示のためコメントアウト中。復元時は下記を有効化:
         // Shop.fill("#js-ranking", pub.slice(0, 12).map(Shop.rankCard).join(""));
     }).catch(function (e) { console.error(e); });
+
+    /* お知らせ（data/news.json を参照し、新しい順に最新5件のみ表示 / 本番: freepageList）
+       表示件数を変えるときは下の数字を変更。全件表示は数字を省略。 */
+    Shop.renderNews("#js-news", 5).catch(function (e) { console.error(e); });
 
     /* メインビジュアル（別ファイルを注入 / 本番: dsnTopHtmlTag。LPバナーとは別物） */
     Shop.include("#js-main-visual", "./data/main-visual.html");

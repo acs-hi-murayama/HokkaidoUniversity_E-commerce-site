@@ -12,6 +12,11 @@
   var DATA_URL = "./data/products.json";
   var _cache = null;
 
+  /* お知らせ（フリーページ）の一覧データ。本番の freepageList 相当。
+   * data/news.json の各要素 {no, date, title} が fr/{no}.html に対応する。 */
+  var NEWS_URL = "./data/news.json";
+  var _newsCache = null;
+
   /* カテゴリーマスター（categoryId → 表示名）。
    * 本番（らくうるカート）ではカテゴリーもサーバー側から供給されるが、
    * ローカルでは products.json の categoryId とナビの表示名を突き合わせる。 */
@@ -117,6 +122,37 @@
       .then(function (html) { el.innerHTML = html; return el; });
   }
 
+  /* お知らせ一覧（data/news.json）を取得。本番の freepageList 相当。 */
+  function loadNews() {
+    if (_newsCache) return Promise.resolve(_newsCache);
+    return fetch(NEWS_URL)
+      .then(function (r) {
+        if (!r.ok) throw new Error("news.json の読み込みに失敗: " + r.status);
+        return r.json();
+      })
+      .then(function (data) { _newsCache = data; return data; });
+  }
+
+  /* お知らせ1件を <dt>日付</dt><dd><a>タイトル</a></dd> に描画。
+   * 本番の {{ item.updateTime }} / {{ item.title }} / /fr/{{ item.freepageSerialNo }} 相当。 */
+  function newsRow(item) {
+    return '<dt>' + esc(item.date) + '</dt>' +
+      '<dd><a href="./fr/' + encodeURIComponent(item.no) + '.html">' + esc(item.title) + '</a></dd>';
+  }
+
+  /* お知らせを「新しい順に最新 limit 件だけ」描画する。
+   * limit を省略すると全件。本番の {% for item in freepageList %}（表示件数制限あり）と同型。 */
+  function renderNews(sel, limit) {
+    return loadNews().then(function (list) {
+      var arr = list.slice().sort(function (a, b) {
+        return String(b.date).localeCompare(String(a.date)); // 日付降順（新しい順）
+      });
+      if (limit != null) arr = arr.slice(0, limit);
+      fill(sel, arr.map(newsRow).join(""));
+      return arr;
+    });
+  }
+
   window.Shop = {
     load: load,
     yen: yen,
@@ -129,6 +165,9 @@
     rankCard: rankCard,
     fill: fill,
     include: include,
+    loadNews: loadNews,
+    newsRow: newsRow,
+    renderNews: renderNews,
     categories: CATEGORIES,
     categoryName: categoryName
   };
